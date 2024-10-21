@@ -42,14 +42,18 @@ namespace LibraryManagementSoftware
             return false;
         }
 
+        string LayMaDocGiaLonNhat()
+        {
+
+            return db.ExecuteFunction("func_LayMaDocGiaLonNhat").ToString();
+        }
+
         string ThemMaDocGia()
         {
             string prefix = "DG";
             int currentNumber;
             int lengthOfNumberPart = 3;
-
-            string maxID = db.ExecuteFunction("func_LayMaDocGiaLonNhat").ToString();
-
+            string maxID = LayMaDocGiaLonNhat();
             // Tách phần số từ mã, ví dụ: lấy '020' từ 'DG020'
             string numberPart = maxID.Substring(prefix.Length);
 
@@ -95,7 +99,8 @@ namespace LibraryManagementSoftware
         }
         private void Exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            System.Windows.Forms.Application.Exit();
+
         }
 
         private void txtEmail_Enter(object sender, EventArgs e)
@@ -145,16 +150,17 @@ namespace LibraryManagementSoftware
             string query = $"INSERT INTO TAIKHOAN (Email,HashedPassword,MaDocGia) VALUES (@email,@Password,@MaDocGia)";
 
             // Define parameters
+            bool isDocGiaInserted = ThemDocGia();
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@email", txtEmail.Text),
                 new SqlParameter("@Password", txtPassword.Text),    
-                new SqlParameter("@MaDocGia", ThemMaDocGia())
+                new SqlParameter("@MaDocGia", LayMaDocGiaLonNhat())
              };
             // Call the method
             bool isInserted = db.ExecuteInsert(query, parameters);
-            bool isDocGiaInserted = ThemDocGia();
-            if (isInserted||isDocGiaInserted)
+            
+            if (isInserted&&isDocGiaInserted)
             {
                 MessageBox.Show("Account inserted successfully!");
             }
