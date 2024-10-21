@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -40,6 +41,7 @@ namespace LibraryManagementSoftware
         private void txtPassword_Enter(object sender, EventArgs e)
         {
             if (txtPassword.Text != "Password") return;
+            txtPassword.PasswordChar = '*';
             txtPassword.ForeColor = Color.Black;
             txtPassword.Text = "";
         }
@@ -47,8 +49,24 @@ namespace LibraryManagementSoftware
         private void txtPassword_Leave(object sender, EventArgs e)
         {
             if (txtPassword.Text != "") return;
+            txtPassword.PasswordChar = '\0';
             txtPassword.ForeColor = Color.LightGray;
             txtPassword.Text = "Password";
+        }
+
+        private void btnDangKi_Click(object sender, EventArgs e)
+        {
+            frmDangKi frmDangKi = new frmDangKi();
+            frmDangKi.Show();
+            this.Hide();
+        }
+
+        private void frmDangNhap_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!this.Visible) return;
+            DialogResult dialog = MessageBox.Show("Bạn có muốn thoát không?","Thoát",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+            if (dialog == DialogResult.OK) return;
+            e.Cancel = true;
         }
     }
 }

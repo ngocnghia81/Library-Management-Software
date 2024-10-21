@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDangNhap));
             this.label1 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -36,6 +37,9 @@
             this.btnDangKi = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Exit = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -87,6 +91,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -104,6 +109,7 @@
             this.btnDangKi.TabIndex = 7;
             this.btnDangKi.Text = "Bạn chưa có tài khoản";
             this.btnDangKi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnDangKi.Click += new System.EventHandler(this.btnDangKi_Click);
             // 
             // label3
             // 
@@ -126,13 +132,22 @@
             this.Exit.Text = "X";
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(99, 81);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(739, 241);
+            this.ClientSize = new System.Drawing.Size(729, 241);
             this.ControlBox = false;
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.label3);
@@ -148,6 +163,12 @@
             this.Name = "frmDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDangNhap";
+
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDangNhap_FormClosing);
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +184,6 @@
         private System.Windows.Forms.Label btnDangKi;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Exit;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
