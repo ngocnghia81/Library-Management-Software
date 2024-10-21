@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBConnection.cs" />
+    <Compile Include="EmailSender.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,10 +60,19 @@
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmQuenMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuenMatKhau.Designer.cs">
+      <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuenMatKhau.resx">
+      <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

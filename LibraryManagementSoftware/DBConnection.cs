@@ -9,7 +9,7 @@ public class DBConnection
     // Constructor, truyền vào chuỗi kết nối
     public DBConnection(string connectionString)
     {
-        this.connectionString = "Server=DESKTOP-7TLHHMR; Database=QL_ThuVien1; Trusted_Connection=True;";
+        this.connectionString = connectionString;
     }
 
     // Mở kết nối
