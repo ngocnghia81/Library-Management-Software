@@ -104,6 +104,7 @@
             this.btnDangKi.TabIndex = 7;
             this.btnDangKi.Text = "Bạn chưa có tài khoản";
             this.btnDangKi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnDangKi.Click += new System.EventHandler(this.btnDangKi_Click);
             // 
             // label3
             // 
@@ -132,7 +133,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(739, 241);
+            this.ClientSize = new System.Drawing.Size(729, 241);
             this.ControlBox = false;
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.label3);
@@ -148,6 +149,7 @@
             this.Name = "frmDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDangNhap";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDangNhap_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
