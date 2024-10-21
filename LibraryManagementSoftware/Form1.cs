@@ -16,5 +16,9 @@ namespace LibraryManagementSoftware
         {
             InitializeComponent();
         }
+        void test()
+        {
+            Console.WriteLine("phien vcl");
+        }
     }
 }
