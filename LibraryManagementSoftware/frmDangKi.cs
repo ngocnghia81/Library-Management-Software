@@ -4,23 +4,21 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace LibraryManagementSoftware
 {
-    public partial class frmDangNhap : Form
+    public partial class frmDangKi : Form
     {
-        public frmDangNhap()
+        public frmDangKi()
         {
             InitializeComponent();
         }
         private void Exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void txtEmail_Enter(object sender, EventArgs e)
@@ -32,7 +30,7 @@ namespace LibraryManagementSoftware
 
         private void txtEmail_Leave(object sender, EventArgs e)
         {
-            
+
             if (txtEmail.Text != "") return;
             txtEmail.ForeColor = Color.LightGray;
             txtEmail.Text = "Email";
@@ -53,18 +51,31 @@ namespace LibraryManagementSoftware
             txtPassword.ForeColor = Color.LightGray;
             txtPassword.Text = "Password";
         }
-
-        private void btnDangKi_Click(object sender, EventArgs e)
+        private void txtNhapLai_Enter(object sender, EventArgs e)
         {
-            frmDangKi frmDangKi = new frmDangKi();
-            frmDangKi.Show();
-            this.Hide();
+            if (txtNhapLai.Text != "Nhập lại password") return;
+            txtNhapLai.PasswordChar = '*';
+            txtNhapLai.ForeColor = Color.Black;
+            txtNhapLai.Text = "";
         }
 
-        private void frmDangNhap_FormClosing(object sender, FormClosingEventArgs e)
+        private void txtNhapLai_Leave(object sender, EventArgs e)
         {
-            if (!this.Visible) return;
-            DialogResult dialog = MessageBox.Show("Bạn có muốn thoát không?","Thoát",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+            if (txtNhapLai.Text != "") return;
+            txtNhapLai.PasswordChar = '\0';
+            txtNhapLai.ForeColor = Color.LightGray;
+            txtNhapLai.Text = "Nhập lại password";
+        }
+        private void btnDangNhap_Click(object sender, EventArgs e)
+        {
+            frmDangNhap frmDangNhap = new frmDangNhap();
+            frmDangNhap.Show();
+            this.Close();
+        }
+
+        private void frmDangKi_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Bạn có muốn thoát không?", "Thoát", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dialog == DialogResult.OK) return;
             e.Cancel = true;
         }
