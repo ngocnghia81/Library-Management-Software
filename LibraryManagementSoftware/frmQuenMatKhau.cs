@@ -64,24 +64,11 @@ namespace LibraryManagementSoftware
             }
         }
 
-        private bool IsValidEmail(string email)
-        {
-            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            Regex regex = new Regex(pattern);
-            return regex.IsMatch(email);
-        }
-
-        private bool IsValidPhoneNumber(string phone)
-        {
-            string pattern = @"^\d{10}$";
-            Regex regex = new Regex(pattern);
-            return regex.IsMatch(phone);
-        }
 
         private void ValidateFields()
         {
-            bool isEmailValid = IsValidEmail(txtEmail.Text) && txtEmail.Text != "Email";
-            bool isPhoneValid = IsValidPhoneNumber(txtSDT.Text) && txtSDT.Text != "Số điện thoại";
+            bool isEmailValid = ValidationHelper.IsValidEmail(txtEmail.Text) && txtEmail.Text != "Email";
+            bool isPhoneValid = ValidationHelper.IsValidPhoneNumber(txtSDT.Text) && txtSDT.Text != "Số điện thoại";
 
             btnXacNhan.Enabled = isEmailValid && isPhoneValid;
         }

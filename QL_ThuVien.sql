@@ -153,3 +153,24 @@ CREATE TABLE TAIKHOAN
 );
 GO
 
+CREATE FUNCTION dbo.func_LayMaDocGiaLonNhat()
+RETURNS VARCHAR(10)
+AS
+BEGIN
+    DECLARE @MaxMaDocGia VARCHAR(10);
+
+    SELECT @MaxMaDocGia = MAX(MaDocGia)
+    FROM DOCGIA;
+
+    -- Kiểm tra nếu không có độc giả nào, trả về '0'
+    IF @MaxMaDocGia IS NULL
+    BEGIN
+        RETURN 'DG000';
+    END
+
+    RETURN @MaxMaDocGia;
+END;
+GO
+
+
+SELECT dbo.func_LayMaDocGiaLonNhat() AS MaxMaDocGia;

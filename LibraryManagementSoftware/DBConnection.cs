@@ -9,7 +9,8 @@ public class DBConnection
     // Constructor, truyền vào chuỗi kết nối
     public DBConnection(string connectionString)
     {
-        this.connectionString = "Server=DESKTOP-7TLHHMR; Database=QL_ThuVien1; Trusted_Connection=True;";
+        this.connectionString = connectionString;
+
     }
 
     // Mở kết nối
@@ -250,21 +251,24 @@ public class DBConnection
             try
             {
                 conn.Open();
-                // Sử dụng cú pháp SELECT để gọi hàm
+
+                // Xây dựng câu lệnh SELECT để gọi hàm
                 string query = $"SELECT dbo.{functionName}(";
 
+                // Nếu có tham số, thêm các tham số vào câu lệnh
                 if (parameters != null && parameters.Length > 0)
                 {
                     for (int i = 0; i < parameters.Length; i++)
                     {
                         if (i > 0) query += ", ";
-                        query += $"@param{i}"; // Thêm tên tham số
+                        query += $"@param{i}"; // Tạo tham số
                     }
                 }
-                query += ")"; // Đóng lại câu lệnh SELECT
+                query += ")"; // Đóng câu lệnh gọi hàm
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    // Thêm tham số vào SqlCommand nếu có
                     if (parameters != null)
                     {
                         for (int i = 0; i < parameters.Length; i++)
@@ -273,7 +277,8 @@ public class DBConnection
                         }
                     }
 
-                    return cmd.ExecuteScalar(); // Trả về giá trị đầu tiên (scalar)
+                    // Thực thi câu lệnh và trả về giá trị scalar
+                    return cmd.ExecuteScalar();
                 }
             }
             catch (Exception ex)
@@ -283,6 +288,7 @@ public class DBConnection
             }
         }
     }
+
 
     // Thực hiện lệnh SQL và trả về một giá trị duy nhất
     public object ExecuteScalar(string query, SqlParameter[] parameters = null)

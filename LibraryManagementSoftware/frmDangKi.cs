@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace LibraryManagementSoftware
     public partial class frmDangKi : Form
     {
 
-        DBConnection db = new DBConnection("");
+        DBConnection db = new DBConnection("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; User ID=nghia81; Password=5612;");
 
         void FormatInputEnter(TextBox txt, string placeholder, bool isPassword)
         {
@@ -44,7 +45,10 @@ namespace LibraryManagementSoftware
 
         string LayMaDocGiaLonNhat()
         {
-
+            if (db == null)
+            {
+                throw new InvalidOperationException("Database connection is not initialized.");
+            }
             return db.ExecuteFunction("func_LayMaDocGiaLonNhat").ToString();
         }
 
@@ -132,35 +136,55 @@ namespace LibraryManagementSoftware
 
         private void btnDangKi_Click(object sender, EventArgs e)
         {
+            // Kiểm tra xem người dùng đã nhập đủ thông tin chưa
             if (txtEmail.Text == "Email" || txtPassword.Text == "Password" || txtNhapLai.Text == "Nhập lại password" || txtHoTen.Text == "Họ Tên" || txtSDT.Text == "SDT")
             {
                 MessageBox.Show("Nhập đầy đủ thông tin", "Nhập liệu sai", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!txtEmail.Text.Contains("@gmail.com"))
+            // Sử dụng ValidationHelper để kiểm tra email
+            if (!ValidationHelper.IsValidEmail(txtEmail.Text))
             {
-                MessageBox.Show("Định dạng mail sai", "Nhập liệu sai", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Định dạng email không hợp lệ", "Nhập liệu sai", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Sử dụng ValidationHelper để kiểm tra số điện thoại
+            if (!ValidationHelper.IsValidPhoneNumber(txtSDT.Text))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ", "Nhập liệu sai", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra xác nhận mật khẩu
             if (!XacNhanPassword()) return;
 
-            // Define your SQL INSERT query
-            string query = $"INSERT INTO TAIKHOAN (Email,HashedPassword,MaDocGia) VALUES (@email,@Password,@MaDocGia)";
+            // Kiểm tra độ mạnh của mật khẩu bằng ValidationHelper
+            if (!ValidationHelper.IsValidPassword(txtPassword.Text))
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự", "Nhập liệu sai", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            // Define parameters
+            // Define your SQL INSERT query
+            string query = $"INSERT INTO TAIKHOAN (Email,HashedPassword,MaDocGia) VALUES (@Email, @Password, @MaDocGia)";
+
+            // Chèn thông tin độc giả
             bool isDocGiaInserted = ThemDocGia();
+
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@email", txtEmail.Text),
-                new SqlParameter("@Password", txtPassword.Text),    
+                new SqlParameter("@Email", txtEmail.Text),
+                new SqlParameter("@Password", txtPassword.Text),
                 new SqlParameter("@MaDocGia", LayMaDocGiaLonNhat())
-             };
-            // Call the method
+            };
+
+            // Thực hiện chèn dữ liệu vào bảng TAIKHOAN
             bool isInserted = db.ExecuteInsert(query, parameters);
-            
-            if (isInserted&&isDocGiaInserted)
+
+            // Kiểm tra kết quả
+            if (isInserted && isDocGiaInserted)
             {
                 MessageBox.Show("Account inserted successfully!");
             }
@@ -168,7 +192,7 @@ namespace LibraryManagementSoftware
             {
                 MessageBox.Show("Failed to insert account.");
             }
-
         }
-    } 
+
+    }
 }
