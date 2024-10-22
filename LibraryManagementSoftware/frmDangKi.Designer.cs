@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Exit = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDangKi));
             this.label3 = new System.Windows.Forms.Label();
             this.btnDangNhap = new System.Windows.Forms.Label();
             this.btnDangKi = new System.Windows.Forms.Button();
@@ -36,31 +36,21 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNhapLai = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtSDT = new System.Windows.Forms.TextBox();
-            this.txtHoTen = new System.Windows.Forms.TextBox();
+            this.Exit = new System.Windows.Forms.Label();
             this.dateTime = new System.Windows.Forms.DateTimePicker();
+            this.txtHoTen = new System.Windows.Forms.TextBox();
+            this.txtSDT = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Exit
-            // 
-            this.Exit.AutoSize = true;
-            this.Exit.BackColor = System.Drawing.Color.Red;
-            this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Exit.Location = new System.Drawing.Point(310, 0);
-            this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(26, 25);
-            this.Exit.TabIndex = 17;
-            this.Exit.Text = "X";
-            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(141, 9);
+            this.label3.Font = new System.Drawing.Font("Franklin Gothic Heavy", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(63, 31);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 25);
+            this.label3.Size = new System.Drawing.Size(264, 75);
             this.label3.TabIndex = 16;
             this.label3.Text = "ĐĂNG KÍ";
             // 
@@ -69,9 +59,9 @@
             this.btnDangNhap.AutoSize = true;
             this.btnDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnDangNhap.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnDangNhap.Location = new System.Drawing.Point(124, 214);
+            this.btnDangNhap.Location = new System.Drawing.Point(124, 530);
             this.btnDangNhap.Name = "btnDangNhap";
-            this.btnDangNhap.Size = new System.Drawing.Size(125, 16);
+            this.btnDangNhap.Size = new System.Drawing.Size(157, 20);
             this.btnDangNhap.TabIndex = 15;
             this.btnDangNhap.Text = "Bạn đã có tài khoản";
             this.btnDangNhap.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -84,7 +74,7 @@
             this.btnDangKi.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.btnDangKi.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnDangKi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDangKi.Location = new System.Drawing.Point(35, 173);
+            this.btnDangKi.Location = new System.Drawing.Point(35, 489);
             this.btnDangKi.Name = "btnDangKi";
             this.btnDangKi.Size = new System.Drawing.Size(302, 38);
             this.btnDangKi.TabIndex = 3;
@@ -95,9 +85,9 @@
             // txtPassword
             // 
             this.txtPassword.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtPassword.Location = new System.Drawing.Point(35, 82);
+            this.txtPassword.Location = new System.Drawing.Point(35, 183);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(302, 30);
+            this.txtPassword.Size = new System.Drawing.Size(302, 36);
             this.txtPassword.TabIndex = 12;
             this.txtPassword.Tag = "Password";
             this.txtPassword.Text = "Password";
@@ -107,9 +97,9 @@
             // txtEmail
             // 
             this.txtEmail.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtEmail.Location = new System.Drawing.Point(35, 47);
+            this.txtEmail.Location = new System.Drawing.Point(35, 120);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(302, 30);
+            this.txtEmail.Size = new System.Drawing.Size(302, 36);
             this.txtEmail.TabIndex = 11;
             this.txtEmail.Tag = "Email";
             this.txtEmail.Text = "Email";
@@ -123,72 +113,87 @@
             this.label1.Location = new System.Drawing.Point(163, 64);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 25);
+            this.label1.Size = new System.Drawing.Size(0, 29);
             this.label1.TabIndex = 10;
             // 
             // txtNhapLai
             // 
             this.txtNhapLai.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtNhapLai.Location = new System.Drawing.Point(35, 118);
+            this.txtNhapLai.Location = new System.Drawing.Point(35, 251);
             this.txtNhapLai.Name = "txtNhapLai";
-            this.txtNhapLai.Size = new System.Drawing.Size(302, 30);
+            this.txtNhapLai.Size = new System.Drawing.Size(302, 36);
             this.txtNhapLai.TabIndex = 18;
             this.txtNhapLai.Tag = "Nhập lại password";
             this.txtNhapLai.Text = "Nhập lại password";
             this.txtNhapLai.Enter += new System.EventHandler(this.txtEmail_Enter);
             this.txtNhapLai.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
-            // panel2
+            // Exit
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.panel2.Controls.Add(this.txtSDT);
-            this.panel2.Controls.Add(this.txtHoTen);
-            this.panel2.Controls.Add(this.dateTime);
-            this.panel2.Controls.Add(this.Exit);
-            this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Location = new System.Drawing.Point(391, -1);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(339, 243);
-            this.panel2.TabIndex = 7;
+            this.Exit.AutoSize = true;
+            this.Exit.BackColor = System.Drawing.Color.Red;
+            this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Exit.Location = new System.Drawing.Point(322, 0);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(30, 29);
+            this.Exit.TabIndex = 17;
+            this.Exit.Text = "X";
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
-            // txtSDT
+            // dateTime
             // 
-            this.txtSDT.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtSDT.Location = new System.Drawing.Point(23, 84);
-            this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(302, 30);
-            this.txtSDT.TabIndex = 20;
-            this.txtSDT.Tag = "Số điện thoại";
-            this.txtSDT.Text = "Số điện thoại";
-            this.txtSDT.Enter += new System.EventHandler(this.txtEmail_Enter);
-            this.txtSDT.Leave += new System.EventHandler(this.txtEmail_Leave);
+            this.dateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTime.Location = new System.Drawing.Point(35, 432);
+            this.dateTime.Name = "dateTime";
+            this.dateTime.Size = new System.Drawing.Size(302, 36);
+            this.dateTime.TabIndex = 21;
+            this.dateTime.TabStop = false;
             // 
             // txtHoTen
             // 
             this.txtHoTen.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtHoTen.Location = new System.Drawing.Point(23, 48);
+            this.txtHoTen.Location = new System.Drawing.Point(35, 315);
             this.txtHoTen.Name = "txtHoTen";
-            this.txtHoTen.Size = new System.Drawing.Size(302, 30);
+            this.txtHoTen.Size = new System.Drawing.Size(302, 36);
             this.txtHoTen.TabIndex = 19;
             this.txtHoTen.Tag = "Họ Tên";
             this.txtHoTen.Text = "Họ Tên";
             this.txtHoTen.Enter += new System.EventHandler(this.txtEmail_Enter);
             this.txtHoTen.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
-            // dateTime
+            // txtSDT
             // 
-            this.dateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTime.Location = new System.Drawing.Point(23, 120);
-            this.dateTime.Name = "dateTime";
-            this.dateTime.Size = new System.Drawing.Size(302, 30);
-            this.dateTime.TabIndex = 19;
+            this.txtSDT.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtSDT.Location = new System.Drawing.Point(35, 376);
+            this.txtSDT.Name = "txtSDT";
+            this.txtSDT.Size = new System.Drawing.Size(302, 36);
+            this.txtSDT.TabIndex = 20;
+            this.txtSDT.Tag = "Số điện thoại";
+            this.txtSDT.Text = "Số điện thoại";
+            this.txtSDT.Enter += new System.EventHandler(this.txtEmail_Enter);
+            this.txtSDT.Leave += new System.EventHandler(this.txtEmail_Leave);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel2.Controls.Add(this.Exit);
+            this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Location = new System.Drawing.Point(375, -1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(355, 651);
+            this.panel2.TabIndex = 7;
             // 
             // frmDangKi
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 239);
+            this.ClientSize = new System.Drawing.Size(725, 563);
+            this.Controls.Add(this.txtSDT);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.txtHoTen);
+            this.Controls.Add(this.dateTime);
             this.Controls.Add(this.txtNhapLai);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDangNhap);
@@ -203,6 +208,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDangKi";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDangKi_FormClosing);
+            this.Load += new System.EventHandler(this.frmDangKi_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -211,8 +217,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label Exit;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label btnDangNhap;
         private System.Windows.Forms.Button btnDangKi;
@@ -220,9 +224,10 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNhapLai;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label Exit;
         private System.Windows.Forms.DateTimePicker dateTime;
-        private System.Windows.Forms.TextBox txtSDT;
         private System.Windows.Forms.TextBox txtHoTen;
+        private System.Windows.Forms.TextBox txtSDT;
+        private System.Windows.Forms.Panel panel2;
     }
 }

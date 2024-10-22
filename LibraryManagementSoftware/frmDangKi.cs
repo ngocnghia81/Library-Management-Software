@@ -16,7 +16,7 @@ namespace LibraryManagementSoftware
     public partial class frmDangKi : Form
     {
 
-        DBConnection db = new DBConnection("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; User ID=nghia81; Password=5612;");
+        DBConnection db = new DBConnection();
 
         void FormatInputEnter(TextBox txt, string placeholder, bool isPassword)
         {
@@ -118,6 +118,7 @@ namespace LibraryManagementSoftware
         {
             TextBox txt = (TextBox)sender;
             FormatInputLeave(txt,txt.Tag.ToString(), false);
+            
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)
@@ -194,5 +195,9 @@ namespace LibraryManagementSoftware
             }
         }
 
+        private void frmDangKi_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

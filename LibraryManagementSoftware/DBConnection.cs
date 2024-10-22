@@ -7,9 +7,11 @@ public class DBConnection
     private string connectionString;
 
     // Constructor, truyền vào chuỗi kết nối
-    public DBConnection(string connectionString)
+    public DBConnection( )
     {
-        this.connectionString = connectionString;
+        //connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; User ID=nghia81; Password=5612;");
+        /*connectionString = */
+        connectionString = ("Server=LAPTOP-SVSNGLVO\\SQLEXPRESS; Database=QL_ThuVien;Integrated Security=True;");
 
     }
 

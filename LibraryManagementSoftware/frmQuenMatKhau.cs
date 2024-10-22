@@ -10,12 +10,12 @@ namespace LibraryManagementSoftware
 {
     public partial class frmQuenMatKhau : Form
     {
-        private DBConnection dbConnection;
+        private DBConnection db = new DBConnection();
 
         public frmQuenMatKhau()
         {
             InitializeComponent();
-            dbConnection = new DBConnection("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; Trusted_Connection=True;");
+           
 
             txtEmail.Enter += RemovePlaceholder;
             txtEmail.Leave += AddPlaceholder;
@@ -92,12 +92,12 @@ namespace LibraryManagementSoftware
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Close();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void Exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
@@ -128,7 +128,7 @@ namespace LibraryManagementSoftware
                 new SqlParameter("@Email", email)
             };
 
-            return dbConnection.ExecuteUpdate(query, parameters);
+            return db.ExecuteUpdate(query, parameters);
         }
 
 
@@ -178,7 +178,7 @@ namespace LibraryManagementSoftware
             };
             string tenDocGia = null;
 
-            tenDocGia = dbConnection.ExecuteScalar(query,parameters).ToString();
+            tenDocGia = db.ExecuteScalar(query,parameters).ToString();
 
             return tenDocGia;
         }
@@ -195,7 +195,7 @@ namespace LibraryManagementSoftware
                 new SqlParameter("@Phone", phone)
             };
 
-            int count = (int)dbConnection.ExecuteScalar(query, parameters);
+            int count = (int)db.ExecuteScalar(query, parameters);
             return count > 0;
         }
 

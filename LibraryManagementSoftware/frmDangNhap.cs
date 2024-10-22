@@ -14,6 +14,40 @@ namespace LibraryManagementSoftware
 {
     public partial class frmDangNhap : Form
     {
+        DBConnection db = new DBConnection();
+
+        bool KiemTraMatKhauTuGmail()
+        {
+            string query = $"select HashedPassword from TaiKhoan Where Email = '{txtEmail.Text}'";
+
+            string password = db.ExecuteScalar(query).ToString();
+
+            if(password != txtPassword.Text) return false;
+
+            return true;
+        }
+        bool KiemTraAdmin()
+        {
+            string query = $"select VaiTro from TaiKhoan Where Email = '{txtEmail.Text}'";
+
+            string vaitro = db.ExecuteScalar(query).ToString();
+
+            if (vaitro != "admin") return false;
+
+            return true;
+        }
+
+        void ChaoTaiKhoan()
+        {
+            string query = $"select DG.TenDocGia from DocGia DG, TaiKhoan TK where DG.MaDocGia = TK.MaDocGia AND TK.Email = '{txtEmail.Text}'";
+            string ten = db.ExecuteScalar(query).ToString();
+
+            if (KiemTraAdmin())
+                ten = "Admin " + ten;
+
+            MessageBox.Show($"Chào {ten}");
+        }
+
         public frmDangNhap()
         {
             InitializeComponent();
@@ -67,6 +101,40 @@ namespace LibraryManagementSoftware
             DialogResult dialog = MessageBox.Show("Bạn có muốn thoát không?","Thoát",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
             if (dialog == DialogResult.OK) return;
             e.Cancel = true;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            frmQuenMatKhau frmQuenMatKhau = new frmQuenMatKhau();
+            frmQuenMatKhau.Show();
+            this.Hide();
+        }
+
+        private void btnDangNhap_Click(object sender, EventArgs e)
+        {
+            // Sử dụng ValidationHelper để kiểm tra email
+            if (!ValidationHelper.IsValidEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Định dạng email không hợp lệ", "Nhập liệu sai", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!KiemTraMatKhauTuGmail())
+            {
+                MessageBox.Show("Email hoặc mật khẩu đăng nhập không hợp lệ", "Nhập liệu sai", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            ChaoTaiKhoan();
+
+            if (KiemTraAdmin())
+            {
+                frmAdmin frmAdmin = new frmAdmin();
+                frmAdmin.Show();
+                this.Hide();
+            }    
+
+            
         }
     }
 }
