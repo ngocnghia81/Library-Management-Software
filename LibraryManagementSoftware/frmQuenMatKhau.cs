@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace LibraryManagementSoftware
 {
@@ -108,6 +110,29 @@ namespace LibraryManagementSoftware
             ValidateFields(); // Gọi lại khi văn bản thay đổi
         }
 
+        private string GenerateRandomPassword(int length)
+        {
+            const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            Random random = new Random();
+            return new string(Enumerable.Repeat(validChars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        private bool UpdatePassword(string email, string newPassword)
+        {
+            string query = "UPDATE TAIKHOAN SET HashedPassword = @NewPassword WHERE Email = @Email";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@NewPassword", newPassword),
+                new SqlParameter("@Email", email)
+            };
+
+            return dbConnection.ExecuteUpdate(query, parameters);
+        }
+
+
+
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text;
@@ -115,16 +140,50 @@ namespace LibraryManagementSoftware
 
             if (CheckLogin(email, phone))
             {
-                MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string newPassword = GenerateRandomPassword(8);
 
-                this.Close(); // Ẩn form hiện tại
-                //new MainForm().Show(); // Hiện form chính (thay đổi theo tên form của bạn)
+                if (UpdatePassword(email, newPassword))
+                {
+                    EmailSender emailSender = new EmailSender("smtp.gmail.com", 587, true, "dasnn2004@gmail.com", "ckfq pqmc xkll tgcw");
+
+                    string name = LayTenDocGiaTheoSDT(txtSDT.Text);
+                    bool emailSent = emailSender.SendEmail(email, "Reset mật khẩu", getMailBody(name,newPassword),true);
+
+                    if (emailSent)
+                    {
+                        MessageBox.Show("Mật khẩu mới đã được gửi về email của bạn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gửi email thất bại. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật mật khẩu thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Email hoặc số điện thoại không đúng. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public string LayTenDocGiaTheoSDT(string sdt)
+        {
+            string query = "SELECT TenDocGia FROM DOCGIA WHERE SDT = @sdt";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@sdt", sdt)
+            };
+            string tenDocGia = null;
+
+            tenDocGia = dbConnection.ExecuteScalar(query,parameters).ToString();
+
+            return tenDocGia;
+        }
+
+
 
         private bool CheckLogin(string email, string phone)
         {
@@ -132,12 +191,96 @@ namespace LibraryManagementSoftware
 
             SqlParameter[] parameters = new SqlParameter[]
             {
-        new SqlParameter("@Email", email),
-        new SqlParameter("@Phone", phone)
+                new SqlParameter("@Email", email),
+                new SqlParameter("@Phone", phone)
             };
 
             int count = (int)dbConnection.ExecuteScalar(query, parameters);
             return count > 0;
+        }
+
+        private string getMailBody(string userName, string tempPassword)
+        {
+            return $@"
+            <html>
+            <head>
+                <style>
+                    body {{
+                        font-family: Arial, sans-serif;
+                        background-color: #f4f4f4;
+                        margin: 0;
+                        padding: 0;
+                    }}
+                    .container {{
+                        max-width: 600px;
+                        margin: 20px auto;
+                        background-color: #ffffff;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    }}
+                    .header {{
+                        text-align: center;
+                        background-color: #4CAF50;
+                        padding: 10px;
+                        color: white;
+                        font-size: 24px;
+                        border-top-left-radius: 8px;
+                        border-top-right-radius: 8px;
+                    }}
+                    .content {{
+                        padding: 20px;
+                        text-align: left;
+                        line-height: 1.6;
+                    }}
+                    .content p {{
+                        margin: 0;
+                        padding-bottom: 10px;
+                    }}
+                    .content .highlight {{
+                        color: #4CAF50;
+                        font-weight: bold;
+                    }}
+                    .footer {{
+                        text-align: center;
+                        padding: 10px;
+                        font-size: 12px;
+                        color: #666666;
+                    }}
+                    .button {{
+                        display: inline-block;
+                        padding: 10px 20px;
+                        font-size: 16px;
+                        color: white;
+                        background-color: #4CAF50;
+                        text-decoration: none;
+                        border-radius: 5px;
+                    }}
+                    .button:hover {{
+                        background-color: #45a049;
+                    }}
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <div class='header'>
+                        Hệ thống Quản lý Thư viện
+                    </div>
+                    <div class='content'>
+                        <p>Xin chào <strong>{userName}</strong>,</p>
+                        <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu của bạn. Mật khẩu tạm thời của bạn là:</p>
+                        <p class='highlight'>{tempPassword}</p>
+                        <p>Vì lý do bảo mật, vui lòng thay đổi mật khẩu ngay sau khi đăng nhập.</p>
+                        <p>Nếu bạn không yêu cầu thay đổi này, xin vui lòng liên hệ với chúng tôi ngay lập tức.</p>
+                        <p>Trân trọng,</p>
+                        <p>Đội ngũ hỗ trợ</p>
+                    </div>
+                    <div class='footer'>
+                        &copy; 2024 Hệ thống Quản lý Thư viện. Mọi quyền được bảo lưu.
+                    </div>
+                </div>
+            </body>
+            </html>";
         }
 
     }

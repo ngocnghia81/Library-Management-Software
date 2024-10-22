@@ -36,7 +36,7 @@ namespace LibraryManagementSoftware
                 {
                     Subject = subject,
                     Body = body,
-                    IsBodyHtml = isBodyHtml
+                    IsBodyHtml = isBodyHtml 
                 };
 
                 using (var smtp = new SmtpClient
@@ -49,15 +49,17 @@ namespace LibraryManagementSoftware
                     Credentials = new NetworkCredential(_fromEmail, _fromPassword)
                 })
                 {
-                    smtp.Send(mailMessage);
+                    smtp.Send(mailMessage); 
                 }
 
                 return true;
             }
             catch (Exception ex)
             {
-                return false;
+                Console.WriteLine($"Error sending email: {ex.Message}");
+                return false; 
             }
         }
+
     }
 }
