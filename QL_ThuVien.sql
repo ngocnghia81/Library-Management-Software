@@ -1,4 +1,4 @@
--- Tạo cơ sở dữ liệu
+﻿-- Tạo cơ sở dữ liệu
 CREATE DATABASE QL_ThuVien;
 GO
 
@@ -58,6 +58,8 @@ CREATE TABLE SACH
         FOREIGN KEY REFERENCES NXB (MaNXB),
     MaLoai VARCHAR(10)
         FOREIGN KEY REFERENCES THELOAISACH (MaLoai),
+	HinhAnh NVARCHAR(255),
+	SoLuong INT CHECK (SoLuong >= 0),
     MoTa TEXT NOT NULL,
     TinhTrang NVARCHAR(50)
         DEFAULT 'Bình thường',
@@ -199,6 +201,8 @@ values
 Insert into KeSach
 values
 ('K001',N'Kệ thơ')
-Insert into SACH
-values
-('S001',N'Truyện Kiều','1.jpg','NXB001','L001',N'Thơ của Nguyễn Du',2,'K001')
+
+INSERT INTO SACH
+VALUES
+('S001', N'Truyện Kiều', 'NXB001', 'L001', '1.jpg', 2, N'Thơ của Nguyễn Du', 'Bình thường', 'K001');
+
