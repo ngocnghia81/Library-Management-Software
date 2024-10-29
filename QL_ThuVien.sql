@@ -172,5 +172,33 @@ BEGIN
 END;
 GO
 
+CREATE FUNCTION dbo.func_GetChiTietSach (@MaSach NVARCHAR(50))
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT 
+        S.TenSach,
+        NXB.TenNXB,
+        s.MoTa,
+        s.HinhAnh
+    FROM 
+        Sach S join NXB on NXB.MaNXB = S.MaNXB
+    WHERE 
+        MaSach = @MaSach
+);
 
-SELECT dbo.func_LayMaDocGiaLonNhat() AS MaxMaDocGia;
+SELECT * FROM dbo.func_GetChiTietSach('S001');
+
+Insert into TheLoaiSach
+values
+('L001',N'Thơ')
+Insert into NXB
+values
+('NXB001',N'NXB Kim Đồng')
+Insert into KeSach
+values
+('K001',N'Kệ thơ')
+Insert into SACH
+values
+('S001',N'Truyện Kiều','1.jpg','NXB001','L001',N'Thơ của Nguyễn Du',2,'K001')
