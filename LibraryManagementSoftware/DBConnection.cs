@@ -22,6 +22,27 @@ public class DBConnection
         return new SqlConnection(connectionString);
     }
 
+    public void ExecuteNonQuery(string query, SqlParameter[] parameters)
+    {
+        using (SqlConnection conn = GetConnection())
+        {
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    command.Parameters.AddRange(parameters);
+
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+    }
+
     // Thực hiện Create (INSERT)
     public bool ExecuteInsert(string query, SqlParameter[] parameters)
     {

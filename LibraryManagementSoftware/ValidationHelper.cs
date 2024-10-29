@@ -33,5 +33,11 @@ namespace LibraryManagementSoftware
             // Kiểm tra độ dài mật khẩu và các yêu cầu đặc biệt (có thể tùy chỉnh)
             return password.Length >= 8; // Ví dụ: mật khẩu phải dài ít nhất 8 ký tự
         }
+
+        public static bool IsNumeric(string input)
+        {
+            // Kiểm tra xem chuỗi có phải là số hay không
+            return !string.IsNullOrEmpty(input) && Regex.IsMatch(input, @"^\d+$");
+        }
     }
 }
