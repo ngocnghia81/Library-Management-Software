@@ -33,6 +33,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxSL = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnUpload = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxHinhAnh = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBoxSL = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -122,6 +122,24 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(728, 802);
             this.panel2.TabIndex = 2;
+            // 
+            // textBoxSL
+            // 
+            this.textBoxSL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSL.Location = new System.Drawing.Point(184, 703);
+            this.textBoxSL.Name = "textBoxSL";
+            this.textBoxSL.Size = new System.Drawing.Size(126, 31);
+            this.textBoxSL.TabIndex = 13;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(28, 706);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 25);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Mô tả";
             // 
             // btnUpload
             // 
@@ -319,28 +337,10 @@
             // 
             this.pictureBoxHinhAnh.Location = new System.Drawing.Point(0, 112);
             this.pictureBoxHinhAnh.Name = "pictureBoxHinhAnh";
-            this.pictureBoxHinhAnh.Size = new System.Drawing.Size(434, 731);
+            this.pictureBoxHinhAnh.Size = new System.Drawing.Size(434, 830);
             this.pictureBoxHinhAnh.TabIndex = 4;
             this.pictureBoxHinhAnh.TabStop = false;
             this.pictureBoxHinhAnh.Visible = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(28, 706);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 25);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Mô tả";
-            // 
-            // textBoxSL
-            // 
-            this.textBoxSL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSL.Location = new System.Drawing.Point(184, 703);
-            this.textBoxSL.Name = "textBoxSL";
-            this.textBoxSL.Size = new System.Drawing.Size(126, 31);
-            this.textBoxSL.TabIndex = 13;
             // 
             // frmThemSach
             // 
