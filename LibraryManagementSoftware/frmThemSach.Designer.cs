@@ -335,12 +335,13 @@
             // 
             // pictureBoxHinhAnh
             // 
-            this.pictureBoxHinhAnh.Location = new System.Drawing.Point(12, 133);
+            this.pictureBoxHinhAnh.Location = new System.Drawing.Point(23, 130);
             this.pictureBoxHinhAnh.Name = "pictureBoxHinhAnh";
-            this.pictureBoxHinhAnh.Size = new System.Drawing.Size(408, 751);
+            this.pictureBoxHinhAnh.Size = new System.Drawing.Size(386, 769);
             this.pictureBoxHinhAnh.TabIndex = 4;
             this.pictureBoxHinhAnh.TabStop = false;
             this.pictureBoxHinhAnh.Visible = false;
+            this.pictureBoxHinhAnh.Click += new System.EventHandler(this.pictureBoxHinhAnh_Click);
             // 
             // frmThemSach
             // 

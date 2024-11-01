@@ -139,6 +139,14 @@ namespace LibraryManagementSoftware
             LoadLoaiSach();
             LoadNXB();
             LoadKe();
+
+
+            
+            TienIch.GoiYComboBox(comboBoxTacGia, "TenTacGia");
+            TienIch.GoiYComboBox(comboBoxLoaiSach, "TenLoai");
+            TienIch.GoiYComboBox(comboBoxNXB, "TenNXB");
+            TienIch.GoiYComboBox(comboBoxKe, "TenKe");
+
             isFormLoaded = true;
         }
 
@@ -311,6 +319,9 @@ namespace LibraryManagementSoftware
             return "S001";
         }
 
+        private void pictureBoxHinhAnh_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -8,8 +8,8 @@ using System.Windows.Forms;
 
 namespace LibraryManagementSoftware
 {
-        internal static class TienIch
-        {
+    internal static class TienIch
+    {
 
         public static void GoiYComboBox(ComboBox comboBox, string displayMember)
         {
