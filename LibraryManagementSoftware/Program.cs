@@ -17,7 +17,11 @@ namespace LibraryManagementSoftware
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmDangNhap());
+<<<<<<< HEAD
             Application.Run(new frmDangNhap());
+=======
+            Application.Run(new frmAdmin());
+>>>>>>> 4edf1b788a1d6a92a5ebf0181795b30619258416
         }
     }
 }

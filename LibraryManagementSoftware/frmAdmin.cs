@@ -16,5 +16,27 @@ namespace LibraryManagementSoftware
         {
             InitializeComponent();
         }
+
+        private void ngườiDùngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void thêmSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmThemSach form = new frmThemSach();
+            this.Opacity = 0.7; 
+            form.ShowDialog();
+            this.Opacity = 1.0;
+        }
+
     }
 }

@@ -9,9 +9,9 @@ public class DBConnection
     // Constructor, truyền vào chuỗi kết nối
     public DBConnection( )
     {
-        //connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; User ID=nghia81; Password=5612;");
+        connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; User ID=nghia81; Password=5612;");
         /*connectionString = */
-        connectionString = ("Server=LAPTOP-SVSNGLVO\\SQLEXPRESS; Database=QL_ThuVien;Integrated Security=True;");
+        //connectionString = ("Server=LAPTOP-SVSNGLVO\\SQLEXPRESS; Database=QL_ThuVien;Integrated Security=True;");
         DataTable dt = new DataTable();
 
     }
@@ -20,6 +20,27 @@ public class DBConnection
     private SqlConnection GetConnection()
     {
         return new SqlConnection(connectionString);
+    }
+
+    public void ExecuteNonQuery(string query, SqlParameter[] parameters)
+    {
+        using (SqlConnection conn = GetConnection())
+        {
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    command.Parameters.AddRange(parameters);
+
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
     }
 
     // Thực hiện Create (INSERT)
