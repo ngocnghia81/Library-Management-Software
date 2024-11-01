@@ -130,7 +130,6 @@
             this.textBoxSL.Name = "textBoxSL";
             this.textBoxSL.Size = new System.Drawing.Size(126, 31);
             this.textBoxSL.TabIndex = 13;
-            this.textBoxSL.TextChanged += new System.EventHandler(this.textBoxSL_TextChanged);
             // 
             // label9
             // 
@@ -138,9 +137,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(28, 706);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(97, 25);
+            this.label9.Size = new System.Drawing.Size(66, 25);
             this.label9.TabIndex = 12;
-            this.label9.Text = "Số lượng";
+            this.label9.Text = "Mô tả";
             // 
             // btnUpload
             // 
@@ -336,13 +335,12 @@
             // 
             // pictureBoxHinhAnh
             // 
-            this.pictureBoxHinhAnh.Location = new System.Drawing.Point(23, 130);
+            this.pictureBoxHinhAnh.Location = new System.Drawing.Point(12, 133);
             this.pictureBoxHinhAnh.Name = "pictureBoxHinhAnh";
-            this.pictureBoxHinhAnh.Size = new System.Drawing.Size(386, 769);
+            this.pictureBoxHinhAnh.Size = new System.Drawing.Size(408, 751);
             this.pictureBoxHinhAnh.TabIndex = 4;
             this.pictureBoxHinhAnh.TabStop = false;
             this.pictureBoxHinhAnh.Visible = false;
-            this.pictureBoxHinhAnh.Click += new System.EventHandler(this.pictureBoxHinhAnh_Click);
             // 
             // frmThemSach
             // 

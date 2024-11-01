@@ -90,12 +90,6 @@
     <Compile Include="frmXemSach.Designer.cs">
       <DependentUpon>frmXemSach.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmXemSachAdmin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmXemSachAdmin.Designer.cs">
-      <DependentUpon>frmXemSachAdmin.cs</DependentUpon>
-    </Compile>
     <Compile Include="Paint.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -124,9 +118,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmXemSach.resx">
       <DependentUpon>frmXemSach.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmXemSachAdmin.resx">
-      <DependentUpon>frmXemSachAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
