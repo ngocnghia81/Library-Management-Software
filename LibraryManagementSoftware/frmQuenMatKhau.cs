@@ -201,7 +201,7 @@ namespace LibraryManagementSoftware
 
         private string getMailBody(string userName, string tempPassword)
         {
-            return $@"
+            return string.Format(@"
             <html>
             <head>
                 <style>
@@ -267,9 +267,9 @@ namespace LibraryManagementSoftware
                         Hệ thống Quản lý Thư viện
                     </div>
                     <div class='content'>
-                        <p>Xin chào <strong>{userName}</strong>,</p>
+                        <p>Xin chào <strong>{0}</strong>,</p>
                         <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu của bạn. Mật khẩu tạm thời của bạn là:</p>
-                        <p class='highlight'>{tempPassword}</p>
+                        <p class='highlight'>{1}</p>
                         <p>Vì lý do bảo mật, vui lòng thay đổi mật khẩu ngay sau khi đăng nhập.</p>
                         <p>Nếu bạn không yêu cầu thay đổi này, xin vui lòng liên hệ với chúng tôi ngay lập tức.</p>
                         <p>Trân trọng,</p>
@@ -280,7 +280,7 @@ namespace LibraryManagementSoftware
                     </div>
                 </div>
             </body>
-            </html>";
+            </html>",userName,tempPassword);
         }
 
     }

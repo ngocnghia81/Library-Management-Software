@@ -187,7 +187,7 @@ public class DBConnection
             try
             {
                 conn.Open();
-                string query = $"SELECT COUNT(*) FROM {tableName}";
+                string query = string.Format("SELECT COUNT(*) FROM {0}",tableName);
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     int count = (int)cmd.ExecuteScalar();
@@ -277,7 +277,7 @@ public class DBConnection
                 conn.Open();
 
                 // Xây dựng câu lệnh SELECT để gọi hàm
-                string query = $"SELECT dbo.{functionName}(";
+                string query = string.Format("SELECT dbo.{0}(",functionName);
 
                 // Nếu có tham số, thêm các tham số vào câu lệnh
                 if (parameters != null && parameters.Length > 0)
@@ -285,7 +285,7 @@ public class DBConnection
                     for (int i = 0; i < parameters.Length; i++)
                     {
                         if (i > 0) query += ", ";
-                        query += $"@param{i}"; // Tạo tham số
+                        query += string.Format("@param{0}",i); // Tạo tham số
                     }
                 }
                 query += ")"; // Đóng câu lệnh gọi hàm
@@ -297,7 +297,7 @@ public class DBConnection
                     {
                         for (int i = 0; i < parameters.Length; i++)
                         {
-                            cmd.Parameters.AddWithValue($"@param{i}", parameters[i].Value);
+                            cmd.Parameters.AddWithValue(string.Format("@param{0}",i), parameters[i].Value);
                         }
                     }
 

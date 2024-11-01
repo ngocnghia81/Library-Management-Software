@@ -245,4 +245,8 @@ go
 Insert into THAMGIA
 values
 ('TG001','S001'),
+<<<<<<< HEAD
 ('TG002','S001');
+=======
+('TG002','S001');
+>>>>>>> 4edf1b788a1d6a92a5ebf0181795b30619258416
