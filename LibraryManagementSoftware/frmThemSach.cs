@@ -319,6 +319,9 @@ namespace LibraryManagementSoftware
             return "S001";
         }
 
+        private void pictureBoxHinhAnh_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
