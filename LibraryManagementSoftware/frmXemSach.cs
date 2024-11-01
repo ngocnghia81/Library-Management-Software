@@ -153,7 +153,7 @@ namespace LibraryManagementSoftware
             else
             {
                 btn.Text = "";
-                btn.Image = Image.FromFile(absolutePath + @"\images\cart2.png");
+                btn.Image = Image.FromFile(absolutePath + @"\cart2.png");
             }
         }
         public frmXemSach()
@@ -183,7 +183,7 @@ namespace LibraryManagementSoftware
                 string tenSach = row["TenSach"].ToString();
                 string soLuong = row["SoLuongKho"].ToString();
                 string hinhAnh = Path.Combine(absolutePath, "Sách",row["HinhAnh"].ToString()) ;
-                MessageBox.Show(hinhAnh);
+
                 ThemSachVaoPanel(flowLayOutSach,maSach, tenSach, soLuong, hinhAnh);
             }
 
