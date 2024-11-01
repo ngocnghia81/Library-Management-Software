@@ -85,6 +85,7 @@
             this.xemSáchToolStripMenuItem.Name = "xemSáchToolStripMenuItem";
             this.xemSáchToolStripMenuItem.Size = new System.Drawing.Size(214, 56);
             this.xemSáchToolStripMenuItem.Text = "Xem sách";
+            this.xemSáchToolStripMenuItem.Click += new System.EventHandler(this.xemSáchToolStripMenuItem_Click);
             // 
             // ngườiDùngToolStripMenuItem
             // 

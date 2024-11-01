@@ -138,9 +138,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(28, 706);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 25);
+            this.label9.Size = new System.Drawing.Size(97, 25);
             this.label9.TabIndex = 12;
-            this.label9.Text = "Mô tả";
+            this.label9.Text = "Số lượng";
             // 
             // btnUpload
             // 

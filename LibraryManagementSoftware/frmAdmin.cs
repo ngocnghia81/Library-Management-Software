@@ -38,5 +38,12 @@ namespace LibraryManagementSoftware
             this.Opacity = 1.0;
         }
 
+        private void xemSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmXemSachAdmin form = new frmXemSachAdmin();
+            this.Opacity = 0.7;
+            form.ShowDialog();
+            this.Opacity = 1.0;
+        }
     }
 }
