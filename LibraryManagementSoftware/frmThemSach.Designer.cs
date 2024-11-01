@@ -130,6 +130,7 @@
             this.textBoxSL.Name = "textBoxSL";
             this.textBoxSL.Size = new System.Drawing.Size(126, 31);
             this.textBoxSL.TabIndex = 13;
+            this.textBoxSL.TextChanged += new System.EventHandler(this.textBoxSL_TextChanged);
             // 
             // label9
             // 

@@ -7,7 +7,7 @@ public class DBConnection
     private string connectionString;
 
     // Constructor, truyền vào chuỗi kết nối
-    public DBConnection( )
+    public DBConnection()
     {
         connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; User ID=nghia81; Password=5612;");
         /*connectionString = */

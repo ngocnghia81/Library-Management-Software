@@ -323,5 +323,15 @@ namespace LibraryManagementSoftware
         {
 
         }
+
+        private void textBoxSL_TextChanged(object sender, EventArgs e)
+        {
+            if (!ValidationHelper.IsNumeric(textBoxSL.Text) && textBoxSL.Text != "")
+            {
+                MessageBox.Show("Vui lòng nhập một số hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxSL.Clear(); 
+                textBoxSL.Focus(); 
+            }
+        }
     }
 }
