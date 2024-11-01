@@ -38,7 +38,7 @@ CREATE TABLE TACGIA
 (
     MaTacGia VARCHAR(10) PRIMARY KEY, 
     TenTacGia NVARCHAR(100) NOT NULL,
-    MoTa NVARCHAR(255) NOT NULL
+
 );
 GO
 
@@ -54,13 +54,14 @@ CREATE TABLE SACH
 (
     MaSach VARCHAR(10) PRIMARY KEY, 
     TenSach NVARCHAR(100) NOT NULL,
+	HinhAnh varchar(100),
     MaNXB VARCHAR(10)
         FOREIGN KEY REFERENCES NXB (MaNXB),
     MaLoai VARCHAR(10)
         FOREIGN KEY REFERENCES THELOAISACH (MaLoai),
-    MoTa TEXT NOT NULL,
-    TinhTrang NVARCHAR(50)
-        DEFAULT 'Bình thường',
+    MoTa NVARCHAR(Max) NOT NULL,
+    SoLuongKho int,
+	TongSoLuong int,
     MaKe VARCHAR(10)
         FOREIGN KEY REFERENCES KESACH (MaKe)
 );
@@ -69,6 +70,7 @@ GO
 -- TẠO BẢNG THAMGIA (Tác giả tham gia viết sách)
 CREATE TABLE THAMGIA
 (
+
     MaTacGia VARCHAR(10)
         FOREIGN KEY REFERENCES TACGIA (MaTacGia),
     MaSach VARCHAR(10)
@@ -172,22 +174,55 @@ BEGIN
 END;
 GO
 
+create function dbo.func_GetTenTacGia (@MaSach nvarchar(10))
+returns nvarchar(100)
+as
+begin
+
+    DECLARE @TENTACGIA NVARCHAR(MAX);
+
+    SELECT @TENTACGIA = STRING_AGG(TACGIA.TenTacGia, ', ')
+    FROM THAMGIA TG join TACGIA on tg.MaTacGia = TACGIA.MaTacGia
+    WHERE TG.MaSach = @MaSach;
+	return @TENTACGIA;
+
+end
+go
+SELECT dbo.func_GetTenTacGia('S001') AS TenTacGia;
+
+
 CREATE FUNCTION dbo.func_GetChiTietSach (@MaSach NVARCHAR(50))
-RETURNS TABLE
-AS
-RETURN
+RETURNS @ResultTable  TABLE
 (
+	TenSach NVARCHAR(100),
+    TenNXB NVARCHAR(100),
+    TenLoai NVARCHAR(100),
+    MoTa NVARCHAR(MAX),
+    HinhAnh varchar(mAX), 
+	SoLuongKho int,	
+    TenTacGia NVARCHAR(MAX)
+
+)
+AS
+Begin
+	Declare @TenTacGia nvarchar(max);
+	set @TenTacGia = dbo.func_GetTenTacGia(@MaSach)
+	INSERT INTO @ResultTable
     SELECT 
         S.TenSach,
         NXB.TenNXB,
+		L.TenLoai,
         s.MoTa,
-        s.HinhAnh
+        s.HinhAnh,
+		s.SoLuongKho,
+		@TenTacGia as TenTacGia
     FROM 
-        Sach S join NXB on NXB.MaNXB = S.MaNXB
+        Sach S join NXB on NXB.MaNXB = S.MaNXB join TheLoaiSach L on L.MaLoai = S.MaLoai
     WHERE 
         MaSach = @MaSach
-);
-
+	RETURN;
+End
+go
 SELECT * FROM dbo.func_GetChiTietSach('S001');
 
 Insert into TheLoaiSach
@@ -201,4 +236,13 @@ values
 ('K001',N'Kệ thơ')
 Insert into SACH
 values
-('S001',N'Truyện Kiều','1.jpg','NXB001','L001',N'Thơ của Nguyễn Du',2,'K001')
+('S001',N'Truyện Kiều','1.jpg','NXB001','L001',N'Thơ của Nguyễn Du',2,2,'K001')
+Insert into TACGIA
+values
+('TG001',N'Nguyễn Du'),
+('TG002',N'Test tên')
+go
+Insert into THAMGIA
+values
+('TG001','S001'),
+('TG002','S001');

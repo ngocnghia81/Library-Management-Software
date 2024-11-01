@@ -56,7 +56,7 @@ namespace LibraryManagementSoftware
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error sending email: {ex.Message}");
+                Console.WriteLine(string.Format("Error sending email: {0}",ex.Message));
                 return false; 
             }
         }

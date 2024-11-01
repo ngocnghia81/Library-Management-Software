@@ -64,7 +64,7 @@ namespace LibraryManagementSoftware
             // Chuyển phần số sang int, ví dụ: '020' -> 20
             currentNumber = int.Parse(numberPart) + 1;
 
-            return $"{prefix}{currentNumber.ToString().PadLeft(lengthOfNumberPart, '0')}";
+            return string.Format("{0}{1}", prefix, currentNumber.ToString().PadLeft(lengthOfNumberPart, '0'));
         }
 
         bool ThemDocGia()
@@ -169,7 +169,7 @@ namespace LibraryManagementSoftware
             }
 
             // Define your SQL INSERT query
-            string query = $"INSERT INTO TAIKHOAN (Email,HashedPassword,MaDocGia) VALUES (@Email, @Password, @MaDocGia)";
+            string query = "INSERT INTO TAIKHOAN (Email,HashedPassword,MaDocGia) VALUES (@Email, @Password, @MaDocGia)";
 
             // Chèn thông tin độc giả
             bool isDocGiaInserted = ThemDocGia();
