@@ -18,7 +18,7 @@ namespace LibraryManagementSoftware
 
         bool KiemTraMatKhauTuGmail()
         {
-            string query = $"select HashedPassword from TaiKhoan Where Email = '{txtEmail.Text}'";
+            string query = string.Format("select HashedPassword from TaiKhoan Where Email = '{0}'",txtEmail.Text);
 
             string password = db.ExecuteScalar(query).ToString();
 
@@ -28,7 +28,7 @@ namespace LibraryManagementSoftware
         }
         bool KiemTraAdmin()
         {
-            string query = $"select VaiTro from TaiKhoan Where Email = '{txtEmail.Text}'";
+            string query = string.Format("select VaiTro from TaiKhoan Where Email = '{0}'",txtEmail.Text);
 
             string vaitro = db.ExecuteScalar(query).ToString();
 
@@ -39,13 +39,13 @@ namespace LibraryManagementSoftware
 
         void ChaoTaiKhoan()
         {
-            string query = $"select DG.TenDocGia from DocGia DG, TaiKhoan TK where DG.MaDocGia = TK.MaDocGia AND TK.Email = '{txtEmail.Text}'";
+            string query = string.Format("select DG.TenDocGia from DocGia DG, TaiKhoan TK where DG.MaDocGia = TK.MaDocGia AND TK.Email = '{0}'",txtEmail.Text);
             string ten = db.ExecuteScalar(query).ToString();
 
             if (KiemTraAdmin())
                 ten = "Admin " + ten;
 
-            MessageBox.Show($"Chào {ten}");
+            MessageBox.Show(string.Format("Chào {0}",ten));
         }
 
         public frmDangNhap()

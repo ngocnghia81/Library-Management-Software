@@ -30,6 +30,10 @@ namespace LibraryManagementSoftware
         // Mã kệ sách (Khóa ngoại tới bảng KESACH)
         public string MaKe { get; set; }
 
+        public int SoLuongKho { get; set; }
+        public int TongSoLuong { get; set; }
+
+
         public Sach(DataRow dr)
         {
             MaSach = dr["MaSach"].ToString();
@@ -39,6 +43,8 @@ namespace LibraryManagementSoftware
             MaLoai = dr["MaLoai"].ToString();
             MoTa = dr["MoTa"].ToString();
             MaKe = dr["MaKe"].ToString();
+            SoLuongKho = int.Parse(dr["SoLuongKho"].ToString());
+            TongSoLuong = int.Parse(dr["TongSoLuong"].ToString());
         }
     }
 }

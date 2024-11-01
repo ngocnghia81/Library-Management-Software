@@ -68,7 +68,7 @@ namespace LibraryManagementSoftware
                 RoundedButton cartButton = new RoundedButton
                 {
                     Image = Image.FromFile(@"D:\Dotnet\Git\LibraryManagementSoftware\images\cart2.png"),
-                    
+                    Font = new Font("Arial", 20),
                     BackColor = backColor,      // Màu nền IndianRed
                     ForeColor = Color.White,          // Màu chữ trắng
                     FlatStyle = FlatStyle.Flat,       // Loại bỏ hiệu ứng nổi của nút
@@ -103,6 +103,11 @@ namespace LibraryManagementSoftware
                 cartButton.Left = detailButton.Right+10;
                 cartButton.Top = intLabel.Bottom;
 
+                cartButton.Click += (sender, e) =>
+                {
+                    TuongTacCart(cartButton);                  
+                };
+
                 panel.Controls.Add(pictureBox);
                 panel.Controls.Add(nameLabel);
                 panel.Controls.Add(intLabel);
@@ -133,6 +138,20 @@ namespace LibraryManagementSoftware
             lbTheLoai.Text = "Thể loại: " + row["TenLoai"].ToString();
             lbMoTa.Text = row["MoTa"].ToString();
             lbTacGia.Text = row["TenTacGia"].ToString();
+        }
+
+        void TuongTacCart(Button btn)
+        {
+            if (btn.Text == "")
+            {
+                btn.Text = "X";
+                btn.Image = null;
+            }
+            else
+            {
+                btn.Text = "";
+                btn.Image = Image.FromFile(@"D:\Dotnet\Git\LibraryManagementSoftware\images\cart2.png");
+            }
         }
         public frmXemSach()
         {
