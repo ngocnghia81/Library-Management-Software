@@ -96,6 +96,9 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.panel2.Controls.Add(this.textBoxSL);
             this.panel2.Controls.Add(this.label9);
@@ -117,10 +120,9 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.textBoxTenSach);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(432, 112);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(728, 802);
+            this.panel2.Size = new System.Drawing.Size(728, 782);
             this.panel2.TabIndex = 2;
             // 
             // textBoxSL
@@ -137,9 +139,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(28, 706);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 25);
+            this.label9.Size = new System.Drawing.Size(97, 25);
             this.label9.TabIndex = 12;
-            this.label9.Text = "Mô tả";
+            this.label9.Text = "Số lượng";
             // 
             // btnUpload
             // 
@@ -177,7 +179,7 @@
             this.listBoxSelectedAuthors.ItemHeight = 25;
             this.listBoxSelectedAuthors.Location = new System.Drawing.Point(184, 119);
             this.listBoxSelectedAuthors.Name = "listBoxSelectedAuthors";
-            this.listBoxSelectedAuthors.Size = new System.Drawing.Size(518, 104);
+            this.listBoxSelectedAuthors.Size = new System.Drawing.Size(518, 79);
             this.listBoxSelectedAuthors.TabIndex = 7;
             // 
             // comboBoxTacGia
@@ -328,7 +330,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 112);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(434, 802);
+            this.pictureBox1.Size = new System.Drawing.Size(434, 782);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -346,7 +348,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1160, 914);
+            this.ClientSize = new System.Drawing.Size(1160, 894);
             this.ControlBox = false;
             this.Controls.Add(this.pictureBoxHinhAnh);
             this.Controls.Add(this.panel2);

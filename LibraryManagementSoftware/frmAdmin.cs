@@ -45,5 +45,13 @@ namespace LibraryManagementSoftware
             form.ShowDialog();
             this.Opacity = 1.0;
         }
+
+        private void mượnSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMuonSach frmMuonSach = new frmMuonSach();
+            this.Opacity = 0.7;
+            frmMuonSach.ShowDialog();
+            this.Opacity = 1.0;
+        }
     }
 }

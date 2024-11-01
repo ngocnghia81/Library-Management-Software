@@ -94,7 +94,7 @@
             this.lbMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbMoTa.Location = new System.Drawing.Point(30, 637);
             this.lbMoTa.Name = "lbMoTa";
-            this.lbMoTa.Size = new System.Drawing.Size(78, 29);
+            this.lbMoTa.Size = new System.Drawing.Size(61, 24);
             this.lbMoTa.TabIndex = 5;
             this.lbMoTa.Text = "Mô tả:";
             // 
@@ -104,7 +104,7 @@
             this.lbNXB.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbNXB.Location = new System.Drawing.Point(30, 591);
             this.lbNXB.Name = "lbNXB";
-            this.lbNXB.Size = new System.Drawing.Size(158, 29);
+            this.lbNXB.Size = new System.Drawing.Size(127, 24);
             this.lbNXB.TabIndex = 4;
             this.lbNXB.Text = "Nhà xuất bản:";
             // 
@@ -114,7 +114,7 @@
             this.lbTheLoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbTheLoai.Location = new System.Drawing.Point(30, 496);
             this.lbTheLoai.Name = "lbTheLoai";
-            this.lbTheLoai.Size = new System.Drawing.Size(107, 29);
+            this.lbTheLoai.Size = new System.Drawing.Size(83, 24);
             this.lbTheLoai.TabIndex = 3;
             this.lbTheLoai.Text = "Thể loại:";
             // 
@@ -124,7 +124,7 @@
             this.lbTacGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbTacGia.Location = new System.Drawing.Point(30, 545);
             this.lbTacGia.Name = "lbTacGia";
-            this.lbTacGia.Size = new System.Drawing.Size(99, 29);
+            this.lbTacGia.Size = new System.Drawing.Size(77, 24);
             this.lbTacGia.TabIndex = 2;
             this.lbTacGia.Text = "Tác giả:";
             // 
@@ -134,7 +134,7 @@
             this.lbTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbTen.Location = new System.Drawing.Point(30, 444);
             this.lbTen.Name = "lbTen";
-            this.lbTen.Size = new System.Drawing.Size(118, 29);
+            this.lbTen.Size = new System.Drawing.Size(94, 24);
             this.lbTen.TabIndex = 1;
             this.lbTen.Text = "Tên sách:";
             // 
@@ -150,7 +150,7 @@
             // frmXemSach
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1556, 884);
+            this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

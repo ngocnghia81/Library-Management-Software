@@ -11,10 +11,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace LibraryManagementSoftware
 {
     public partial class frmXemSach : Form
     {
+        string relativePath;
+        string absolutePath;
         DBConnection db = new DBConnection();
         List<Sach> saches = new List<Sach>();
 
@@ -67,7 +70,7 @@ namespace LibraryManagementSoftware
 
                 RoundedButton cartButton = new RoundedButton
                 {
-                    Image = Image.FromFile(@"D:\Dotnet\Git\LibraryManagementSoftware\images\cart2.png"),
+                    Image = Image.FromFile(absolutePath + @"\cart2.png"),
                     Font = new Font("Arial", 20),
                     BackColor = backColor,      // Màu nền IndianRed
                     ForeColor = Color.White,          // Màu chữ trắng
@@ -117,7 +120,7 @@ namespace LibraryManagementSoftware
                 panel.BackColor = Color.White;
                 panel.Tag = maSach;
 
-               
+
 
                 layoutSach.Width = this.Width / 2;
                 layoutSach.Controls.Add(panel);
@@ -131,8 +134,8 @@ namespace LibraryManagementSoftware
             string query = string.Format("SELECT * FROM dbo.func_GetChiTietSach('{0}')", maSach);
             DataTable dt = db.ExecuteSelect(query);
             DataRow row = dt.Rows[0];
-
-            pictureChiTiet.Image = Image.FromFile(@"D:\Dotnet\Git\LibraryManagementSoftware\images\Sách\" + row["HinhAnh"].ToString());
+            string path = Path.Combine(absolutePath, "Sách\\");
+            pictureChiTiet.Image = Image.FromFile(path + row["HinhAnh"].ToString());
             lbTen.Text = "Tên sách: " + row["TenSach"].ToString();
             lbNXB.Text = "NXB: " + row["TenNXB"].ToString();
             lbTheLoai.Text = "Thể loại: " + row["TenLoai"].ToString();
@@ -150,12 +153,14 @@ namespace LibraryManagementSoftware
             else
             {
                 btn.Text = "";
-                btn.Image = Image.FromFile(@"D:\Dotnet\Git\LibraryManagementSoftware\images\cart2.png");
+                btn.Image = Image.FromFile(absolutePath + @"\images\cart2.png");
             }
         }
         public frmXemSach()
         {
             InitializeComponent();
+            relativePath = Path.Combine(Application.StartupPath, @"..\..\images");
+            absolutePath = Path.GetFullPath(relativePath);
         }
 
         private void frmXemSach_Load(object sender, EventArgs e)
@@ -169,17 +174,19 @@ namespace LibraryManagementSoftware
             };
 
             DataTable dt = db.ExecuteSelect("select * from Sach");
+       
             foreach (DataRow row in dt.Rows)
             {
-                string path = @"D:\Dotnet\Git\LibraryManagementSoftware\images\Sách\";
+                
                 //MessageBox.Show(row["TenSach"].ToString());
                 string maSach = row["MaSach"].ToString();
                 string tenSach = row["TenSach"].ToString();
                 string soLuong = row["SoLuongKho"].ToString();
-                string hinhAnh = path+ row["HinhAnh"].ToString();
+                string hinhAnh = Path.Combine(absolutePath, "Sách",row["HinhAnh"].ToString()) ;
+                MessageBox.Show(hinhAnh);
                 ThemSachVaoPanel(flowLayOutSach,maSach, tenSach, soLuong, hinhAnh);
             }
-            
+
         }
     }
 }
