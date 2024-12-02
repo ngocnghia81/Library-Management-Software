@@ -18,11 +18,10 @@ namespace LibraryManagementSoftware
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmDangNhap());
             //Application.Run(new frmDangNhap());
-<<<<<<< HEAD
+
             Application.Run(new frmTraSach());
-=======
+
             Application.Run(new frmAdmin());
->>>>>>> a67a9bd5a865d6ec761ba9cb7414bf0e051a1cd1
         }
     }
 }
