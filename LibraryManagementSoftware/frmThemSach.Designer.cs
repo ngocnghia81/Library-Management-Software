@@ -189,7 +189,7 @@
             this.listBoxSelectedAuthors.Location = new System.Drawing.Point(245, 146);
             this.listBoxSelectedAuthors.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxSelectedAuthors.Name = "listBoxSelectedAuthors";
-            this.listBoxSelectedAuthors.Size = new System.Drawing.Size(689, 94);
+            this.listBoxSelectedAuthors.Size = new System.Drawing.Size(689, 124);
             this.listBoxSelectedAuthors.TabIndex = 7;
             // 
             // comboBoxTacGia

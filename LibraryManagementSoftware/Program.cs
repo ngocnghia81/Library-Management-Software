@@ -21,7 +21,7 @@ namespace LibraryManagementSoftware
 
             //Application.Run(new frmTraSach());
 
-            Application.Run(new frmAdmin());
+            Application.Run(new frmXemSachAdmin());
         }
     }
 }

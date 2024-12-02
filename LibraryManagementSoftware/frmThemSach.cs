@@ -183,26 +183,53 @@ namespace LibraryManagementSoftware
             {
                 openFileDialog.InitialDirectory = "c:\\"; 
                 openFileDialog.Filter = "File hình (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif"; // Bộ lọc file
-                openFileDialog.Title = "Chọn một hình ảnh"; 
+                openFileDialog.Title = "Chọn một hình ảnh";
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK) 
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string sourceFilePath = openFileDialog.FileName; 
-                    string destinationFolderPath = Path.Combine(Application.StartupPath, "images"); 
-                    if (!Directory.Exists(destinationFolderPath)) 
+                    string sourceFilePath = openFileDialog.FileName;
+
+                    // Xác định đường dẫn thư mục Images/Sách
+                    string destinationFolderPath = Path.Combine(Application.StartupPath, "Images", "Sách");
+                    if (destinationFolderPath.Contains("\\bin\\Debug\\"))
                     {
-                        Directory.CreateDirectory(destinationFolderPath); 
+                        destinationFolderPath = destinationFolderPath.Replace("bin\\Debug\\", "");
                     }
-                    string destinationFilePath = Path.Combine(destinationFolderPath, Path.GetFileName(sourceFilePath)); // Đường dẫn lưu file
+
+                    // Tạo thư mục nếu chưa tồn tại
+                    if (!Directory.Exists(destinationFolderPath))
+                    {
+                        Directory.CreateDirectory(destinationFolderPath);
+                    }
+
+                    // Tạo đường dẫn lưu file trong thư mục Images/Sách
+                    string destinationFilePath = Path.Combine(destinationFolderPath, Path.GetFileName(sourceFilePath));
 
                     try
                     {
-                        File.Copy(sourceFilePath, destinationFilePath, true); 
-                        txtFilePath.Text = destinationFilePath;
+                        if (File.Exists(destinationFilePath))
+                        {
+                            // Lưu tên tệp hình ảnh vào TextBox (để lưu vào cơ sở dữ liệu)
+                            txtFilePath.Text = Path.GetFileName(destinationFilePath);
 
-                        pictureBoxHinhAnh.Image = Image.FromFile(destinationFilePath); 
-                        pictureBoxHinhAnh.Visible = true;
-                        pictureBoxHinhAnh.SizeMode = PictureBoxSizeMode.StretchImage;
+                            // Hiển thị hình ảnh lên PictureBox
+                            pictureBox2.Image = Image.FromFile(destinationFilePath);
+                            pictureBox2.Visible = true;
+                            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                        }
+                        else
+                        {
+                            // Sao chép hình ảnh vào thư mục Images/Sách
+                            File.Copy(sourceFilePath, destinationFilePath, true);
+
+                            // Lưu tên tệp hình ảnh vào TextBox (để lưu vào cơ sở dữ liệu)
+                            txtFilePath.Text = Path.GetFileName(destinationFilePath);
+
+                            // Hiển thị hình ảnh lên PictureBox
+                            pictureBox2.Image = Image.FromFile(destinationFilePath);
+                            pictureBox2.Visible = true;
+                            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -240,7 +267,7 @@ namespace LibraryManagementSoftware
                 {
                     new SqlParameter("@MaSach", maSach),
                     new SqlParameter("@TenSach", tenSach),
-                    new SqlParameter("@HinhAnh", Path.GetFileName(hinhAnh)), // Lưu chỉ tên file hình ảnh
+                    new SqlParameter("@HinhAnh", Path.GetFileName(hinhAnh)),
                     new SqlParameter("@MaNXB", maNXB),
                     new SqlParameter("@MaLoai", maLoai),
                     new SqlParameter("@MoTa", moTa),
