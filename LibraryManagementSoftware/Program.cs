@@ -19,7 +19,7 @@ namespace LibraryManagementSoftware
             //Application.Run(new frmDangNhap());
             //Application.Run(new frmDangNhap());
 
-            Application.Run(new frmTraSach());
+            //Application.Run(new frmTraSach());
 
             Application.Run(new frmAdmin());
         }

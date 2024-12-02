@@ -134,7 +134,6 @@ namespace LibraryManagementSoftware
 
         private void frmThemSach_Load(object sender, EventArgs e)
         {
-
             LoadTacGia();
             LoadLoaiSach();
             LoadNXB();

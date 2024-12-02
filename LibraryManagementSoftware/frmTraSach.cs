@@ -125,14 +125,13 @@ namespace LibraryManagementSoftware
         }
 
         private void cbbDocGias_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbbDocGias.SelectedValue == null) return;
-            if (cbbSach.SelectedValue == null) return;
-            string madg = cbbDocGias.SelectedValue.ToString();
-            string masach = cbbSach.SelectedValue.ToString();
-            LoadDgv(madg,masach);
+{
+    if (cbbDocGias.SelectedValue == null || cbbSach.SelectedValue == null) return;
+    string madg = cbbDocGias.SelectedValue.ToString();
+    string masach = cbbSach.SelectedValue.ToString();
+    LoadDgv(madg, masach);
+}
 
-        }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
