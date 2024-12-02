@@ -53,5 +53,13 @@ namespace LibraryManagementSoftware
             frmMuonSach.ShowDialog();
             this.Opacity = 1.0;
         }
+
+        private void xemThôngTinĐộcGiảToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDanhSachDocGia frmDanhSachDocGia = new frmDanhSachDocGia();
+            this.Opacity = 0.7;
+            frmDanhSachDocGia.ShowDialog();
+            this.Opacity = 1.0;
+        }
     }
 }

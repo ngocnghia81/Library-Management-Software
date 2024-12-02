@@ -54,7 +54,6 @@ namespace LibraryManagementSoftware
             }
         }
 
-        // Xử lý sự kiện khi bấm nút Mượn Sách
         private void btnMuonSach_Click(object sender, EventArgs e)
         {
             string maDocGia = cmbMaDocGia.SelectedValue.ToString();
