@@ -11,22 +11,21 @@ namespace LibraryManagementSoftware
         internal static class TienIch
         {
 
-        public static void GoiYComboBox(ComboBox comboBox, string displayMember)
-        {
-            comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
-
-            foreach (DataRowView item in comboBox.Items)
+            public static void GoiYComboBox(ComboBox comboBox, string displayMember)
             {
-                if (!item.Row.ItemArray[0].ToString().Equals("ADD", StringComparison.OrdinalIgnoreCase))
+                comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+
+                foreach (DataRowView item in comboBox.Items)
                 {
-                    autoCompleteCollection.Add(item[displayMember].ToString());
+                    if (!item.Row.ItemArray[0].ToString().Equals("ADD", StringComparison.OrdinalIgnoreCase))
+                    {
+                        autoCompleteCollection.Add(item[displayMember].ToString());
+                    }
                 }
-            }
 
             comboBox.AutoCompleteCustomSource = autoCompleteCollection;
         }
-
     }
 }
