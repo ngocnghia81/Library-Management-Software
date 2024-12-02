@@ -18,6 +18,9 @@ namespace LibraryManagementSoftware
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmDangNhap());
             //Application.Run(new frmDangNhap());
+
+            Application.Run(new frmTraSach());
+
             Application.Run(new frmAdmin());
         }
     }

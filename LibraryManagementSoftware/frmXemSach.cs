@@ -23,6 +23,8 @@ namespace LibraryManagementSoftware
 
         private void ThemSachVaoPanel(FlowLayoutPanel layoutSach,string maSach, string tenSach,string soLuong, string imagePath)
         {
+            int width = 150;
+            int height = 300;
             Color backColor = Color.IndianRed;
             // Kiểm tra nếu ảnh tồn tại
             if (System.IO.File.Exists(imagePath))
@@ -32,8 +34,8 @@ namespace LibraryManagementSoftware
                 {
                     Image = Image.FromFile(imagePath),
                     SizeMode = PictureBoxSizeMode.StretchImage, // Để hình ảnh tự động điều chỉnh kích thước
-                    Width = 200,
-                    Height = 300, // Chiều cao của hình ảnh
+                    Width = width-30,
+                    Height = height-130, // Chiều cao của hình ảnh
 
                 };
 
@@ -43,7 +45,7 @@ namespace LibraryManagementSoftware
                     Text = tenSach,
                     Font = new Font("Arial", 20),
                     Height = TextRenderer.MeasureText(tenSach, new Font("Arial", 20)).Height,
-                    Width = 230,
+                    Width = width,
                     AutoEllipsis=true,
                     TextAlign = ContentAlignment.MiddleCenter // Căn giữa văn bản
                 };
@@ -53,7 +55,7 @@ namespace LibraryManagementSoftware
                     Text = "Số lượng: "+soLuong,
                     Font = new Font("Arial", 20),
                     Height = TextRenderer.MeasureText(tenSach, new Font("Arial", 20)).Height,
-                    Width = 230,
+                    Width = width,
                     AutoEllipsis = true,
                     TextAlign = ContentAlignment.MiddleCenter // Căn giữa văn bản
                 };
@@ -82,8 +84,8 @@ namespace LibraryManagementSoftware
                 // Tạo một Panel để chứa PictureBox và Label
                 RoundedPanel panel = new RoundedPanel()
                 {
-                    Width = 230,
-                    Height = 430, // Chiều cao tổng thể của panel
+                    Width = width,
+                    Height = height, // Chiều cao tổng thể của panel
                     Margin = new Padding(10)
                     
                 };
@@ -153,7 +155,7 @@ namespace LibraryManagementSoftware
             else
             {
                 btn.Text = "";
-                btn.Image = Image.FromFile(absolutePath + @"\images\cart2.png");
+                btn.Image = Image.FromFile(absolutePath + @"\cart2.png");
             }
         }
         public frmXemSach()
@@ -183,7 +185,7 @@ namespace LibraryManagementSoftware
                 string tenSach = row["TenSach"].ToString();
                 string soLuong = row["SoLuongKho"].ToString();
                 string hinhAnh = Path.Combine(absolutePath, "Sách",row["HinhAnh"].ToString()) ;
-                MessageBox.Show(hinhAnh);
+
                 ThemSachVaoPanel(flowLayOutSach,maSach, tenSach, soLuong, hinhAnh);
             }
 

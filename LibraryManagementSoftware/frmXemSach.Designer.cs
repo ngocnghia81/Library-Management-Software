@@ -38,6 +38,8 @@
             this.lbTacGia = new System.Windows.Forms.Label();
             this.lbTen = new System.Windows.Forms.Label();
             this.pictureChiTiet = new System.Windows.Forms.PictureBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.flowLayOutSach.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -49,10 +51,10 @@
             this.flowLayOutSach.AutoScroll = true;
             this.flowLayOutSach.BackColor = System.Drawing.Color.IndianRed;
             this.flowLayOutSach.Controls.Add(this.panel1);
-            this.flowLayOutSach.Location = new System.Drawing.Point(8, 46);
+            this.flowLayOutSach.Location = new System.Drawing.Point(3, 109);
             this.flowLayOutSach.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayOutSach.Name = "flowLayOutSach";
-            this.flowLayOutSach.Size = new System.Drawing.Size(783, 739);
+            this.flowLayOutSach.Size = new System.Drawing.Size(774, 667);
             this.flowLayOutSach.TabIndex = 1;
             // 
             // panel1
@@ -64,10 +66,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.flowLayOutSach);
-            this.groupBox1.Location = new System.Drawing.Point(4, 52);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(806, 796);
+            this.groupBox1.Size = new System.Drawing.Size(785, 766);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Toàn bộ sách";
@@ -81,9 +87,10 @@
             this.groupBox2.Controls.Add(this.lbTacGia);
             this.groupBox2.Controls.Add(this.lbTen);
             this.groupBox2.Controls.Add(this.pictureChiTiet);
-            this.groupBox2.Location = new System.Drawing.Point(828, 52);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox2.Location = new System.Drawing.Point(791, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(706, 796);
+            this.groupBox2.Size = new System.Drawing.Size(577, 766);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chi tiết sách";
@@ -147,10 +154,26 @@
             this.pictureChiTiet.TabIndex = 0;
             this.pictureChiTiet.TabStop = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(25, 46);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 32);
+            this.comboBox1.TabIndex = 6;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(207, 46);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 32);
+            this.comboBox2.TabIndex = 7;
+            // 
             // frmXemSach
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.ClientSize = new System.Drawing.Size(1368, 766);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -177,5 +200,7 @@
         private System.Windows.Forms.Label lbTheLoai;
         private System.Windows.Forms.Label lbNXB;
         private System.Windows.Forms.Label lbMoTa;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
