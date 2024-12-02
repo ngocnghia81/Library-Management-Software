@@ -39,6 +39,7 @@
             this.nhàCungCấpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trảSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mượnSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +63,8 @@
             this.sáchToolStripMenuItem.BackColor = System.Drawing.Color.OldLace;
             this.sáchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.thêmSáchToolStripMenuItem,
-            this.xemSáchToolStripMenuItem});
+            this.xemSáchToolStripMenuItem,
+            this.mượnSáchToolStripMenuItem});
             this.sáchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sáchToolStripMenuItem.Image")));
             this.sáchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.sáchToolStripMenuItem.Name = "sáchToolStripMenuItem";
@@ -144,6 +146,13 @@
             this.thoátToolStripMenuItem.Text = "Thoát";
             this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click);
             // 
+            // mượnSáchToolStripMenuItem
+            // 
+            this.mượnSáchToolStripMenuItem.Name = "mượnSáchToolStripMenuItem";
+            this.mượnSáchToolStripMenuItem.Size = new System.Drawing.Size(214, 56);
+            this.mượnSáchToolStripMenuItem.Text = "Mượn sách";
+            this.mượnSáchToolStripMenuItem.Click += new System.EventHandler(this.mượnSáchToolStripMenuItem_Click);
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,5 +186,6 @@
         private System.Windows.Forms.ToolStripMenuItem xemSáchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xemThôngTinĐộcGiảToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýĐộcGiảToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mượnSáchToolStripMenuItem;
     }
 }
