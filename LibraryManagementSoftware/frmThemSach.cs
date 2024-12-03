@@ -158,7 +158,7 @@ namespace LibraryManagementSoftware
                 string selectedAuthorId = selectedRow["MaTacGia"].ToString();
                 string selectedAuthorName = selectedRow["TenTacGia"].ToString();
 
-                string authorDisplayString = $"{selectedAuthorId} - {selectedAuthorName}";
+                string authorDisplayString = string.Format("{0} - {1}", selectedAuthorId, selectedAuthorName);
 
                 bool authorExists = false;
                 foreach (string item in listBoxSelectedAuthors.Items)

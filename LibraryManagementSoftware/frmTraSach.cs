@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +16,9 @@ namespace LibraryManagementSoftware
     public partial class frmTraSach : Form
     {
         DBConnection db = new DBConnection();
+        bool isDone = false;
+
+        
 
         public string TaoMaPT()
         {
@@ -60,8 +64,24 @@ namespace LibraryManagementSoftware
             cbbSach.DisplayMember = "TenSach";
             cbbSach.ValueMember = "MaSach";
         }
+        
+        public void LoadTinhTrang()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Value", typeof(int));   
+            dt.Columns.Add("Text", typeof(string)); 
+
+            dt.Rows.Add(-1, "Tất cả"); 
+            dt.Rows.Add(0, "Chưa trả");
+            dt.Rows.Add(1, "Đã trả");
+
+            cbbTinhTrang.DataSource = dt;
+            cbbTinhTrang.DisplayMember = "Text";
+            cbbTinhTrang.ValueMember = "Value";
+        }
         void LoadDgv(string madg = null,string masach = null)
         {
+            if (!isDone) return;
             if (madg == null || madg == "")
                 madg = "null"; 
             else madg = "'" + madg + "'";
@@ -69,8 +89,18 @@ namespace LibraryManagementSoftware
             if (masach == null || masach == "")
                 masach = "null";
             else masach = "'" + masach + "'";
-
-            string sql = string.Format("select * from dbo.DANHSACHMUONTRA({0},{1}) where TinhTrang = 0",madg,masach);
+            
+            string sql;
+            if (cbbTinhTrang.SelectedValue.ToString() !="-1")
+            {
+                int tinhtrang = int.Parse(cbbTinhTrang.SelectedValue.ToString());
+                
+                sql = string.Format("select * from dbo.DANHSACHMUONTRA({0},{1}) where TinhTrang = {2}", madg, masach, tinhtrang);
+            }
+            else 
+            {
+                sql = string.Format("select * from dbo.DANHSACHMUONTRA({0},{1})", madg, masach);
+            }
 
             DataTable dt = db.ExecuteSelect(sql); 
 
@@ -116,18 +146,22 @@ namespace LibraryManagementSoftware
             InitializeComponent();
         }
 
+       
+
         private void frmTraSach_Load(object sender, EventArgs e)
         {
             LoadSach();
             LoadDocGia();
+            LoadTinhTrang();
+            isDone = true;
             LoadDgv();
-        
+
         }
 
         private void cbbDocGias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbbDocGias.SelectedValue == null) return;
-            if (cbbSach.SelectedValue == null) return;
+            if (cbbDocGias.DataSource == null) return;
+            if (cbbSach.DataSource == null) return;
             string madg = cbbDocGias.SelectedValue.ToString();
             string masach = cbbSach.SelectedValue.ToString();
             LoadDgv(madg,masach);
@@ -136,6 +170,14 @@ namespace LibraryManagementSoftware
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show
+                (
+                "Bạn có chắc chắn muốn lưu?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+                );
+            if (result == DialogResult.No) return;
             foreach (DataGridViewRow row in dgv1.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -163,6 +205,11 @@ namespace LibraryManagementSoftware
             }
             LoadDgv();
 
+        }
+
+        private void frmTraSach_FormClosed(object sender, FormClosedEventArgs e)
+        {
+         
         }
     }
 }

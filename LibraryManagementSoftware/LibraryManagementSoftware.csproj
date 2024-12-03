@@ -78,6 +78,12 @@
     <Compile Include="frmMuonSach.Designer.cs">
       <DependentUpon>frmMuonSach.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNhapSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhapSach.Designer.cs">
+      <DependentUpon>frmNhapSach.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmQuenMatKhau.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMuonSach.resx">
       <DependentUpon>frmMuonSach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNhapSach.resx">
+      <DependentUpon>frmNhapSach.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmQuenMatKhau.resx">
       <DependentUpon>frmQuenMatKhau.cs</DependentUpon>

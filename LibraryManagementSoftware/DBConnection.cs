@@ -138,6 +138,33 @@ public class DBConnection
         }
     }
 
+    public bool Update(DataTable dt, string selectQuery)
+    {
+        using (SqlConnection conn = GetConnection()) // Mở kết nối
+        {
+            try
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(selectQuery, conn))
+                {
+                    // Lấy cấu trúc bảng từ dữ liệu gốc (SELECT)
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+
+                    // Thêm các thay đổi từ DataTable vào cơ sở dữ liệu
+                    int rowsAffected = adapter.Update(dt);
+
+                    return rowsAffected > 0; // Trả về true nếu có thay đổi trong bảng
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+        }
+    }
+
     // Thực hiện Delete (DELETE)
     public bool ExecuteDelete(string query, SqlParameter[] parameters)
     {
