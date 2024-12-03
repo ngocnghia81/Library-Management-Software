@@ -95,6 +95,7 @@ namespace LibraryManagementSoftware
             frm.Show();
         }
 
+
         private void đơnNhậpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDonNhap frm = new frmDonNhap();
@@ -102,6 +103,12 @@ namespace LibraryManagementSoftware
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+        }
+
+        private void quảnLýĐộcGiảToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
         }
     }
 }
