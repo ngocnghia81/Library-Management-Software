@@ -11,8 +11,7 @@ namespace LibraryManagementSoftware
     public partial class frmXemSachAdmin : Form
     {
         private DBConnection db = new DBConnection();
-        private Timer _searchTimer; // Khai báo Timer
-
+        private Timer _searchTimer; 
         public frmXemSachAdmin()
         {
             InitializeComponent();
@@ -23,6 +22,7 @@ namespace LibraryManagementSoftware
             LoadLoaiSach();
             LoadKeSach();
             LoadNXB();
+            LoadTacGia();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -36,16 +36,13 @@ namespace LibraryManagementSoftware
             {
                 try
                 {
-                    // Lấy mã sách từ dòng được chọn
                     DataGridViewRow selectedRow = dataGridViewSach.SelectedRows[0];
                     string maSach = selectedRow.Cells["MaSach"].Value.ToString();
 
-                    // Hiển thị thông báo xác nhận
                     DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa sách này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
-                        // Câu lệnh cập nhật trường DaXoa thành 1
                         string query = "UPDATE SACH SET DaXoa = 1 WHERE MaSach = @MaSach";
                         SqlParameter[] parameters = new SqlParameter[]
                         {
@@ -161,6 +158,16 @@ namespace LibraryManagementSoftware
             dataGridViewSach.Columns["TrangThai"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             FormatDataGridView();
+        }
+
+        public void LoadTacGia()
+        {
+            string q = "SELECT * FROM TACGIA";
+            DataTable dt = db.ExecuteSelect(q);
+
+            cbbTacGia.DataSource = dt;
+            cbbTacGia.DisplayMember = "TenTacGia";
+            cbbTacGia.ValueMember = "MaTacGia";
         }
 
 
@@ -417,6 +424,7 @@ namespace LibraryManagementSoftware
             {
                 // Thực hiện câu lệnh SQL để cập nhật
                 db.ExecuteUpdate(query, parameters);
+                CapNhatTacGia(maSach);
 
                 // Thông báo thành công
                 MessageBox.Show("Cập nhật thông tin sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -431,6 +439,41 @@ namespace LibraryManagementSoftware
             }
         }
 
+
+        private void CapNhatTacGia(string maSach)
+        {
+            // Xóa các tác giả cũ liên quan đến sách này
+            string deleteQuery = "DELETE FROM THAMGIA WHERE MaSach = @MaSach";
+            SqlParameter[] deleteParameters = new SqlParameter[]
+            {
+        new SqlParameter("@MaSach", maSach)
+            };
+
+            try
+            {
+                db.ExecuteNonQuery(deleteQuery, deleteParameters); // Xóa các tác giả cũ
+
+                // Thêm các tác giả mới
+                foreach (var item in listBoxTg.Items)
+                {
+                    string[] parts = item.ToString().Split(new[] { " - " }, StringSplitOptions.None);
+                    string maTacGia = parts[0];
+
+                    string insertQuery = "INSERT INTO THAMGIA (MaTacGia, MaSach) VALUES (@MaTacGia, @MaSach)";
+                    var insertParameters = new SqlParameter[]
+                    {
+                new SqlParameter("@MaTacGia", maTacGia),
+                new SqlParameter("@MaSach", maSach)
+                    };
+
+                    db.ExecuteNonQuery(insertQuery, insertParameters);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi cập nhật tác giả: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void btnHinhMoi_Click(object sender, EventArgs e)
         {
@@ -564,6 +607,47 @@ namespace LibraryManagementSoftware
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void listBoxTg_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBoxTg.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn tác giả để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string selectedAuthor = listBoxTg.SelectedItem.ToString();
+
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa tác giả "+selectedAuthor+"?",
+                                                  "Xác nhận xóa",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                listBoxTg.Items.Remove(selectedAuthor);
+            }
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            if (cbbTacGia.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn một tác giả!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string matg = cbbTacGia.SelectedValue.ToString();
+            string tacGia = cbbTacGia.Text.Trim();
+
+            if (!listBoxTg.Items.Contains(matg + " - " + tacGia))
+            {
+                listBoxTg.Items.Add(matg+" - "+tacGia);
+            }
+            else
+            {
+                MessageBox.Show("Tác giả này đã có trong danh sách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

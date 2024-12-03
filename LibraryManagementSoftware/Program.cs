@@ -19,9 +19,9 @@ namespace LibraryManagementSoftware
             //Application.Run(new frmDangNhap());
             //Application.Run(new frmDangNhap());
 
-            //Application.Run(new frmTraSach());
+            //Application.Run(new frmXemSachAdmin());
 
-            Application.Run(new frmMuonSach());
+            Application.Run(new frmAdmin());
         }
     }
 }

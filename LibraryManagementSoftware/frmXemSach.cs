@@ -126,8 +126,6 @@ namespace LibraryManagementSoftware
 
                 layoutSach.Width = this.Width / 2;
                 layoutSach.Controls.Add(panel);
-
-
             }
         }
 

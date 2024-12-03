@@ -15,11 +15,7 @@ namespace LibraryManagementSoftware
         public frmAdmin()
         {
             InitializeComponent();
-        }
-
-        private void ngườiDùngToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            this.IsMdiContainer = true; // Đặt frmAdmin làm MDI Container
         }
 
         private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
@@ -32,34 +28,47 @@ namespace LibraryManagementSoftware
 
         private void thêmSáchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmThemSach form = new frmThemSach();
-            this.Opacity = 0.7; 
-            form.ShowDialog();
-            this.Opacity = 1.0;
+            OpenChildForm(new frmThemSach());
         }
 
         private void xemSáchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmXemSachAdmin form = new frmXemSachAdmin();
-            this.Opacity = 0.7;
-            form.ShowDialog();
-            this.Opacity = 1.0;
+            OpenChildForm(new frmXemSachAdmin());
         }
 
         private void mượnSáchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmMuonSach frmMuonSach = new frmMuonSach();
-            this.Opacity = 0.7;
-            frmMuonSach.ShowDialog();
-            this.Opacity = 1.0;
+            OpenChildForm(new frmMuonSach());
         }
 
         private void xemThôngTinĐộcGiảToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDanhSachDocGia frmDanhSachDocGia = new frmDanhSachDocGia();
-            this.Opacity = 0.7;
-            frmDanhSachDocGia.ShowDialog();
-            this.Opacity = 1.0;
+            OpenChildForm(new frmDanhSachDocGia());
+        }
+
+        private void ngườiDùngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //OpenChildForm(new frmNguoiDung()); // Giả sử bạn có form này
+        }
+
+        /// <summary>
+        /// Hàm chung để mở form con trong MDI Container
+        /// </summary>
+        /// <param name="childForm">Form cần hiển thị</param>
+        private void OpenChildForm(Form childForm)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm.GetType() == childForm.GetType())
+                {
+                    frm.Activate(); 
+                    return;
+                }
+            }
+
+            childForm.MdiParent = this;
+            childForm.Dock = DockStyle.Fill; 
+            childForm.Show();
         }
     }
 }
