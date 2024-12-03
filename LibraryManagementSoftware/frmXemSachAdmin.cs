@@ -289,7 +289,7 @@ namespace LibraryManagementSoftware
                     {
                         string maTacGia = row["MaTacGia"].ToString();
                         string tenTacGia = row["TenTacGia"].ToString();
-                        string authorInfo = $"{maTacGia} - {tenTacGia}"; 
+                        string authorInfo = string.Format("{0} - {1}", maTacGia, tenTacGia); 
                         listBoxTg.Items.Add(authorInfo);
                     }
                 }

@@ -9,7 +9,7 @@ public class DBConnection
     // Constructor, truyền vào chuỗi kết nối
     public DBConnection()
     {
-        connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien2; Integrated Security=True;");
+        //connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien2; Integrated Security=True;");
         //connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; User ID=nghia81; Password=5612;");
         /*connectionString = */
 
@@ -17,7 +17,7 @@ public class DBConnection
 
         //connectionString = ("Server=34.118.185.254; Database=QL_ThuVien; User ID=sqlserver; Password=sqlserver;");
 
-        //connectionString = ("Server=LAPTOP-SVSNGLVO\\SQLEXPRESS; Database=QL_ThuVien2;Integrated Security=True;");
+        connectionString = ("Server=LAPTOP-SVSNGLVO\\SQLEXPRESS; Database=QL_ThuVien2;Integrated Security=True;");
         //connectionString = ("Server=34.118.185.254; Database=QL_ThuVien; User ID=sqlserver; Password=sqlserver;");
 
         DataTable dt = new DataTable();
@@ -128,6 +128,33 @@ public class DBConnection
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0; // Trả về true nếu có bản ghi được cập nhật
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+        }
+    }
+
+    public bool Update(DataTable dt, string selectQuery)
+    {
+        using (SqlConnection conn = GetConnection()) // Mở kết nối
+        {
+            try
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(selectQuery, conn))
+                {
+                    // Lấy cấu trúc bảng từ dữ liệu gốc (SELECT)
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+
+                    // Thêm các thay đổi từ DataTable vào cơ sở dữ liệu
+                    int rowsAffected = adapter.Update(dt);
+
+                    return rowsAffected > 0; // Trả về true nếu có thay đổi trong bảng
                 }
             }
             catch (Exception ex)

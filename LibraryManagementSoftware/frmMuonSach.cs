@@ -33,7 +33,7 @@ namespace LibraryManagementSoftware
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải thông tin độc giả: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format("Lỗi khi tải thông tin độc giả: {0}",ex.Message), "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -50,7 +50,7 @@ namespace LibraryManagementSoftware
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải thông tin sách: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format("Lỗi khi tải thông tin sách: {0}",ex.Message), "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -83,7 +83,7 @@ namespace LibraryManagementSoftware
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi mượn sách: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format("Lỗi khi mượn sách: {0}",ex.Message), "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -271,7 +271,7 @@ namespace LibraryManagementSoftware
                     bool resultChiTietPhieuMuon = db.ExecuteInsert(insertChiTietPhieuMuonQuery, parametersChiTietPhieuMuon);
                     if (!resultChiTietPhieuMuon)
                     {
-                        MessageBox.Show($"Không thể thêm chi tiết phiếu mượn cho sách {maSach}.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(string.Format("Không thể thêm chi tiết phiếu mượn cho sách {0}.",maSach), "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -285,13 +285,14 @@ namespace LibraryManagementSoftware
                     bool resultUpdateKho = db.ExecuteUpdate(updateSoLuongKhoQuery, parametersSoLuongKho);
                     if (!resultUpdateKho)
                     {
-                        MessageBox.Show($"Không thể cập nhật số lượng sách {maSach}.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(string.Format("Không thể cập nhật số lượng sách {0}.",maSach), "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
             }
 
-            MessageBox.Show($"Mượn sách thành công! Mã phiếu mượn: {maPhieuMuon}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(string.Format("Mượn sách thành công! Mã phiếu mượn: {0}", maPhieuMuon), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
     }

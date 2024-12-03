@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace LibraryManagementSoftware
 {
@@ -435,7 +435,7 @@ namespace LibraryManagementSoftware
             {
                 string bookTitle = row["TenSach"].ToString();
                 int overdueDays = Convert.ToInt32(row["SoNgayQuaHan"]);
-                emailBody.AppendLine($"<li>{bookTitle} - Quá hạn {overdueDays} ngày</li>");
+                emailBody.AppendLine(string.Format("<li>{0} - Quá hạn {1} ngày</li>",bookTitle,overdueDays));
             }
 
             emailBody.AppendLine(@"</ul>

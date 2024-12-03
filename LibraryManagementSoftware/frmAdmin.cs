@@ -75,5 +75,24 @@ namespace LibraryManagementSoftware
         {
             OpenChildForm(new frmTraSach());
         }
+
+        private void trảSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //this.Hide();
+            frmTraSach frm = new frmTraSach();
+            frm.ControlBox = false;
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void quảnLýToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNhapSach frm = new frmNhapSach();
+            frm.ControlBox = false;
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
     }
 }
