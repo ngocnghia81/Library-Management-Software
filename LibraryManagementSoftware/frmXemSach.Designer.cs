@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.flowLayOutSach = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbbTG = new System.Windows.Forms.ComboBox();
+            this.cbbTheLoai = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbMoTa = new System.Windows.Forms.Label();
             this.lbNXB = new System.Windows.Forms.Label();
@@ -38,9 +39,8 @@
             this.lbTacGia = new System.Windows.Forms.Label();
             this.lbTen = new System.Windows.Forms.Label();
             this.pictureChiTiet = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.flowLayOutSach.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureChiTiet)).BeginInit();
@@ -50,36 +50,48 @@
             // 
             this.flowLayOutSach.AutoScroll = true;
             this.flowLayOutSach.BackColor = System.Drawing.Color.IndianRed;
-            this.flowLayOutSach.Controls.Add(this.panel1);
             this.flowLayOutSach.Location = new System.Drawing.Point(3, 109);
             this.flowLayOutSach.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayOutSach.Name = "flowLayOutSach";
-            this.flowLayOutSach.Size = new System.Drawing.Size(774, 667);
+            this.flowLayOutSach.Size = new System.Drawing.Size(774, 637);
             this.flowLayOutSach.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(10, 716);
-            this.panel1.TabIndex = 2;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cbbTG);
+            this.groupBox1.Controls.Add(this.cbbTheLoai);
             this.groupBox1.Controls.Add(this.flowLayOutSach);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Location = new System.Drawing.Point(12, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(785, 766);
+            this.groupBox1.Size = new System.Drawing.Size(773, 766);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Toàn bộ sách";
+            this.groupBox1.Text = "Hiện sách";
+            // 
+            // cbbTG
+            // 
+            this.cbbTG.FormattingEnabled = true;
+            this.cbbTG.Location = new System.Drawing.Point(404, 46);
+            this.cbbTG.Name = "cbbTG";
+            this.cbbTG.Size = new System.Drawing.Size(188, 37);
+            this.cbbTG.TabIndex = 7;
+            this.cbbTG.SelectedIndexChanged += new System.EventHandler(this.cbbTheLoai_SelectedIndexChanged);
+            // 
+            // cbbTheLoai
+            // 
+            this.cbbTheLoai.FormattingEnabled = true;
+            this.cbbTheLoai.Location = new System.Drawing.Point(119, 46);
+            this.cbbTheLoai.Name = "cbbTheLoai";
+            this.cbbTheLoai.Size = new System.Drawing.Size(168, 37);
+            this.cbbTheLoai.TabIndex = 6;
+            this.cbbTheLoai.SelectedIndexChanged += new System.EventHandler(this.cbbTheLoai_SelectedIndexChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox2.Controls.Add(this.lbMoTa);
             this.groupBox2.Controls.Add(this.lbNXB);
@@ -87,7 +99,7 @@
             this.groupBox2.Controls.Add(this.lbTacGia);
             this.groupBox2.Controls.Add(this.lbTen);
             this.groupBox2.Controls.Add(this.pictureChiTiet);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.2F);
             this.groupBox2.Location = new System.Drawing.Point(791, 0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(577, 766);
@@ -101,7 +113,7 @@
             this.lbMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbMoTa.Location = new System.Drawing.Point(30, 637);
             this.lbMoTa.Name = "lbMoTa";
-            this.lbMoTa.Size = new System.Drawing.Size(61, 24);
+            this.lbMoTa.Size = new System.Drawing.Size(78, 29);
             this.lbMoTa.TabIndex = 5;
             this.lbMoTa.Text = "Mô tả:";
             // 
@@ -111,7 +123,7 @@
             this.lbNXB.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbNXB.Location = new System.Drawing.Point(30, 591);
             this.lbNXB.Name = "lbNXB";
-            this.lbNXB.Size = new System.Drawing.Size(127, 24);
+            this.lbNXB.Size = new System.Drawing.Size(158, 29);
             this.lbNXB.TabIndex = 4;
             this.lbNXB.Text = "Nhà xuất bản:";
             // 
@@ -121,7 +133,7 @@
             this.lbTheLoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbTheLoai.Location = new System.Drawing.Point(30, 496);
             this.lbTheLoai.Name = "lbTheLoai";
-            this.lbTheLoai.Size = new System.Drawing.Size(83, 24);
+            this.lbTheLoai.Size = new System.Drawing.Size(107, 29);
             this.lbTheLoai.TabIndex = 3;
             this.lbTheLoai.Text = "Thể loại:";
             // 
@@ -131,7 +143,7 @@
             this.lbTacGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbTacGia.Location = new System.Drawing.Point(30, 545);
             this.lbTacGia.Name = "lbTacGia";
-            this.lbTacGia.Size = new System.Drawing.Size(77, 24);
+            this.lbTacGia.Size = new System.Drawing.Size(99, 29);
             this.lbTacGia.TabIndex = 2;
             this.lbTacGia.Text = "Tác giả:";
             // 
@@ -141,34 +153,39 @@
             this.lbTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbTen.Location = new System.Drawing.Point(30, 444);
             this.lbTen.Name = "lbTen";
-            this.lbTen.Size = new System.Drawing.Size(94, 24);
+            this.lbTen.Size = new System.Drawing.Size(118, 29);
             this.lbTen.TabIndex = 1;
             this.lbTen.Text = "Tên sách:";
             // 
             // pictureChiTiet
             // 
-            this.pictureChiTiet.Location = new System.Drawing.Point(177, 46);
+            this.pictureChiTiet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureChiTiet.Location = new System.Drawing.Point(35, 46);
             this.pictureChiTiet.Name = "pictureChiTiet";
             this.pictureChiTiet.Size = new System.Drawing.Size(389, 382);
             this.pictureChiTiet.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureChiTiet.TabIndex = 0;
             this.pictureChiTiet.TabStop = false;
             // 
-            // comboBox1
+            // label1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(25, 46);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 32);
-            this.comboBox1.TabIndex = 6;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(12, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(101, 29);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Thể loại";
             // 
-            // comboBox2
+            // label2
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(207, 46);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 32);
-            this.comboBox2.TabIndex = 7;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2.Location = new System.Drawing.Point(305, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 29);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Tác giả";
             // 
             // frmXemSach
             // 
@@ -180,8 +197,8 @@
             this.Name = "frmXemSach";
             this.Text = "frmXemSach";
             this.Load += new System.EventHandler(this.frmXemSach_Load);
-            this.flowLayOutSach.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureChiTiet)).EndInit();
@@ -192,7 +209,6 @@
         #endregion
         private System.Windows.Forms.FlowLayoutPanel flowLayOutSach;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureChiTiet;
         private System.Windows.Forms.Label lbTen;
@@ -200,7 +216,9 @@
         private System.Windows.Forms.Label lbTheLoai;
         private System.Windows.Forms.Label lbNXB;
         private System.Windows.Forms.Label lbMoTa;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbbTG;
+        private System.Windows.Forms.ComboBox cbbTheLoai;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

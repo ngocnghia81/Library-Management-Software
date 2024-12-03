@@ -22,7 +22,7 @@ namespace LibraryManagementSoftware
 
             //Application.Run(new frmXemSachAdmin());
 
-            Application.Run(new frmAdmin());
+            Application.Run(new frmUser());
         }
     }
 }
