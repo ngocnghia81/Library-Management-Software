@@ -70,5 +70,10 @@ namespace LibraryManagementSoftware
             childForm.Dock = DockStyle.Fill; 
             childForm.Show();
         }
+
+        private void trảSáchToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmTraSach());
+        }
     }
 }

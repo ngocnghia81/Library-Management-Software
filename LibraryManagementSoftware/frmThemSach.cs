@@ -359,5 +359,26 @@ namespace LibraryManagementSoftware
                 textBoxSL.Focus(); 
             }
         }
+
+        private void listBoxSelectedAuthors_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBoxSelectedAuthors.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn tác giả để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string selectedAuthor = listBoxSelectedAuthors.SelectedItem.ToString();
+
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa tác giả " + selectedAuthor + "?",
+                                                  "Xác nhận xóa",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                listBoxSelectedAuthors.Items.Remove(selectedAuthor);
+            }
+        }
     }
 }

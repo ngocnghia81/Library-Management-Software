@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace LibraryManagementSoftware
 {
@@ -278,6 +279,180 @@ namespace LibraryManagementSoftware
 
             DataTable dt = db.ExecuteSelect(query);
             dgvDocGia.DataSource = dt;
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            if (dgvDocGia.SelectedRows.Count > 0)
+            {
+                // Lấy Mã Độc Giả và Email từ dòng đã chọn
+                string maDocGia = dgvDocGia.SelectedRows[0].Cells["MaDocGia"].Value.ToString();
+                string email = dgvDocGia.SelectedRows[0].Cells["Email"].Value.ToString();
+
+                // Gọi hàm nhắc nhở sách quá hạn
+                NotifyOverdueBooks(maDocGia, email);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn độc giả để gửi nhắc nhở.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void NotifyOverdueBooks(string maDocGia, string email)
+        {
+            string query = @"
+                SELECT 
+                    s.TenSach, 
+                    pm.NgayDaoHan, 
+                    DATEDIFF(DAY, pm.NgayDaoHan, GETDATE()) AS SoNgayQuaHan,
+                    tk.Email, 
+                    d.TenDocGia
+                FROM 
+                    CHITIETPHIEUMUON ctpm
+                JOIN 
+                    PHIEUMUON pm ON ctpm.MaPhieuMuon = pm.MaPhieuMuon
+                JOIN 
+                    SACH s ON ctpm.MaSach = s.MaSach
+                JOIN 
+                    DOCGIA d ON pm.MaDocGia = d.MaDocGia
+                JOIN 
+                    TAIKHOAN tk ON tk.MaDocGia = d.MaDocGia
+                WHERE 
+                    pm.MaDocGia = @MaDocGia AND 
+                    ctpm.MaCTPM NOT IN (SELECT MaCTPM FROM PHIEUTRA) AND  -- Chưa trả
+                    pm.NgayDaoHan < GETDATE();  -- Chỉ lấy sách quá hạn
+            ";
+
+            SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@MaDocGia", maDocGia) };
+            DataTable overdueBooks = db.ExecuteSelect(query, parameters);
+
+            if (overdueBooks != null && overdueBooks.Rows.Count > 0)
+            {
+                // Lấy tên độc giả và email
+                string userName = overdueBooks.Rows[0]["TenDocGia"].ToString(); // Giả sử chỉ có 1 độc giả trong kết quả
+                string userEmail = overdueBooks.Rows[0]["Email"].ToString();
+
+                // Tạo nội dung email
+                string emailBody = getMailBody(userName, overdueBooks);
+
+                // Gửi email nhắc nhở
+                EmailSender emailSender = new EmailSender("smtp.yourserver.com", 587, true, "youremail@example.com", "yourpassword");
+                bool emailSent = emailSender.SendEmail(userEmail, "Nhắc nhở trả sách quá hạn", emailBody, true);
+
+                if (emailSent)
+                {
+                    MessageBox.Show("Email nhắc nhở đã được gửi thành công.");
+                }
+                else
+                {
+                    MessageBox.Show("Gửi email thất bại.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có sách quá hạn cho độc giả này.");
+            }
+
+        }
+
+
+        private string getMailBody(string userName, DataTable overdueBooks)
+        {
+            // Tạo nội dung HTML cho email
+            StringBuilder emailBody = new StringBuilder();
+            emailBody.AppendLine(@"
+    <html>
+    <head>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }}
+            .container {{
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }}
+            .header {{
+                text-align: center;
+                background-color: #4CAF50;
+                padding: 10px;
+                color: white;
+                font-size: 24px;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }}
+            .content {{
+                padding: 20px;
+                text-align: left;
+                line-height: 1.6;
+            }}
+            .content p {{
+                margin: 0;
+                padding-bottom: 10px;
+            }}
+            .content .highlight {{
+                color: #4CAF50;
+                font-weight: bold;
+            }}
+            .footer {{
+                text-align: center;
+                padding: 10px;
+                font-size: 12px;
+                color: #666666;
+            }}
+            .button {{
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 16px;
+                color: white;
+                background-color: #4CAF50;
+                text-decoration: none;
+                border-radius: 5px;
+            }}
+            .button:hover {{
+                background-color: #45a049;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                Hệ thống Quản lý Thư viện
+            </div>
+            <div class='content'>
+                <p>Xin chào <strong>{0}</strong>,</p>
+                <p>Chúng tôi muốn thông báo rằng bạn có một số sách đã quá hạn chưa được trả. Dưới đây là danh sách sách quá hạn:</p>
+                <ul>");
+
+            // Thêm danh sách sách quá hạn vào email body
+            foreach (DataRow row in overdueBooks.Rows)
+            {
+                string bookTitle = row["TenSach"].ToString();
+                int overdueDays = Convert.ToInt32(row["SoNgayQuaHan"]);
+                emailBody.AppendLine($"<li>{bookTitle} - Quá hạn {overdueDays} ngày</li>");
+            }
+
+            emailBody.AppendLine(@"</ul>
+                <p>Vui lòng trả sách càng sớm càng tốt để tránh bị phạt.</p>
+                <p>Nếu bạn không thể trả sách trong thời gian tới, xin vui lòng liên hệ với chúng tôi để biết thêm thông tin.</p>
+                <p>Trân trọng,</p>
+                <p>Đội ngũ hỗ trợ</p>
+            </div>
+            <div class='footer'>
+                &copy; 2024 Hệ thống Quản lý Thư viện. Mọi quyền được bảo lưu.
+            </div>
+        </div>
+    </body>
+    </html>");
+
+            // Trả về nội dung email đã được định dạng
+            return emailBody.ToString();
         }
     }
 }

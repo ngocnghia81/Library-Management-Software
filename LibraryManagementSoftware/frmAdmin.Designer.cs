@@ -40,6 +40,7 @@
             this.nhàCungCấpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trảSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trảSáchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +67,8 @@
             this.sáchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.thêmSáchToolStripMenuItem,
             this.xemSáchToolStripMenuItem,
-            this.mượnSáchToolStripMenuItem});
+            this.mượnSáchToolStripMenuItem,
+            this.trảSáchToolStripMenuItem1});
             this.sáchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sáchToolStripMenuItem.Image")));
             this.sáchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.sáchToolStripMenuItem.Name = "sáchToolStripMenuItem";
@@ -78,7 +80,7 @@
             this.thêmSáchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thêmSáchToolStripMenuItem.Image")));
             this.thêmSáchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.thêmSáchToolStripMenuItem.Name = "thêmSáchToolStripMenuItem";
-            this.thêmSáchToolStripMenuItem.Size = new System.Drawing.Size(167, 56);
+            this.thêmSáchToolStripMenuItem.Size = new System.Drawing.Size(214, 56);
             this.thêmSáchToolStripMenuItem.Text = "Thêm sách";
             this.thêmSáchToolStripMenuItem.Click += new System.EventHandler(this.thêmSáchToolStripMenuItem_Click);
             // 
@@ -87,14 +89,16 @@
             this.xemSáchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xemSáchToolStripMenuItem.Image")));
             this.xemSáchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.xemSáchToolStripMenuItem.Name = "xemSáchToolStripMenuItem";
-            this.xemSáchToolStripMenuItem.Size = new System.Drawing.Size(167, 56);
+            this.xemSáchToolStripMenuItem.Size = new System.Drawing.Size(214, 56);
             this.xemSáchToolStripMenuItem.Text = "Xem sách";
             this.xemSáchToolStripMenuItem.Click += new System.EventHandler(this.xemSáchToolStripMenuItem_Click);
             // 
             // mượnSáchToolStripMenuItem
             // 
+            this.mượnSáchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("mượnSáchToolStripMenuItem.Image")));
+            this.mượnSáchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mượnSáchToolStripMenuItem.Name = "mượnSáchToolStripMenuItem";
-            this.mượnSáchToolStripMenuItem.Size = new System.Drawing.Size(167, 56);
+            this.mượnSáchToolStripMenuItem.Size = new System.Drawing.Size(214, 56);
             this.mượnSáchToolStripMenuItem.Text = "Mượn sách";
             this.mượnSáchToolStripMenuItem.Click += new System.EventHandler(this.mượnSáchToolStripMenuItem_Click);
             // 
@@ -156,6 +160,15 @@
             this.thoátToolStripMenuItem.Text = "Thoát";
             this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click);
             // 
+            // trảSáchToolStripMenuItem1
+            // 
+            this.trảSáchToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("trảSáchToolStripMenuItem1.Image")));
+            this.trảSáchToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.trảSáchToolStripMenuItem1.Name = "trảSáchToolStripMenuItem1";
+            this.trảSáchToolStripMenuItem1.Size = new System.Drawing.Size(214, 56);
+            this.trảSáchToolStripMenuItem1.Text = "Trả sách";
+            this.trảSáchToolStripMenuItem1.Click += new System.EventHandler(this.trảSáchToolStripMenuItem1_Click);
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,5 +204,6 @@
         private System.Windows.Forms.ToolStripMenuItem xemThôngTinĐộcGiảToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýĐộcGiảToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mượnSáchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem trảSáchToolStripMenuItem1;
     }
 }
