@@ -94,5 +94,10 @@ namespace LibraryManagementSoftware
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
+
+        private void quảnLýĐộcGiảToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
