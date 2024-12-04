@@ -16,13 +16,10 @@ namespace LibraryManagementSoftware
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmDangNhap());
-            //Application.Run(new frmDangNhap());
 
+            Application.Run(new frmAdmin());
 
-            //Application.Run(new frmXemSachAdmin());
-
-            Application.Run(new frmUser());
+            //Application.Run(new frmUser());
         }
     }
 }

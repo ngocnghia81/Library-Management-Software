@@ -65,9 +65,6 @@ namespace LibraryManagementSoftware
                 MessageBox.Show("Vui lòng chọn độc giả và sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Logic mượn sách ở đây
-            // Ví dụ: thêm mượn sách vào database
             try
             {
                 string query = "INSERT INTO MUONSACH (MaDocGia, MaSach, NgayMuon) VALUES (@MaDocGia, @MaSach, @NgayMuon)";
@@ -87,32 +84,25 @@ namespace LibraryManagementSoftware
             }
         }
 
-        // Xử lý sự kiện khi bấm nút Hủy
         private void btnHuy_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        // Load dữ liệu khi form được load
         private void frmMuonSach_Load(object sender, EventArgs e)
         {
             LoadDocGia();
             LoadSach();
 
-            // Điều chỉnh font chữ của DataGridView
-            dgvSach.Font = new Font("Microsoft Sans Serif", 16);  // Font 16 chữ
+            dgvSach.Font = new Font("Microsoft Sans Serif", 16);  
 
-            // Điều chỉnh chiều cao của các dòng
-            dgvSach.RowTemplate.Height = 30;  // Chiều cao dòng, bạn có thể thay đổi giá trị này
+            dgvSach.RowTemplate.Height = 40; 
 
-            // Điều chỉnh chiều cao của header cột
-            dgvSach.ColumnHeadersHeight = 40;  // Chiều cao của header cột, bạn có thể thay đổi giá trị này
+            dgvSach.ColumnHeadersHeight = 40;  
 
-            // Điều chỉnh font chữ cho các ô trong DataGridView
-            dgvSach.DefaultCellStyle.Font = new Font("Arial", 12);  // Font chữ của các ô trong bảng
-            dgvSach.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12);  // Font chữ của tiêu đề cột
+            dgvSach.DefaultCellStyle.Font = new Font("Arial", 12);  
+            dgvSach.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12);  
 
-            // Nếu DataGridView chưa có cột, thêm các cột vào
             if (dgvSach.Columns.Count == 0)
             {
                 dgvSach.Columns.Add("MaSach", "Mã sách");
@@ -121,34 +111,60 @@ namespace LibraryManagementSoftware
         }
 
 
-        // Thêm sách vào DataGridView khi người dùng chọn
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            // Kiểm tra ComboBox có giá trị được chọn không
             if (cmbTenSach.SelectedValue == null || string.IsNullOrEmpty(cmbTenSach.Text) || string.IsNullOrEmpty(cmbMaDocGia.Text))
             {
                 MessageBox.Show("Vui lòng chọn đầy đủ dữ liệu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Lấy giá trị từ ComboBox sau khi đã kiểm tra
+            string maDocGia = cmbMaDocGia.SelectedValue.ToString();
             string maSach = cmbTenSach.SelectedValue.ToString();
             string tenSach = cmbTenSach.Text;
 
-            // Kiểm tra xem sách đã được thêm vào DataGridView chưa
-            if(dgvSach.Rows.Count > 1)
+            foreach (DataGridViewRow row in dgvSach.Rows)
             {
-                foreach (DataGridViewRow row in dgvSach.Rows)
+                if (row.IsNewRow) continue;
+
+                if (row.Cells["MaSach"].Value != null && row.Cells["MaSach"].Value.ToString() == maSach)
                 {
-                    if (row.Cells["MaSach"].Value != null && row.Cells["MaSach"].Value.ToString() == maSach)
-                    {
-                        MessageBox.Show("Sách này đã được thêm vào.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
+                    //MessageBox.Show("Sách này đã được thêm vào.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
+            string query = @"
+                SELECT COUNT(*)
+                FROM CHITIETPHIEUMUON CTPM
+                JOIN PHIEUMUON PM ON CTPM.MaPhieuMuon = PM.MaPhieuMuon
+                WHERE PM.MaDocGia = @MaDocGia AND CTPM.MaSach = @MaSach";
+
+            SqlParameter[] parametersCheckMuon = new SqlParameter[]
+            {
+                new SqlParameter("@MaDocGia", maDocGia),
+                new SqlParameter("@MaSach", maSach)
+            };
+
+            DataTable dt = db.ExecuteSelect(query, parametersCheckMuon);
+            int countMuon = Convert.ToInt32(dt.Rows[0][0].ToString());
+
+            if (countMuon > 0)
+            {
+                DialogResult confirm = MessageBox.Show(
+                    "Độc giả đã mượn sách " + tenSach + " trước đây. Bạn có muốn mượn lại không?",
+                    "Xác nhận",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.No)
+                {
+                    return; 
                 }
             }
             dgvSach.Rows.Add(maSach, tenSach);
         }
+
 
         private void cmbMaDocGia_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -211,32 +227,28 @@ namespace LibraryManagementSoftware
 
         private void btnMuon_Click(object sender, EventArgs e)
         {
-            // Kiểm tra dữ liệu đầu vào
             if (string.IsNullOrEmpty(cmbMaDocGia.Text) || dgvSach.Rows.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn độc giả và ít nhất một cuốn sách.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Lấy thông tin
             string maDocGia = cmbMaDocGia.SelectedValue.ToString();
             DateTime ngayMuon = DateTime.Now;
             DateTime ngayDaoHan = ngayMuon.AddDays(7);
 
-            // Lấy mã phiếu mượn mới (PM<stt>)
             string maPhieuMuon;
             string queryGetNextPhieuMuon = "SELECT ISNULL(MAX(CAST(SUBSTRING(MaPhieuMuon, 3, LEN(MaPhieuMuon)) AS INT)), 0) + 1 FROM PHIEUMUON";
             object result = db.ExecuteScalar(queryGetNextPhieuMuon);
             maPhieuMuon = "PM" + (result != null ? result.ToString() : "1");
 
-            // Thêm vào bảng PHIEUMUON
             string insertPhieuMuonQuery = "INSERT INTO PHIEUMUON (MaPhieuMuon, MaDocGia, NgayMuon, NgayDaoHan) VALUES (@MaPhieuMuon, @MaDocGia, @NgayMuon, @NgayDaoHan)";
             SqlParameter[] parametersPhieuMuon = new SqlParameter[]
             {
-        new SqlParameter("@MaPhieuMuon", maPhieuMuon),
-        new SqlParameter("@MaDocGia", maDocGia),
-        new SqlParameter("@NgayMuon", ngayMuon),
-        new SqlParameter("@NgayDaoHan", ngayDaoHan)
+                new SqlParameter("@MaPhieuMuon", maPhieuMuon),
+                new SqlParameter("@MaDocGia", maDocGia),
+                new SqlParameter("@NgayMuon", ngayMuon),
+                new SqlParameter("@NgayDaoHan", ngayDaoHan)
             };
 
             bool resultPhieuMuon = db.ExecuteInsert(insertPhieuMuonQuery, parametersPhieuMuon);
@@ -246,26 +258,23 @@ namespace LibraryManagementSoftware
                 return;
             }
 
-            // Duyệt qua DataGridView để thêm chi tiết phiếu mượn
             foreach (DataGridViewRow row in dgvSach.Rows)
             {
                 if (row.Cells["MaSach"].Value != null)
                 {
                     string maSach = row.Cells["MaSach"].Value.ToString();
 
-                    // Tạo mã chi tiết phiếu mượn tự động
                     string maCTPM;
                     string queryGetNextChiTietPhieuMuon = "SELECT ISNULL(MAX(CAST(SUBSTRING(MaCTPM, 5, LEN(MaCTPM)) AS INT)), 0) + 1 FROM CHITIETPHIEUMUON";
                     object resultCTPM = db.ExecuteScalar(queryGetNextChiTietPhieuMuon);
                     maCTPM = "CTPM" + (resultCTPM != null ? resultCTPM.ToString() : "1");
 
-                    // Thêm vào bảng CHITIETPHIEUMUON
                     string insertChiTietPhieuMuonQuery = "INSERT INTO CHITIETPHIEUMUON (MaCTPM, MaPhieuMuon, MaSach) VALUES (@MaCTPM, @MaPhieuMuon, @MaSach)";
                     SqlParameter[] parametersChiTietPhieuMuon = new SqlParameter[]
                     {
-                new SqlParameter("@MaCTPM", maCTPM),
-                new SqlParameter("@MaPhieuMuon", maPhieuMuon),
-                new SqlParameter("@MaSach", maSach)
+                        new SqlParameter("@MaCTPM", maCTPM),
+                        new SqlParameter("@MaPhieuMuon", maPhieuMuon),
+                        new SqlParameter("@MaSach", maSach)
                     };
 
                     bool resultChiTietPhieuMuon = db.ExecuteInsert(insertChiTietPhieuMuonQuery, parametersChiTietPhieuMuon);
@@ -275,11 +284,10 @@ namespace LibraryManagementSoftware
                         return;
                     }
 
-                    // Cập nhật số lượng sách trong kho
                     string updateSoLuongKhoQuery = "UPDATE SACH SET SoLuongKho = SoLuongKho - 1 WHERE MaSach = @MaSach";
                     SqlParameter[] parametersSoLuongKho = new SqlParameter[]
                     {
-                new SqlParameter("@MaSach", maSach)
+                         new SqlParameter("@MaSach", maSach)
                     };
 
                     bool resultUpdateKho = db.ExecuteUpdate(updateSoLuongKhoQuery, parametersSoLuongKho);
@@ -290,9 +298,24 @@ namespace LibraryManagementSoftware
                     }
                 }
             }
+            OpenChildForm(new frmInPhieuMuon(new List<SqlParameter> { new SqlParameter("@MaPhieuMuon", maPhieuMuon) }));
 
             MessageBox.Show(string.Format("Mượn sách thành công! Mã phiếu mượn: {0}", maPhieuMuon), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
+        private void OpenChildForm(Form childForm)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm.GetType() == childForm.GetType())
+                {
+                    frm.Activate();
+                    return;
+                }
+            }
+
+            childForm.Dock = DockStyle.Fill;
+            childForm.Show();
         }
 
     }
