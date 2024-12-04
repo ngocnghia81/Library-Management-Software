@@ -28,29 +28,22 @@ namespace LibraryManagementSoftware
 
         private void LoadDanhSachDocGia()
         {
-            // Câu truy vấn SQL để lấy dữ liệu
             string query = "SELECT DOCGIA.[MaDocGia],[TenDocGia],[NgaySinh],[SDT],[DiaChi],[NgayDangKy],[CCCD], Email, TAIKHOAN.DaXoa FROM [QL_ThuVien2].[dbo].[DOCGIA] JOIN TAIKHOAN ON DOCGIA.MaDocGia = TAIKHOAN.MaDocGia";
 
-            // Lấy dữ liệu từ cơ sở dữ liệu
             DataTable dt = db.ExecuteSelect(query);
 
-            // Gán dữ liệu vào DataGridView
             dgvDocGia.DataSource = dt;
 
-            // Sử dụng màu mặc định cho DataGridView
-            dgvDocGia.DefaultCellStyle.BackColor = Color.AliceBlue; // Màu nền của các ô
-            dgvDocGia.DefaultCellStyle.ForeColor = Color.Black; // Màu chữ của các ô
-            dgvDocGia.DefaultCellStyle.Font = new Font("Arial", 10); // Định dạng font chữ
+            dgvDocGia.DefaultCellStyle.BackColor = Color.AliceBlue; 
+            dgvDocGia.DefaultCellStyle.ForeColor = Color.Black; //
+            dgvDocGia.DefaultCellStyle.Font = new Font("Arial", 10); 
 
-            // Thay đổi màu nền của các tiêu đề cột
             dgvDocGia.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
             dgvDocGia.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             dgvDocGia.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 11, FontStyle.Bold);
 
-            // Đảm bảo chiều cao của dòng đầu tiên (tiêu đề cột) đủ lớn để dễ nhìn
-            dgvDocGia.ColumnHeadersHeight = 35; // Đặt chiều cao tiêu đề cột
+            dgvDocGia.ColumnHeadersHeight = 40; 
 
-            // Thay đổi tên các cột thành tiếng Việt
             dgvDocGia.Columns["MaDocGia"].HeaderText = "Mã Độc Giả";
             dgvDocGia.Columns["TenDocGia"].HeaderText = "Tên Độc Giả";
             dgvDocGia.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
@@ -60,19 +53,15 @@ namespace LibraryManagementSoftware
             dgvDocGia.Columns["CCCD"].HeaderText = "CCCD";
             dgvDocGia.Columns["Email"].HeaderText = "Email";
 
-            // Ẩn cột DaXoa
             dgvDocGia.Columns["DaXoa"].Visible = false;
 
             dgvDocGia.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
-            // Không cho phép chỉnh sửa trong DataGridView (nếu bạn không muốn người dùng chỉnh sửa trực tiếp)
             dgvDocGia.ReadOnly = true;
 
-            // Thêm định dạng cho các cột ngày tháng
-            dgvDocGia.Columns["NgaySinh"].DefaultCellStyle.Format = "dd/MM/yyyy";  // Định dạng ngày tháng
-            dgvDocGia.Columns["NgayDangKy"].DefaultCellStyle.Format = "dd/MM/yyyy";  // Định dạng ngày tháng
+            dgvDocGia.Columns["NgaySinh"].DefaultCellStyle.Format = "dd/MM/yyyy"; 
+            dgvDocGia.Columns["NgayDangKy"].DefaultCellStyle.Format = "dd/MM/yyyy";  
 
-            // Tùy chỉnh độ rộng cột nếu cần thiết
             dgvDocGia.Columns["MaDocGia"].Width = 100;
             dgvDocGia.Columns["TenDocGia"].Width = 150;
             dgvDocGia.Columns["SDT"].Width = 120;
@@ -81,7 +70,7 @@ namespace LibraryManagementSoftware
             dgvDocGia.Columns["Email"].Width = 150;
 
             dgvDocGia.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders; // Điều chỉnh chiều cao dòng
-            dgvDocGia.AllowUserToAddRows = false;  // Không cho phép thêm dòng mới
+            dgvDocGia.AllowUserToAddRows = false;  
         }
 
 
@@ -91,19 +80,17 @@ namespace LibraryManagementSoftware
         }
         private void dgvDocGia_SelectionChanged(object sender, EventArgs e)
         {
-            // Kiểm tra nếu có dòng nào được chọn trong DataGridView
             if (dgvDocGia.SelectedRows.Count > 0)
             {
-                // Lấy Mã Độc Giả từ dòng đã chọn
                 string maDocGia = dgvDocGia.SelectedRows[0].Cells["MaDocGia"].Value.ToString();
 
-                // Truy vấn thông tin độc giả và số lượng mượn sách
                 string query = @"
                         
                     SELECT 
                         d.TenDocGia, 
                         d.SDT, 
 	                    tk.Email,
+                        tk.DaXoa,
                         ISNULL(
                             (SELECT COUNT(*) 
                              FROM PHIEUMUON 
@@ -143,37 +130,40 @@ namespace LibraryManagementSoftware
 
                     ";
 
-                // Thêm tham số vào truy vấn
                 SqlParameter[] parameters = new SqlParameter[] { new SqlParameter("@MaDocGia", maDocGia) };
 
-                // Thực thi truy vấn và lấy kết quả
                 DataTable dt = db.ExecuteSelect(query, parameters);
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    // Lấy dữ liệu từ DataTable và hiển thị vào các TextBox
                     DataRow row = dt.Rows[0];
-                    txtTenKhach.Text = row["TenDocGia"].ToString();  // Hiển thị tên độc giả
-                    txtSDT.Text = row["SDT"].ToString();  // Hiển thị số điện thoại
-                    txtEmail.Text = row["Email"].ToString(); // Hiển thị email từ bảng TAIKHOAN
-                    txtTongSoSach.Text = row["TongSach"].ToString();  // Hiển thị số lần mượn tổng
-                    txtSoLanMuon.Text = row["TongSoLanMuon"].ToString();          // Hiển thị số sách mượn hiện tại (nếu có)
+                    txtTenKhach.Text = row["TenDocGia"].ToString();  
+                    txtSDT.Text = row["SDT"].ToString();  
+                    txtEmail.Text = row["Email"].ToString(); 
+                    txtTongSoSach.Text = row["TongSach"].ToString(); 
+                    txtSoLanMuon.Text = row["TongSoLanMuon"].ToString();       
                     txtSoSachQuaHan.Text = row["SoSachQuaHan"].ToString(); 
                     txtTongSoLanChuaTra.Text = row["SoSachChuaTra"].ToString();
-                    //bool daXoa = Convert.ToBoolean(row["DaXoa"]);
+                    bool daXoa = Convert.ToBoolean(row["DaXoa"]);
 
-                    //if (daXoa)
-                    //{
-                    //    txtTrangThai.Text = "Khoá";  // Nếu tài khoản đã xóa
-                    //    btnKhoa.Enabled = false;
-                    //    btnKhoa.Visible = false;
-                    //}
-                    //else
-                    //{
-                    //    txtTrangThai.Text = "Khả dụng";
-                    //    btnKhoa.Enabled = true;
-                    //    btnKhoa.Visible = true;
-                    //}
+                    if (daXoa)
+                    {
+                        txtTrangThai.Text = "Khoá";
+                        btnKhoa.Enabled = false;
+                        btnKhoa.Visible = false;
+
+                        btnMo.Enabled = true;
+                        btnMo.Visible = true;
+                    }
+                    else
+                    {
+                        txtTrangThai.Text = "Khả dụng";
+                        btnKhoa.Enabled = true;
+                        btnKhoa.Visible = true;
+
+                        btnMo.Enabled = false;
+                        btnMo.Visible = false;
+                    }
                 }
             }
         }
@@ -188,59 +178,48 @@ namespace LibraryManagementSoftware
                 return;
             }
 
-            // Thêm dấu % vào trước và sau từ khóa tìm kiếm để thực hiện tìm kiếm "contains"
             string query = "SELECT * FROM DocGia WHERE TenDocGia LIKE @Search OR MaDocGia LIKE @Search OR SDT LIKE @Search OR CCCD LIKE @Search";
 
-            // Cập nhật tham số để thêm dấu '%' vào từ khóa
             SqlParameter[] parameters = new SqlParameter[]
-            {
-        new SqlParameter("@Search", "%" + searchKeyword + "%")  // Tìm kiếm theo kiểu "contains"
-            };
+                {
+                    new SqlParameter("@Search", "%" + searchKeyword + "%")  // Tìm kiếm theo kiểu "contains"
+                };
 
             try
             {
-                // Thực thi truy vấn và lấy dữ liệu
                 DataTable dt = db.ExecuteSelect(query, parameters);
 
-                // Kiểm tra xem có kết quả hay không
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    // Hiển thị kết quả tìm kiếm trong DataGridView
                     dgvDocGia.DataSource = dt;
                 }
                 else
                 {
-                    // Nếu không có kết quả, hiển thị thông báo cho người dùng
                     MessageBox.Show("Không tìm thấy độc giả phù hợp với từ khóa tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dgvDocGia.DataSource = null;  // Xóa dữ liệu trong DataGridView
+                    dgvDocGia.DataSource = null; 
                 }
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi kết nối hoặc truy vấn
                 MessageBox.Show("Đã xảy ra lỗi trong quá trình tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnKhoa_Click(object sender, EventArgs e)
         {
-            // Kiểm tra nếu chưa chọn tài khoản trong DataGridView
             if (dgvDocGia.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn tài khoản để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Lấy thông tin của tài khoản được chọn (giả sử sử dụng cột MaDocGia làm khóa chính)
             string selectedAccountId = dgvDocGia.SelectedRows[0].Cells["MaDocGia"].Value.ToString();
 
-            // Xác nhận với người dùng trước khi xóa
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.Yes)
             {
-                // Cập nhật trường DaXoa thành true thay vì xóa bản ghi
-                string query = "UPDATE TAIKHOAN tk JOIN DOCGIA dg ON  tk.MaDocGia = dg.MaDocGia SET DaXoa = 1 WHERE MaDocGia = @MaDocGia";
+                string query = "UPDATE TAIKHOAN SET DaXoa = 1 WHERE MaDocGia = @MaDocGia";
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {
@@ -254,9 +233,8 @@ namespace LibraryManagementSoftware
 
                     if (rowsAffected)
                     {
-                        // Cập nhật lại DataGridView sau khi xoá
                         MessageBox.Show("Tài khoản đã được đánh dấu xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        RefreshDataGrid();
+                        LoadDanhSachDocGia();
                     }
                     else
                     {
@@ -265,31 +243,19 @@ namespace LibraryManagementSoftware
                 }
                 catch (Exception ex)
                 {
-                    // Xử lý lỗi
                     MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        // Hàm cập nhật lại DataGridView sau khi thao tác xóa
-        private void RefreshDataGrid()
-        {
-            // Cập nhật lại DataGridView bằng cách lấy lại dữ liệu từ cơ sở dữ liệu
-            string query = "SELECT * FROM DocGia WHERE DaXoa = 0";  // Chỉ hiển thị các tài khoản chưa bị xóa
-
-            DataTable dt = db.ExecuteSelect(query);
-            dgvDocGia.DataSource = dt;
-        }
-
+       
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             if (dgvDocGia.SelectedRows.Count > 0)
             {
-                // Lấy Mã Độc Giả và Email từ dòng đã chọn
                 string maDocGia = dgvDocGia.SelectedRows[0].Cells["MaDocGia"].Value.ToString();
                 string email = dgvDocGia.SelectedRows[0].Cells["Email"].Value.ToString();
 
-                // Gọi hàm nhắc nhở sách quá hạn
                 NotifyOverdueBooks(maDocGia, email);
             }
             else
@@ -328,14 +294,11 @@ namespace LibraryManagementSoftware
 
             if (overdueBooks != null && overdueBooks.Rows.Count > 0)
             {
-                // Lấy tên độc giả và email
                 string userName = overdueBooks.Rows[0]["TenDocGia"].ToString(); // Giả sử chỉ có 1 độc giả trong kết quả
                 string userEmail = overdueBooks.Rows[0]["Email"].ToString();
 
-                // Tạo nội dung email
                 string emailBody = getMailBody(userName, overdueBooks);
 
-                // Gửi email nhắc nhở
                 EmailSender emailSender = new EmailSender("smtp.yourserver.com", 587, true, "youremail@example.com", "yourpassword");
                 bool emailSent = emailSender.SendEmail(userEmail, "Nhắc nhở trả sách quá hạn", emailBody, true);
 
@@ -453,6 +416,49 @@ namespace LibraryManagementSoftware
 
             // Trả về nội dung email đã được định dạng
             return emailBody.ToString();
+        }
+
+        private void btnMo_Click(object sender, EventArgs e)
+        {
+            if (dgvDocGia.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn tài khoản để mở!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string selectedAccountId = dgvDocGia.SelectedRows[0].Cells["MaDocGia"].Value.ToString();
+
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn mở tài khoản này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                string query = "UPDATE TAIKHOAN SET DaXoa = 0 WHERE MaDocGia = @MaDocGia";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@MaDocGia", selectedAccountId)
+                };
+
+                try
+                {
+                    // Thực thi câu lệnh cập nhật
+                    bool rowsAffected = db.ExecuteUpdate(query, parameters);
+
+                    if (rowsAffected)
+                    {
+                        MessageBox.Show("Tài khoản đã được mở.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDanhSachDocGia();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy tài khoản để mở.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
