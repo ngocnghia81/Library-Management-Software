@@ -167,6 +167,8 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -210,11 +212,23 @@
     <Compile Include="frmDanhSachDocGia.Designer.cs">
       <DependentUpon>frmDanhSachDocGia.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInBaoCaoTheoLoaiSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInBaoCaoTheoLoaiSach.Designer.cs">
+      <DependentUpon>frmInBaoCaoTheoLoaiSach.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInPhieuMuon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmInPhieuMuon.Designer.cs">
       <DependentUpon>frmInPhieuMuon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInThongKeTheoTuoi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInThongKeTheoTuoi.Designer.cs">
+      <DependentUpon>frmInThongKeTheoTuoi.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLichSuMuonSach.cs">
       <SubType>Form</SubType>
@@ -251,6 +265,12 @@
     </Compile>
     <Compile Include="frmThemSach.Designer.cs">
       <DependentUpon>frmThemSach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThongKe.Designer.cs">
+      <DependentUpon>frmThongKe.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTraSach.cs">
       <SubType>Form</SubType>
@@ -299,6 +319,18 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sach.cs" />
+    <Compile Include="ThongKeTheoLoaiSach.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThongKeTheoLoaiSach.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThongKeTheoTuoi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThongKeTheoTuoi.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TienIch.cs" />
     <Compile Include="ValidationHelper.cs" />
     <EmbeddedResource Include="frmBaoCaoLichSuMuonSach.resx">
@@ -317,8 +349,14 @@
     <EmbeddedResource Include="frmDanhSachDocGia.resx">
       <DependentUpon>frmDanhSachDocGia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmInBaoCaoTheoLoaiSach.resx">
+      <DependentUpon>frmInBaoCaoTheoLoaiSach.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInPhieuMuon.resx">
       <DependentUpon>frmInPhieuMuon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInThongKeTheoTuoi.resx">
+      <DependentUpon>frmInThongKeTheoTuoi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMuonSach.resx">
       <DependentUpon>frmMuonSach.cs</DependentUpon>
@@ -331,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemSach.resx">
       <DependentUpon>frmThemSach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThongKe.resx">
+      <DependentUpon>frmThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTraSach.resx">
       <DependentUpon>frmTraSach.cs</DependentUpon>
@@ -365,6 +406,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ThongKeTheoLoaiSach.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ThongKeTheoLoaiSach.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKeTheoTuoi.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ThongKeTheoTuoi.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -385,6 +434,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -75,7 +75,6 @@ namespace LibraryManagementSoftware
 
         private void btnBaoCao_Click(object sender, EventArgs e)
         {
-            // Chuẩn bị danh sách tham số
             List<SqlParameter> parameters = new List<SqlParameter>
                 {
                     new SqlParameter("@StartDate", guna2DateTimePicker1.Checked ? (object)guna2DateTimePicker1.Value.Date : DBNull.Value),

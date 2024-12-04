@@ -110,5 +110,11 @@ namespace LibraryManagementSoftware
             OpenChildForm(new frmLichSuMuonSach());
 
         }
+
+        private void thốngKêToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmThongKe());
+
+        }
     }
 }
