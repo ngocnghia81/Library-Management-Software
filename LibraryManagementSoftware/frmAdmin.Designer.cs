@@ -168,15 +168,19 @@
             // 
             // quảnLýToolStripMenuItem
             // 
+            this.quảnLýToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("quảnLýToolStripMenuItem.Image")));
+            this.quảnLýToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.quảnLýToolStripMenuItem.Name = "quảnLýToolStripMenuItem";
-            this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(186, 56);
             this.quảnLýToolStripMenuItem.Text = "Quản lý NCC";
             this.quảnLýToolStripMenuItem.Click += new System.EventHandler(this.quảnLýToolStripMenuItem_Click);
             // 
             // đơnNhậpToolStripMenuItem
             // 
+            this.đơnNhậpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đơnNhậpToolStripMenuItem.Image")));
+            this.đơnNhậpToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.đơnNhậpToolStripMenuItem.Name = "đơnNhậpToolStripMenuItem";
-            this.đơnNhậpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.đơnNhậpToolStripMenuItem.Size = new System.Drawing.Size(186, 56);
             this.đơnNhậpToolStripMenuItem.Text = "Đơn nhập";
             this.đơnNhậpToolStripMenuItem.Click += new System.EventHandler(this.đơnNhậpToolStripMenuItem_Click);
             // 
