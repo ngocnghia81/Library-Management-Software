@@ -166,6 +166,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -179,6 +180,12 @@
   <ItemGroup>
     <Compile Include="DBConnection.cs" />
     <Compile Include="EmailSender.cs" />
+    <Compile Include="frmBaoCaoLichSuMuonSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBaoCaoLichSuMuonSach.Designer.cs">
+      <DependentUpon>frmBaoCaoLichSuMuonSach.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +209,12 @@
     </Compile>
     <Compile Include="frmDanhSachDocGia.Designer.cs">
       <DependentUpon>frmDanhSachDocGia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLichSuMuonSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLichSuMuonSach.Designer.cs">
+      <DependentUpon>frmLichSuMuonSach.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDonNhap.cs">
       <SubType>Form</SubType>
@@ -257,6 +270,17 @@
     <Compile Include="frmXemSachAdmin.Designer.cs">
       <DependentUpon>frmXemSachAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="LichSuMuonSachDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LichSuMuonSachDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LichSuMuonSachReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LichSuMuonSachReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Paint.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -265,6 +289,9 @@
     <Compile Include="Sach.cs" />
     <Compile Include="TienIch.cs" />
     <Compile Include="ValidationHelper.cs" />
+    <EmbeddedResource Include="frmBaoCaoLichSuMuonSach.resx">
+      <DependentUpon>frmBaoCaoLichSuMuonSach.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -277,9 +304,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDanhSachDocGia.resx">
       <DependentUpon>frmDanhSachDocGia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDonNhap.resx">
-      <DependentUpon>frmDonNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMuonSach.resx">
       <DependentUpon>frmMuonSach.cs</DependentUpon>
@@ -305,6 +329,10 @@
     <EmbeddedResource Include="frmXemSachAdmin.resx">
       <DependentUpon>frmXemSachAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LichSuMuonSachReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LichSuMuonSachReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Paint.resx">
       <DependentUpon>Paint.cs</DependentUpon>
     </EmbeddedResource>
@@ -318,9 +346,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

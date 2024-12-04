@@ -107,7 +107,7 @@ namespace LibraryManagementSoftware
 
         private void quảnLýĐộcGiảToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            OpenChildForm(new frmLichSuMuonSach());
 
         }
     }
