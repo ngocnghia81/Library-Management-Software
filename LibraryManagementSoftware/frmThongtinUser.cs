@@ -59,6 +59,7 @@ namespace LibraryManagementSoftware
             lbTen.Text = user["TenDocGia"].ToString();
             lbNgaySinh.Text = DateTime.Parse(user["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
             lbNgayDangKi.Text = DateTime.Parse(user["NgayDangKy"].ToString()).ToString("dd/MM/yyyy");
+            roundedPanel1.Visible = true;
         }
 
 

@@ -28,7 +28,7 @@ namespace LibraryManagementSoftware
 
         private void LoadDanhSachDocGia()
         {
-            string query = "SELECT DOCGIA.[MaDocGia],[TenDocGia],[NgaySinh],[SDT],[DiaChi],[NgayDangKy],[CCCD], Email, TAIKHOAN.DaXoa FROM [QL_ThuVien2].[dbo].[DOCGIA] JOIN TAIKHOAN ON DOCGIA.MaDocGia = TAIKHOAN.MaDocGia";
+            string query = "SELECT DOCGIA.[MaDocGia],[TenDocGia],[NgaySinh],[SDT],[DiaChi],[NgayDangKy],[CCCD], Email, TAIKHOAN.DaXoa FROM [DOCGIA] JOIN TAIKHOAN ON DOCGIA.MaDocGia = TAIKHOAN.MaDocGia";
 
             DataTable dt = db.ExecuteSelect(query);
 

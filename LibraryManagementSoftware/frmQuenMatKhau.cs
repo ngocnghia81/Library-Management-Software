@@ -120,7 +120,7 @@ namespace LibraryManagementSoftware
 
         private bool UpdatePassword(string email, string newPassword)
         {
-            string query = "UPDATE TAIKHOAN SET HashedPassword = @NewPassword WHERE Email = @Email";
+            string query = "UPDATE TAIKHOAN SET matkhau = @NewPassword WHERE Email = @Email";
 
             SqlParameter[] parameters = new SqlParameter[]
             {

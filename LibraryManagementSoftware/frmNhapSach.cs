@@ -166,6 +166,8 @@ namespace LibraryManagementSoftware
             }
             DataTable dt = (DataTable)dgvNCC.DataSource;
             dt.Rows[IndexNCC]["DaXoa"] = true;
+            dt.Rows[IndexNCC]["TrangThai"] = "Đã xoá";
+            //MessageBox.Show(dt.Rows[IndexNCC]["DaXoa"].ToString());
             IndexNCC = -1;
         }
 
