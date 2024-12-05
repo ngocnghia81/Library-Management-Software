@@ -43,55 +43,36 @@ namespace LibraryManagementSoftware
             return false;
         }
 
-        string LayMaDocGiaLonNhat()
+        bool ThemDocGia(string madg)
         {
-            if (db == null)
+            string sql = string.Format("SELECT dbo.fn_CheckDuplicate('{0}', '{1}', '{2}');", txtSDT.Text, txtEmail.Text, txtCCCD.Text);
+            string message = db.ExecuteScalar(sql).ToString();
+            if (message != "")
             {
-                throw new InvalidOperationException("Database connection is not initialized.");
+                MessageBox.Show(message);
+                return false;
             }
-            return db.ExecuteFunction("func_LayMaDocGiaLonNhat").ToString();
-        }
 
-        string ThemMaDocGia()
-        {
-            string prefix = "DG";
-            int currentNumber;
-            int lengthOfNumberPart = 3;
-            string maxID = LayMaDocGiaLonNhat();
-            // Tách phần số từ mã, ví dụ: lấy '020' từ 'DG020'
-            string numberPart = maxID.Substring(prefix.Length);
-
-            // Chuyển phần số sang int, ví dụ: '020' -> 20
-            currentNumber = int.Parse(numberPart) + 1;
-
-            return string.Format("{0}{1}", prefix, currentNumber.ToString().PadLeft(lengthOfNumberPart, '0'));
-        }
-
-        bool ThemDocGia()
-        {
-            dateTime.Format = DateTimePickerFormat.Custom;
-            dateTime.CustomFormat = "yyyy-MM-dd"; // Định dạng năm-tháng-ngày
-
-            string query = "INSERT INTO DocGia (MaDocGia, TenDocGia, NgaySinh, SDT, DiaChi, NgayDangKy, CapThanhVien) VALUES (@MaDocGia,@TenDocGia,@NgaySinh,@SDT,'',Getdate(),'')";
+            string query = "INSERT INTO DocGia (MaDocGia, TenDocGia, NgaySinh, SDT, DiaChi, NgayDangKy, CCCD) VALUES (@MaDocGia,@TenDocGia,Getdate(),@SDT,'',Getdate(),@CCCD)";
 
             // Define parameters
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@MaDocGia", ThemMaDocGia()),
+                new SqlParameter("@MaDocGia", madg),
                 new SqlParameter("@TenDocGia", txtHoTen.Text),
-                new SqlParameter("@NgaySinh", dateTime.Text),
+                new SqlParameter("@CCCD", txtCCCD.Text),
                 new SqlParameter("@SDT", txtSDT.Text),
             };
             bool isInserted = db.ExecuteInsert(query, parameters);
             //txtHoTen.Text = query;
             if (isInserted)
             {
-                MessageBox.Show("User inserted successfully!");
+                
                 return true;
             }
             else
             {
-                MessageBox.Show("Failed to insert user.");
+                
                 return false;
             }
 
@@ -103,7 +84,13 @@ namespace LibraryManagementSoftware
         }
         private void Exit_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            DialogResult dialog = MessageBox.Show("Bạn có muốn thoát không?", "Thoát", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dialog == DialogResult.OK)
+            {
+                System.Windows.Forms.Application.Exit();
+            }
+
+            
 
         }
 
@@ -130,9 +117,7 @@ namespace LibraryManagementSoftware
 
         private void frmDangKi_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Bạn có muốn thoát không?", "Thoát", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dialog == DialogResult.OK) return;
-            e.Cancel = true;
+           
         }
 
         private void btnDangKi_Click(object sender, EventArgs e)
@@ -169,16 +154,16 @@ namespace LibraryManagementSoftware
             }
 
             // Define your SQL INSERT query
-            string query = "INSERT INTO TAIKHOAN (Email,HashedPassword,MaDocGia) VALUES (@Email, @Password, @MaDocGia)";
-
+            string query = "INSERT INTO TAIKHOAN VALUES (@Email, @Password, @MaDocGia,N'Vai Trò',0)";
+            string madg = TienIch.TaoMa("DG", "MaDocGia", "DocGia"); 
             // Chèn thông tin độc giả
-            bool isDocGiaInserted = ThemDocGia();
+            bool isDocGiaInserted = ThemDocGia(madg);
 
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@Email", txtEmail.Text),
                 new SqlParameter("@Password", txtPassword.Text),
-                new SqlParameter("@MaDocGia", LayMaDocGiaLonNhat())
+                new SqlParameter("@MaDocGia", madg)
             };
 
             // Thực hiện chèn dữ liệu vào bảng TAIKHOAN
@@ -187,11 +172,15 @@ namespace LibraryManagementSoftware
             // Kiểm tra kết quả
             if (isInserted && isDocGiaInserted)
             {
-                MessageBox.Show("Account inserted successfully!");
+                MessageBox.Show("Đăng kí thành công!");
+                frmDangNhap frmDangNhap = new frmDangNhap();
+                frmDangNhap.Show();
+                this.Close();
+ 
             }
             else
             {
-                MessageBox.Show("Failed to insert account.");
+                MessageBox.Show("Đăng kí thất bại");
             }
         }
 

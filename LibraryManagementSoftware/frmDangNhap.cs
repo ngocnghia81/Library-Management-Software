@@ -121,7 +121,7 @@ namespace LibraryManagementSoftware
 
             if (!KiemTraMatKhauTuGmail())
             {
-                MessageBox.Show("Email hoặc mật khẩu đăng nhập không hợp lệ", "Nhập liệu sai", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Email hoặc mật khẩu đăng nhập không hợp lệ", "Sai tài khoản", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -135,9 +135,18 @@ namespace LibraryManagementSoftware
                 frmAdmin frmAdmin = new frmAdmin(ten);
                 frmAdmin.Show();
                 this.Hide();
-            }    
+                return;
+            }
 
-            
+            frmUser frm = new frmUser(txtEmail.Text.ToString());
+            frm.Show();
+            this.Hide();
+            return;
+        }
+
+        private void frmDangNhap_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

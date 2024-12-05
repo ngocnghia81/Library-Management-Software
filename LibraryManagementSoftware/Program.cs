@@ -17,10 +17,9 @@ namespace LibraryManagementSoftware
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new frmThemNhaXuatBan());
-            Application.Run(new frmAdmin("Nghĩa"));
+            Application.Run(new frmDangNhap());
 
-            //Application.Run(new frmUser());
+
         }
     }
 }

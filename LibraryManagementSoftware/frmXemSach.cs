@@ -171,7 +171,7 @@ namespace LibraryManagementSoftware
             DataTable dt = db.ExecuteSelect("select S.* from SACH S join THAMGIA on THAMGIA.MaSach = s.MaSach where (@tk is null or S.TenSach LIKE N'%' + @tk + '%') and (@MaTL is null or S.MaLoai = @MaTL) and (@MaTG is null or THAMGIA.MaTacGia = @MaTG)", parameters);
             
 
-            foreach (DataRow row in dt.Rows)
+                foreach (DataRow row in dt.Rows)
             {
                 string maSach = row["MaSach"].ToString();
                 string tenSach = row["TenSach"].ToString();
