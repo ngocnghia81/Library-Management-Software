@@ -266,6 +266,24 @@
     <Compile Include="frmQuenMatKhau.Designer.cs">
       <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmThemKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemKe.Designer.cs">
+      <DependentUpon>frmThemKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemLoaiSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemLoaiSach.Designer.cs">
+      <DependentUpon>frmThemLoaiSach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemNhaXuatBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemNhaXuatBan.Designer.cs">
+      <DependentUpon>frmThemNhaXuatBan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmThemSach.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -393,6 +411,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmQuenMatKhau.resx">
       <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemKe.resx">
+      <DependentUpon>frmThemKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemLoaiSach.resx">
+      <DependentUpon>frmThemLoaiSach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemNhaXuatBan.resx">
+      <DependentUpon>frmThemNhaXuatBan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemSach.resx">
       <DependentUpon>frmThemSach.cs</DependentUpon>
