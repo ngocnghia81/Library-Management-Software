@@ -30,6 +30,8 @@
         {
             this.flowLayOutSach = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbbTG = new System.Windows.Forms.ComboBox();
@@ -41,8 +43,6 @@
             this.lbTacGia = new System.Windows.Forms.Label();
             this.lbTen = new System.Windows.Forms.Label();
             this.pictureChiTiet = new System.Windows.Forms.PictureBox();
-            this.txtTimKiem = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureChiTiet)).BeginInit();
@@ -51,7 +51,7 @@
             // flowLayOutSach
             // 
             this.flowLayOutSach.AutoScroll = true;
-            this.flowLayOutSach.BackColor = System.Drawing.Color.IndianRed;
+            this.flowLayOutSach.BackColor = System.Drawing.Color.WhiteSmoke;
             this.flowLayOutSach.Location = new System.Drawing.Point(3, 179);
             this.flowLayOutSach.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayOutSach.Name = "flowLayOutSach";
@@ -77,6 +77,24 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hiện sách";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label3.Location = new System.Drawing.Point(7, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 29);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Tìm kiếm";
+            // 
+            // txtTimKiem
+            // 
+            this.txtTimKiem.Location = new System.Drawing.Point(126, 46);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(473, 34);
+            this.txtTimKiem.TabIndex = 8;
+            this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
             // 
             // label2
             // 
@@ -120,7 +138,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.groupBox2.Controls.Add(this.lbMoTa);
             this.groupBox2.Controls.Add(this.lbNXB);
             this.groupBox2.Controls.Add(this.lbTheLoai);
@@ -195,27 +213,10 @@
             this.pictureChiTiet.TabIndex = 0;
             this.pictureChiTiet.TabStop = false;
             // 
-            // txtTimKiem
-            // 
-            this.txtTimKiem.Location = new System.Drawing.Point(126, 46);
-            this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(473, 34);
-            this.txtTimKiem.TabIndex = 8;
-            this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label3.Location = new System.Drawing.Point(7, 49);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 29);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Tìm kiếm";
-            // 
             // frmXemSach
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1368, 766);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

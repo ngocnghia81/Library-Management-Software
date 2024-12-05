@@ -16,7 +16,7 @@ namespace LibraryManagementSoftware
         {
             InitializeComponent();
             UserIdentify.Instance.email = email;
-            MessageBox.Show(UserIdentify.Instance.email);
+
         }
 
         private void frmUser_Load(object sender, EventArgs e)
