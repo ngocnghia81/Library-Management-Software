@@ -204,6 +204,12 @@
     <Compile Include="frmDanhSachDocGia.Designer.cs">
       <DependentUpon>frmDanhSachDocGia.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDuLieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDuLieu.Designer.cs">
+      <DependentUpon>frmDuLieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInBaoCaoTheoLoaiSach.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,19 +288,12 @@
     <Compile Include="frmThemSach.Designer.cs">
       <DependentUpon>frmThemSach.cs</DependentUpon>
     </Compile>
-
-
-
-
     <Compile Include="frmThemTacGia.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmThemTacGia.Designer.cs">
       <DependentUpon>frmThemTacGia.cs</DependentUpon>
     </Compile>
-
-
-
     <Compile Include="frmThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,10 +305,6 @@
     </Compile>
     <Compile Include="frmThongtinUser.Designer.cs">
       <DependentUpon>frmThongtinUser.cs</DependentUpon>
-
-
-
-
     </Compile>
     <Compile Include="frmTraSach.cs">
       <SubType>Form</SubType>
@@ -398,6 +393,9 @@
     <EmbeddedResource Include="frmDonNhap.resx">
       <DependentUpon>frmDonNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDuLieu.resx">
+      <DependentUpon>frmDuLieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInBaoCaoTheoLoaiSach.resx">
       <DependentUpon>frmInBaoCaoTheoLoaiSach.cs</DependentUpon>
     </EmbeddedResource>
@@ -434,25 +432,14 @@
     <EmbeddedResource Include="frmThemSach.resx">
       <DependentUpon>frmThemSach.cs</DependentUpon>
     </EmbeddedResource>
-
-
-
-
     <EmbeddedResource Include="frmThemTacGia.resx">
       <DependentUpon>frmThemTacGia.cs</DependentUpon>
     </EmbeddedResource>
-
-
-
     <EmbeddedResource Include="frmThongKe.resx">
       <DependentUpon>frmThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThongtinUser.resx">
       <DependentUpon>frmThongtinUser.cs</DependentUpon>
-
-
-
-
     </EmbeddedResource>
     <EmbeddedResource Include="frmTraSach.resx">
       <DependentUpon>frmTraSach.cs</DependentUpon>

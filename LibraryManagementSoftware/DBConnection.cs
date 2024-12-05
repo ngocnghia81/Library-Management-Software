@@ -10,12 +10,12 @@ public class DBConnection
     public DBConnection()
     {
 
-        //connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; Integrated Security=True;");
+        connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; Integrated Security=True;");
         //connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien2; Integrated Security=True;");
         //connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; User ID=nghia81; Password=5612;");
         /*connectionString = */
 
-        connectionString = ("Server=LAPTOP-SVSNGLVO\\SQLEXPRESS; Database=QL_ThuVien;Integrated Security=True;");
+        //connectionString = ("Server=LAPTOP-SVSNGLVO\\SQLEXPRESS; Database=QL_ThuVien;Integrated Security=True;");
 
         //connectionString = ("Server=34.118.185.254; Database=QL_ThuVien; User ID=sqlserver; Password=sqlserver;");
 
@@ -29,7 +29,7 @@ public class DBConnection
     }
 
     // Mở kết nối
-    private SqlConnection GetConnection()
+    public SqlConnection GetConnection()
     {
         return new SqlConnection(connectionString);
     }
