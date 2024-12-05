@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,22 +21,7 @@ namespace LibraryManagementSoftware
             InitializeComponent();
         }
 
-        // Load thông tin độc giả vào combobox
-        private void LoadDocGia()
-        {
-            try
-            {
-                DataTable dt = db.ExecuteSelect("SELECT MaDocGia, TenDocGia FROM DOCGIA");
 
-                cmbMaDocGia.DataSource = dt;
-                cmbMaDocGia.DisplayMember = "TenDocGia";
-                cmbMaDocGia.ValueMember = "MaDocGia";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(string.Format("Lỗi khi tải thông tin độc giả: {0}",ex.Message), "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         // Load thông tin sách vào combobox
         private void LoadSach()
@@ -47,6 +33,9 @@ namespace LibraryManagementSoftware
                 cmbTenSach.DataSource = dt;
                 cmbTenSach.DisplayMember = "TenSach";
                 cmbTenSach.ValueMember = "MaSach";
+
+                TienIch.GoiYComboBox(cmbTenSach, "TenSach");
+
             }
             catch (Exception ex)
             {
@@ -56,7 +45,7 @@ namespace LibraryManagementSoftware
 
         private void btnMuonSach_Click(object sender, EventArgs e)
         {
-            string maDocGia = cmbMaDocGia.SelectedValue.ToString();
+            string maDocGia = guna2TextBoxMaDG.Text.ToString();
             string maSach = cmbTenSach.SelectedValue.ToString();
             DateTime ngayMuon = DateTime.Now;
 
@@ -91,7 +80,6 @@ namespace LibraryManagementSoftware
 
         private void frmMuonSach_Load(object sender, EventArgs e)
         {
-            LoadDocGia();
             LoadSach();
 
             dgvSach.Font = new Font("Microsoft Sans Serif", 16);  
@@ -113,13 +101,13 @@ namespace LibraryManagementSoftware
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            if (cmbTenSach.SelectedValue == null || string.IsNullOrEmpty(cmbTenSach.Text) || string.IsNullOrEmpty(cmbMaDocGia.Text))
+            if (cmbTenSach.SelectedValue == null || string.IsNullOrEmpty(cmbTenSach.Text) || string.IsNullOrEmpty(guna2TextBoxMaDG.Text))
             {
                 MessageBox.Show("Vui lòng chọn đầy đủ dữ liệu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string maDocGia = cmbMaDocGia.SelectedValue.ToString();
+            string maDocGia = guna2TextBoxMaDG.Text.ToString();
             string maSach = cmbTenSach.SelectedValue.ToString();
             string tenSach = cmbTenSach.Text;
 
@@ -227,13 +215,13 @@ namespace LibraryManagementSoftware
 
         private void btnMuon_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cmbMaDocGia.Text) || dgvSach.Rows.Count == 0)
+            if (string.IsNullOrEmpty(guna2TextBoxMaDG.Text) || dgvSach.Rows.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn độc giả và ít nhất một cuốn sách.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string maDocGia = cmbMaDocGia.SelectedValue.ToString();
+            string maDocGia = guna2TextBoxMaDG.Text.ToString();
             DateTime ngayMuon = DateTime.Now;
             DateTime ngayDaoHan = ngayMuon.AddDays(7);
 
@@ -317,6 +305,44 @@ namespace LibraryManagementSoftware
             childForm.Dock = DockStyle.Fill;
             childForm.Show();
         }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            string ma = guna2TextBoxMaDG.Text; 
+
+            string query = @"
+                    SELECT DOCGIA.MaDocGia, DOCGIA.TenDocGia, DOCGIA.NgaySinh, DOCGIA.SDT, DOCGIA.DiaChi, DOCGIA.NgayDangKy, 
+                           TAIKHOAN.Email
+                    FROM DOCGIA
+                    INNER JOIN TAIKHOAN ON DOCGIA.MaDocGia = TAIKHOAN.MaDocGia
+                    WHERE DOCGIA.MaDocGia = @Ma AND TAIKHOAN.VaiTro = 'user'";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                 new SqlParameter("@Ma", ma)
+            };
+
+            DataTable dt = db.ExecuteSelect(query, parameters);
+
+            if (dt.Rows.Count > 0)
+            {
+                // Lấy thông tin từ dòng đầu tiên của DataTable
+                DataRow row = dt.Rows[0];
+
+                // Gán thông tin vào các Label
+                guna2HtmlLabelTen.Text = "Tên độc giả: " + row["TenDocGia"].ToString();
+                guna2HtmlLabelNgaySinh.Text = "Ngày sinh: " + DateTime.Parse(row["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
+                guna2HtmlLabelSDT.Text = "SĐT: " + row["SDT"].ToString();
+                guna2HtmlLabelEmail.Text = "Email: " + row["Email"].ToString();
+                guna2HtmlLabelNgayDK.Text = "Ngày đăng ký: " + DateTime.Parse(row["NgayDangKy"].ToString()).ToString("dd/MM/yyyy");
+            }
+            else
+            {
+                // Thông báo nếu không tìm thấy thông tin độc giả
+                MessageBox.Show("Không tìm thấy thông tin độc giả!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
 
     }
 }

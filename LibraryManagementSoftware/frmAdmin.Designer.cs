@@ -43,6 +43,7 @@
             this.quảnLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đơnNhậpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblName = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,7 +124,7 @@
             this.thêmSáchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thêmSáchToolStripMenuItem.Image")));
             this.thêmSáchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.thêmSáchToolStripMenuItem.Name = "thêmSáchToolStripMenuItem";
-            this.thêmSáchToolStripMenuItem.Size = new System.Drawing.Size(186, 56);
+            this.thêmSáchToolStripMenuItem.Size = new System.Drawing.Size(167, 56);
             this.thêmSáchToolStripMenuItem.Text = "Thêm sách";
             this.thêmSáchToolStripMenuItem.Click += new System.EventHandler(this.thêmSáchToolStripMenuItem_Click);
             // 
@@ -132,7 +133,7 @@
             this.xemSáchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xemSáchToolStripMenuItem.Image")));
             this.xemSáchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.xemSáchToolStripMenuItem.Name = "xemSáchToolStripMenuItem";
-            this.xemSáchToolStripMenuItem.Size = new System.Drawing.Size(186, 56);
+            this.xemSáchToolStripMenuItem.Size = new System.Drawing.Size(167, 56);
             this.xemSáchToolStripMenuItem.Text = "Xem sách";
             this.xemSáchToolStripMenuItem.Click += new System.EventHandler(this.xemSáchToolStripMenuItem_Click);
             // 
@@ -141,7 +142,7 @@
             this.mượnSáchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("mượnSáchToolStripMenuItem.Image")));
             this.mượnSáchToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mượnSáchToolStripMenuItem.Name = "mượnSáchToolStripMenuItem";
-            this.mượnSáchToolStripMenuItem.Size = new System.Drawing.Size(186, 56);
+            this.mượnSáchToolStripMenuItem.Size = new System.Drawing.Size(167, 56);
             this.mượnSáchToolStripMenuItem.Text = "Mượn sách";
             this.mượnSáchToolStripMenuItem.Click += new System.EventHandler(this.mượnSáchToolStripMenuItem_Click);
             // 
@@ -150,7 +151,7 @@
             this.trảSáchToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("trảSáchToolStripMenuItem1.Image")));
             this.trảSáchToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.trảSáchToolStripMenuItem1.Name = "trảSáchToolStripMenuItem1";
-            this.trảSáchToolStripMenuItem1.Size = new System.Drawing.Size(186, 56);
+            this.trảSáchToolStripMenuItem1.Size = new System.Drawing.Size(167, 56);
             this.trảSáchToolStripMenuItem1.Text = "Trả sách";
             this.trảSáchToolStripMenuItem1.Click += new System.EventHandler(this.trảSáchToolStripMenuItem1_Click);
             // 
@@ -194,6 +195,17 @@
             this.thoátToolStripMenuItem.Text = "Thoát";
             this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click);
             // 
+            // lblName
+            // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(646, 9);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(96, 25);
+            this.lblName.TabIndex = 2;
+            this.lblName.Text = "Xin chào";
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,6 +214,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1072, 505);
             this.ControlBox = false;
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
@@ -233,5 +246,6 @@
         private System.Windows.Forms.ToolStripMenuItem quảnLýToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đơnNhậpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
+        private System.Windows.Forms.Label lblName;
     }
 }

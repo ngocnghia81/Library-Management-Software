@@ -12,11 +12,29 @@ namespace LibraryManagementSoftware
 {
     public partial class frmAdmin : Form
     {
-        public frmAdmin()
+        private string name;
+        public frmAdmin(string name)
         {
-            InitializeComponent();
+            InitializeComponent(); // Đảm bảo gọi InitializeComponent() trước
+
             this.IsMdiContainer = true; // Đặt frmAdmin làm MDI Container
+
+            // Cập nhật giao diện của label để hiển thị đẹp hơn
+            this.name = name;
+
+            // Thiết lập văn bản cho label
+            lblName.Text = "Xin chào: " + name;
+
+            // Cải thiện vẻ đẹp của Label
+            lblName.Font = new Font("Segoe UI", 16, FontStyle.Bold); // Thay đổi font và cỡ chữ
+            lblName.ForeColor = Color.White; // Màu chữ trắng
+            lblName.BackColor = Color.DarkBlue; // Màu nền xanh đậm
+            lblName.TextAlign = ContentAlignment.MiddleCenter; // Căn giữa văn bản
+            lblName.AutoSize = true; // Tự động điều chỉnh kích thước label theo nội dung
+            lblName.Padding = new Padding(10); // Thêm khoảng cách lề cho văn bản
+            lblName.BorderStyle = BorderStyle.FixedSingle; // Thêm đường viền cho label
         }
+
 
         private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -18,7 +18,7 @@ namespace LibraryManagementSoftware
 
         bool KiemTraMatKhauTuGmail()
         {
-            string query = string.Format("select HashedPassword from TaiKhoan Where Email = '{0}'",txtEmail.Text);
+            string query = string.Format("select MatKhau from TaiKhoan Where Email = '{0}'",txtEmail.Text);
 
             string password = db.ExecuteScalar(query).ToString();
 
@@ -129,7 +129,10 @@ namespace LibraryManagementSoftware
 
             if (KiemTraAdmin())
             {
-                frmAdmin frmAdmin = new frmAdmin();
+                string query = string.Format("select DG.TenDocGia from DocGia DG, TaiKhoan TK where DG.MaDocGia = TK.MaDocGia AND TK.Email = '{0}'", txtEmail.Text);
+                string ten = db.ExecuteScalar(query).ToString();
+
+                frmAdmin frmAdmin = new frmAdmin(ten);
                 frmAdmin.Show();
                 this.Hide();
             }    
