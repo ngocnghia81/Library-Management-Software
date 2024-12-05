@@ -73,7 +73,7 @@ public class DBConnection
                     }
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0; // Trả về true nếu có bản ghi được thêm
+                    return rowsAffected > 0; 
                 }
             }
             catch (Exception ex)
@@ -84,7 +84,6 @@ public class DBConnection
         }
     }
 
-    // Thực hiện Read (SELECT)
     public DataTable ExecuteSelect(string query, SqlParameter[] parameters = null)
     {
         using (SqlConnection conn = GetConnection())
@@ -102,7 +101,7 @@ public class DBConnection
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         DataTable dt = new DataTable();
-                        adapter.Fill(dt); // Đổ kết quả vào DataTable
+                        adapter.Fill(dt); 
                         return dt;
                     }
                 }
@@ -308,8 +307,7 @@ public class DBConnection
         }
     }
 
-    // Thực hiện lệnh SQL và trả về giá trị từ hàm
-    public object ExecuteFunction(string functionName, SqlParameter[] parameters = null)
+    public DataTable ExecuteFunction(string functionName, SqlParameter[] parameters = null)
     {
         using (SqlConnection conn = GetConnection())
         {
@@ -318,7 +316,7 @@ public class DBConnection
                 conn.Open();
 
                 // Xây dựng câu lệnh SELECT để gọi hàm
-                string query = string.Format("SELECT dbo.{0}(",functionName);
+                string query = string.Format("SELECT * FROM dbo.{0}(", functionName);
 
                 // Nếu có tham số, thêm các tham số vào câu lệnh
                 if (parameters != null && parameters.Length > 0)
@@ -326,7 +324,7 @@ public class DBConnection
                     for (int i = 0; i < parameters.Length; i++)
                     {
                         if (i > 0) query += ", ";
-                        query += string.Format("@param{0}",i); // Tạo tham số
+                        query += string.Format("@param{0}", i); // Tạo tham số
                     }
                 }
                 query += ")"; // Đóng câu lệnh gọi hàm
@@ -338,12 +336,17 @@ public class DBConnection
                     {
                         for (int i = 0; i < parameters.Length; i++)
                         {
-                            cmd.Parameters.AddWithValue(string.Format("@param{0}",i), parameters[i].Value);
+                            cmd.Parameters.AddWithValue(string.Format("@param{0}", i), parameters[i].Value);
                         }
                     }
 
-                    // Thực thi câu lệnh và trả về giá trị scalar
-                    return cmd.ExecuteScalar();
+                    // Thực thi và đưa kết quả vào DataTable
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
                 }
             }
             catch (Exception ex)

@@ -85,11 +85,26 @@ namespace LibraryManagementSoftware
 
         void LoadDGVNCC()
         {
-            dgvNCC.DataSource = db.ExecuteSelect("select * from NCC");
-            dgvNCC.Columns["TenNCC"].HeaderText = "Tên NCC";
-            dgvNCC.Columns["DaXoa"].HeaderText = "Đã Xoá";
+            DataTable dt = db.ExecuteSelect("SELECT * FROM NCC");
+
+            if (!dt.Columns.Contains("TrangThai"))
+            {
+                dt.Columns.Add("TrangThai", typeof(string)); 
+            }
+
+            foreach (DataRow row in dt.Rows)
+            {
+                row["TrangThai"] = (bool)row["DaXoa"] ? "Đã Xóa" : "Khả Dụng";
+            }
+
+            dgvNCC.DataSource = dt;
+
+            dgvNCC.Columns["TenNCC"].HeaderText = "Tên Nhà Cung Cấp";
+            dgvNCC.Columns["TrangThai"].HeaderText = "Trạng Thái";
             dgvNCC.Columns["MaNCC"].Visible = false;
+            dgvNCC.Columns["DaXoa"].Visible = false; 
         }
+
 
         public frmNhapSach()
         {

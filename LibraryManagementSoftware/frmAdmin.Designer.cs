@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdmin));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.thốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +45,7 @@
             this.đơnNhậpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblName = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -172,7 +174,7 @@
             this.quảnLýToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("quảnLýToolStripMenuItem.Image")));
             this.quảnLýToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.quảnLýToolStripMenuItem.Name = "quảnLýToolStripMenuItem";
-            this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(186, 56);
+            this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(177, 56);
             this.quảnLýToolStripMenuItem.Text = "Quản lý NCC";
             this.quảnLýToolStripMenuItem.Click += new System.EventHandler(this.quảnLýToolStripMenuItem_Click);
             // 
@@ -181,7 +183,7 @@
             this.đơnNhậpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đơnNhậpToolStripMenuItem.Image")));
             this.đơnNhậpToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.đơnNhậpToolStripMenuItem.Name = "đơnNhậpToolStripMenuItem";
-            this.đơnNhậpToolStripMenuItem.Size = new System.Drawing.Size(186, 56);
+            this.đơnNhậpToolStripMenuItem.Size = new System.Drawing.Size(177, 56);
             this.đơnNhậpToolStripMenuItem.Text = "Đơn nhập";
             this.đơnNhậpToolStripMenuItem.Click += new System.EventHandler(this.đơnNhậpToolStripMenuItem_Click);
             // 
@@ -200,11 +202,16 @@
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(646, 9);
+            this.lblName.Location = new System.Drawing.Point(774, 9);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(96, 25);
             this.lblName.TabIndex = 2;
             this.lblName.Text = "Xin chào";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // frmAdmin
             // 
@@ -247,5 +254,6 @@
         private System.Windows.Forms.ToolStripMenuItem đơnNhậpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
         private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
