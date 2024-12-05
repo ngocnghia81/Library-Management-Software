@@ -255,9 +255,9 @@ namespace LibraryManagementSoftware
                             txtFilePath.Text = Path.GetFileName(destinationFilePath);
 
                             // Hiển thị hình ảnh lên PictureBox
-                            pictureBox2.Image = Image.FromFile(destinationFilePath);
-                            pictureBox2.Visible = true;
-                            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                            pictureBox1.Image = Image.FromFile(destinationFilePath);
+                            pictureBox1.Visible = true;
+                            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                         }
                         else
                         {
@@ -267,10 +267,9 @@ namespace LibraryManagementSoftware
                             // Lưu tên tệp hình ảnh vào TextBox (để lưu vào cơ sở dữ liệu)
                             txtFilePath.Text = Path.GetFileName(destinationFilePath);
 
-                            // Hiển thị hình ảnh lên PictureBox
-                            pictureBox2.Image = Image.FromFile(destinationFilePath);
-                            pictureBox2.Visible = true;
-                            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                            pictureBox1.Image = Image.FromFile(destinationFilePath);
+                            pictureBox1.Visible = true;
+                            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                         }
                     }
                     catch (Exception ex)
