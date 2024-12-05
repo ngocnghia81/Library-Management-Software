@@ -115,7 +115,7 @@ namespace LibraryManagementSoftware
             dgv1.Columns["MaCTPM"].Visible = false;
             foreach (DataGridViewColumn column in dgv1.Columns)
             {
-                if (column.HeaderText != "Tình trạng") // "TinhTrang" là tên cột cần chỉnh sửa
+                if (column.HeaderText != "Tình trạng") 
                 {
                     column.ReadOnly = true;
                     continue;
