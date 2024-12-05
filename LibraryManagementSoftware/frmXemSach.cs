@@ -151,22 +151,24 @@ namespace LibraryManagementSoftware
 
         }
 
-        void LoadSach(object maTL = null,object maTG = null)
+        void LoadSach(object maTL = null,object maTG = null,object timkiem = null)
         {
             if (maTL == null)
                 maTL = DBNull.Value;
             if (maTG == null)
                 maTG = DBNull.Value;
+            timkiem = timkiem ?? DBNull.Value;
             if (!isLoadCBB) return;
             flowLayOutSach.Controls.Clear();
 
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@MaTL", SqlDbType.VarChar) { Value = maTL },
-                new SqlParameter("@MaTG", SqlDbType.VarChar) { Value = maTG }
+                new SqlParameter("@MaTG", SqlDbType.VarChar) { Value = maTG },
+                new SqlParameter("@tk", SqlDbType.VarChar) { Value = timkiem }
             };
 
-            DataTable dt = db.ExecuteSelect("select S.* from SACH S join THAMGIA on THAMGIA.MaSach = s.MaSach where (@MaTL is null or S.MaLoai = @MaTL) and (@MaTG is null or THAMGIA.MaTacGia = @MaTG)",parameters);
+            DataTable dt = db.ExecuteSelect("select S.* from SACH S join THAMGIA on THAMGIA.MaSach = s.MaSach where (@tk is null or S.TenSach LIKE N'%' + @tk + '%') and (@MaTL is null or S.MaLoai = @MaTL) and (@MaTG is null or THAMGIA.MaTacGia = @MaTG)", parameters);
             
 
             foreach (DataRow row in dt.Rows)
@@ -198,7 +200,13 @@ namespace LibraryManagementSoftware
 
         private void cbbTheLoai_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadSach(cbbTheLoai.SelectedValue,cbbTG.SelectedValue);
+            LoadSach(cbbTheLoai.SelectedValue, cbbTG.SelectedValue, txtTimKiem.Text.ToString());
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            LoadSach(cbbTheLoai.SelectedValue, cbbTG.SelectedValue,txtTimKiem.Text.ToString());
+            
         }
     }
 }

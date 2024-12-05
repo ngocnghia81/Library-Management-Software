@@ -272,11 +272,19 @@
     <Compile Include="frmThemSach.Designer.cs">
       <DependentUpon>frmThemSach.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="frmThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmThongKe.Designer.cs">
       <DependentUpon>frmThongKe.cs</DependentUpon>
+=======
+    <Compile Include="frmThongtinUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThongtinUser.Designer.cs">
+      <DependentUpon>frmThongtinUser.cs</DependentUpon>
+>>>>>>> CapNhatUser
     </Compile>
     <Compile Include="frmTraSach.cs">
       <SubType>Form</SubType>
@@ -344,6 +352,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="TienIch.cs" />
+    <Compile Include="UserIdentify.cs" />
     <Compile Include="ValidationHelper.cs" />
     <EmbeddedResource Include="frmBaoCaoLichSuMuonSach.resx">
       <DependentUpon>frmBaoCaoLichSuMuonSach.cs</DependentUpon>
@@ -388,8 +397,13 @@
     <EmbeddedResource Include="frmThemSach.resx">
       <DependentUpon>frmThemSach.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="frmThongKe.resx">
       <DependentUpon>frmThongKe.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="frmThongtinUser.resx">
+      <DependentUpon>frmThongtinUser.cs</DependentUpon>
+>>>>>>> CapNhatUser
     </EmbeddedResource>
     <EmbeddedResource Include="frmTraSach.resx">
       <DependentUpon>frmTraSach.cs</DependentUpon>
