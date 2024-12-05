@@ -12,6 +12,14 @@ namespace LibraryManagementSoftware
 {
     public partial class frmThongtinUser : Form
     {
+        DBConnection db = new DBConnection();
+
+        public void LoadThongTin()
+        {
+            string sql = string.Format("select DOCGIA.* from DOCGIA join TAIKHOAN on TAIKHOAN.MaDocGia = DOCGIA.MaDocGia where TAIKHOAN.Email = {0}",UserIdentify.Instance.email);
+            DataTable user = db.ExecuteSelect(sql);
+        }
+
         public frmThongtinUser()
         {
             InitializeComponent();

@@ -37,10 +37,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtNhapLai = new System.Windows.Forms.TextBox();
             this.Exit = new System.Windows.Forms.Label();
-            this.dateTime = new System.Windows.Forms.DateTimePicker();
             this.txtHoTen = new System.Windows.Forms.TextBox();
             this.txtSDT = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtCCCD = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,15 +140,6 @@
             this.Exit.Text = "X";
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
-            // dateTime
-            // 
-            this.dateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTime.Location = new System.Drawing.Point(35, 432);
-            this.dateTime.Name = "dateTime";
-            this.dateTime.Size = new System.Drawing.Size(302, 36);
-            this.dateTime.TabIndex = 21;
-            this.dateTime.TabStop = false;
-            // 
             // txtHoTen
             // 
             this.txtHoTen.ForeColor = System.Drawing.SystemColors.ScrollBar;
@@ -185,15 +176,27 @@
             this.panel2.Size = new System.Drawing.Size(355, 651);
             this.panel2.TabIndex = 7;
             // 
+            // txtCCCD
+            // 
+            this.txtCCCD.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtCCCD.Location = new System.Drawing.Point(37, 434);
+            this.txtCCCD.Name = "txtCCCD";
+            this.txtCCCD.Size = new System.Drawing.Size(302, 36);
+            this.txtCCCD.TabIndex = 21;
+            this.txtCCCD.Tag = "CCCD";
+            this.txtCCCD.Text = "CCCD";
+            this.txtCCCD.Enter += new System.EventHandler(this.txtEmail_Enter);
+            this.txtCCCD.Leave += new System.EventHandler(this.txtEmail_Leave);
+            // 
             // frmDangKi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 563);
+            this.Controls.Add(this.txtCCCD);
             this.Controls.Add(this.txtSDT);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.txtHoTen);
-            this.Controls.Add(this.dateTime);
             this.Controls.Add(this.txtNhapLai);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDangNhap);
@@ -225,9 +228,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNhapLai;
         private System.Windows.Forms.Label Exit;
-        private System.Windows.Forms.DateTimePicker dateTime;
         private System.Windows.Forms.TextBox txtHoTen;
         private System.Windows.Forms.TextBox txtSDT;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox txtCCCD;
     }
 }

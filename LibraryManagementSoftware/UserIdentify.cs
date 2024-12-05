@@ -21,7 +21,7 @@ namespace LibraryManagementSoftware
             }
         }
 
-        
+        public string email;
 
 
         public UserIdentify()

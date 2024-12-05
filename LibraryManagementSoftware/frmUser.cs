@@ -12,9 +12,11 @@ namespace LibraryManagementSoftware
 {
     public partial class frmUser : Form
     {
-        public frmUser()
+        public frmUser(string email)
         {
             InitializeComponent();
+            UserIdentify.Instance.email = email;
+            MessageBox.Show(UserIdentify.Instance.email);
         }
 
         private void frmUser_Load(object sender, EventArgs e)
@@ -43,6 +45,11 @@ namespace LibraryManagementSoftware
             frmXemSach.ControlBox = false;
             frmXemSach.MdiParent = this;
             frmXemSach.Show();
+        }
+
+        private void frmUser_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
