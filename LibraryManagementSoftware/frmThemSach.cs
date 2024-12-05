@@ -300,29 +300,38 @@ namespace LibraryManagementSoftware
                 return;
             }
 
-            string query = "INSERT INTO SACH (MaSach, TenSach, HinhAnh, MaNXB, MaLoai, MoTa, SoLuongKho, TongSoLuong, MaKe,dongia) " +
+            string query = "INSERT INTO SACH (MaSach, TenSach, HinhAnh, MaNXB, MaLoai, MoTa, SoLuongKho, TongSoLuong, MaKe,DonGia) " +
                            "VALUES (@MaSach, @TenSach, @HinhAnh, @MaNXB, @MaLoai, @MoTa, @SoLuongKho, @TongSoLuong, @MaKe,@dongia)";
 
             var parameters = new List<SqlParameter>
-                {
-                    new SqlParameter("@MaSach", maSach),
-                    new SqlParameter("@TenSach", tenSach),
-                    new SqlParameter("@HinhAnh", Path.GetFileName(hinhAnh)),
-                    new SqlParameter("@MaNXB", maNXB),
-                    new SqlParameter("@MaLoai", maLoai),
-                    new SqlParameter("@MoTa", moTa),
-                    new SqlParameter("@SoLuongKho", 0),
-                    new SqlParameter("@TongSoLuong", 0),
-                    new SqlParameter("@MaKe", maKe),
-                    new SqlParameter("@dongia", int.Parse(txtDonGia.Text.ToString())),
-                };
+            {
+                new SqlParameter("@MaSach", maSach),
+                new SqlParameter("@TenSach", tenSach),
+                new SqlParameter("@HinhAnh", Path.GetFileName(hinhAnh)),
+                new SqlParameter("@MaNXB", maNXB),
+                new SqlParameter("@MaLoai", maLoai),
+                new SqlParameter("@MoTa", moTa),
+                new SqlParameter("@SoLuongKho", SqlDbType.Int) { Value = 0 },  // Chỉ định rõ kiểu dữ liệu là Int và giá trị là 0
+                new SqlParameter("@TongSoLuong", SqlDbType.Int) { Value = 0 },  // Cũng cần chỉ định kiểu dữ liệu cho tham số này
+                new SqlParameter("@MaKe", maKe),
+                new SqlParameter("@DonGia", SqlDbType.Int) { Value = int.Parse(txtDonGia.Text.Trim()) }
+            };
+
 
             try
             {
-                db.ExecuteInsert(query, parameters.ToArray());
-                ThemTacGiaVaoSach(maSach);
-                MessageBox.Show("Thêm sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearForm();
+                if (
+                db.ExecuteInsert(query, parameters.ToArray()))
+                {
+                    ThemTacGiaVaoSach(maSach);
+                    MessageBox.Show("Thêm sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi: Lỗi khi thêm sách", "Lỗi");
+                }
+
             }
             catch (Exception ex)
             {
@@ -363,7 +372,8 @@ namespace LibraryManagementSoftware
             txtFilePath.Clear();
             pictureBoxHinhAnh.Image = null;
             richTextBox1.Clear();
-
+            pictureBox1.Image = null;
+            comboBoxTacGia.SelectedIndex = -1;
             comboBoxNXB.SelectedIndex = -1;
             comboBoxLoaiSach.SelectedIndex = -1;
             comboBoxKe.SelectedIndex = -1;

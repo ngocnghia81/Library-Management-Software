@@ -16,12 +16,7 @@ namespace LibraryManagementSoftware
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
-            Application.Run(new frmAdmin("Khanh"));
-
-
-
+            Application.Run(new frmDangNhap());
         }
     }
 }
