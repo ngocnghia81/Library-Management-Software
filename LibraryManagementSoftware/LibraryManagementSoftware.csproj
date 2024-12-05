@@ -282,19 +282,12 @@
     <Compile Include="frmThemSach.Designer.cs">
       <DependentUpon>frmThemSach.cs</DependentUpon>
     </Compile>
-
-
-
-
     <Compile Include="frmThemTacGia.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmThemTacGia.Designer.cs">
       <DependentUpon>frmThemTacGia.cs</DependentUpon>
     </Compile>
-
-
-
     <Compile Include="frmThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,10 +299,6 @@
     </Compile>
     <Compile Include="frmThongtinUser.Designer.cs">
       <DependentUpon>frmThongtinUser.cs</DependentUpon>
-
-
-
-
     </Compile>
     <Compile Include="frmTraSach.cs">
       <SubType>Form</SubType>
@@ -358,6 +347,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sach.cs" />
+    <Compile Include="TheDocGia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TheDocGia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ThongKeDonNhap.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -434,25 +429,14 @@
     <EmbeddedResource Include="frmThemSach.resx">
       <DependentUpon>frmThemSach.cs</DependentUpon>
     </EmbeddedResource>
-
-
-
-
     <EmbeddedResource Include="frmThemTacGia.resx">
       <DependentUpon>frmThemTacGia.cs</DependentUpon>
     </EmbeddedResource>
-
-
-
     <EmbeddedResource Include="frmThongKe.resx">
       <DependentUpon>frmThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThongtinUser.resx">
       <DependentUpon>frmThongtinUser.cs</DependentUpon>
-
-
-
-
     </EmbeddedResource>
     <EmbeddedResource Include="frmTraSach.resx">
       <DependentUpon>frmTraSach.cs</DependentUpon>
@@ -487,6 +471,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TheDocGia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TheDocGia.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ThongKeDonNhap.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ThongKeDonNhap.cs</LastGenOutput>
