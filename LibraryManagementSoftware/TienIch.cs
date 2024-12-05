@@ -44,6 +44,10 @@ namespace LibraryManagementSoftware
         {
             DBConnection db = new DBConnection();
             string ma = db.ExecuteScalar(string.Format("select max({0}) from  {1}",tenMa,tenbang)).ToString();
+            if (ma == "")
+            {
+                ma = prefix + "000";
+            }
             int phanSo = int.Parse(ma.Substring(prefix.Length+1));
             phanSo++;
             string d = "D" + (prefix.Length + 1).ToString();

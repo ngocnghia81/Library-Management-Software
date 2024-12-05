@@ -291,19 +291,18 @@ namespace LibraryManagementSoftware
             string maNXB = comboBoxNXB.SelectedValue.ToString();
             string maLoai = comboBoxLoaiSach.SelectedValue.ToString();
             string moTa = richTextBox1.Text.Trim();
-            int soLuong= int.Parse(textBoxSL.Text.Trim());
             string maKe = comboBoxKe.SelectedValue.ToString();
 
             if (string.IsNullOrEmpty(tenSach) || string.IsNullOrEmpty(hinhAnh) ||
                 string.IsNullOrEmpty(maNXB) || string.IsNullOrEmpty(maLoai) ||
-                string.IsNullOrEmpty(moTa) || soLuong < 0 || string.IsNullOrEmpty(maKe))
+                string.IsNullOrEmpty(moTa)  || string.IsNullOrEmpty(maKe))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin sách!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string query = "INSERT INTO SACH (MaSach, TenSach, HinhAnh, MaNXB, MaLoai, MoTa, SoLuongKho, TongSoLuong, MaKe) " +
-                           "VALUES (@MaSach, @TenSach, @HinhAnh, @MaNXB, @MaLoai, @MoTa, @SoLuongKho, @TongSoLuong, @MaKe)";
+            string query = "INSERT INTO SACH (MaSach, TenSach, HinhAnh, MaNXB, MaLoai, MoTa, SoLuongKho, TongSoLuong, MaKe,dongia) " +
+                           "VALUES (@MaSach, @TenSach, @HinhAnh, @MaNXB, @MaLoai, @MoTa, @SoLuongKho, @TongSoLuong, @MaKe,@dongia)";
 
             var parameters = new List<SqlParameter>
                 {
@@ -313,9 +312,10 @@ namespace LibraryManagementSoftware
                     new SqlParameter("@MaNXB", maNXB),
                     new SqlParameter("@MaLoai", maLoai),
                     new SqlParameter("@MoTa", moTa),
-                    new SqlParameter("@SoLuongKho", soLuong),
-                    new SqlParameter("@TongSoLuong", soLuong),
-                    new SqlParameter("@MaKe", maKe)
+                    new SqlParameter("@SoLuongKho", 0),
+                    new SqlParameter("@TongSoLuong", 0),
+                    new SqlParameter("@MaKe", maKe),
+                    new SqlParameter("@dongia", int.Parse(txtDonGia.Text.ToString())),
                 };
 
             try
@@ -364,7 +364,7 @@ namespace LibraryManagementSoftware
             txtFilePath.Clear();
             pictureBoxHinhAnh.Image = null;
             richTextBox1.Clear();
-            textBoxSL.Clear();
+
             comboBoxNXB.SelectedIndex = -1;
             comboBoxLoaiSach.SelectedIndex = -1;
             comboBoxKe.SelectedIndex = -1;
@@ -374,17 +374,7 @@ namespace LibraryManagementSoftware
 
         private string TaoMaSach()
         {
-            string query = "SELECT dbo.func_LayMaSachLonNhat() AS NextMaSach";
-
-            DataTable dt = db.ExecuteSelect(query);
-            if (dt.Rows.Count > 0)
-            {
-                int nextCode = Convert.ToInt32(dt.Rows[0]["NextMaSach"]);
-
-                return "S" + nextCode.ToString("D3");
-            }
-
-            return "S001";
+            return TienIch.TaoMa("S", "Masach", "Sach");
         }
 
         private void pictureBoxHinhAnh_Click(object sender, EventArgs e)
@@ -392,15 +382,7 @@ namespace LibraryManagementSoftware
 
         }
 
-        private void textBoxSL_TextChanged(object sender, EventArgs e)
-        {
-            if (!ValidationHelper.IsNumeric(textBoxSL.Text) && textBoxSL.Text != "")
-            {
-                MessageBox.Show("Vui lòng nhập một số hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBoxSL.Clear(); 
-                textBoxSL.Focus(); 
-            }
-        }
+
 
         private void listBoxSelectedAuthors_DoubleClick(object sender, EventArgs e)
         {
@@ -421,6 +403,11 @@ namespace LibraryManagementSoftware
             {
                 listBoxSelectedAuthors.Items.Remove(selectedAuthor);
             }
+        }
+
+        private void txtDonGia_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

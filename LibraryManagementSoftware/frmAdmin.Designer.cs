@@ -43,6 +43,7 @@
             this.nhàCungCấpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đơnNhậpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dữLiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblName = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -58,6 +59,7 @@
             this.ngườiDùngToolStripMenuItem,
             this.sáchToolStripMenuItem,
             this.nhàCungCấpToolStripMenuItem,
+            this.dữLiệuToolStripMenuItem,
             this.thoátToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -187,9 +189,20 @@
             this.đơnNhậpToolStripMenuItem.Text = "Đơn nhập";
             this.đơnNhậpToolStripMenuItem.Click += new System.EventHandler(this.đơnNhậpToolStripMenuItem_Click);
             // 
+            // dữLiệuToolStripMenuItem
+            // 
+            this.dữLiệuToolStripMenuItem.BackColor = System.Drawing.Color.OldLace;
+            this.dữLiệuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dữLiệuToolStripMenuItem.Image")));
+            this.dữLiệuToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dữLiệuToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.dữLiệuToolStripMenuItem.Name = "dữLiệuToolStripMenuItem";
+            this.dữLiệuToolStripMenuItem.Size = new System.Drawing.Size(106, 54);
+            this.dữLiệuToolStripMenuItem.Text = "Dữ liệu";
+            this.dữLiệuToolStripMenuItem.Click += new System.EventHandler(this.dữLiệuToolStripMenuItem_Click);
+            // 
             // thoátToolStripMenuItem
             // 
-            this.thoátToolStripMenuItem.BackColor = System.Drawing.Color.OldLace;
+            this.thoátToolStripMenuItem.BackColor = System.Drawing.Color.Wheat;
             this.thoátToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thoátToolStripMenuItem.Image")));
             this.thoátToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
@@ -255,5 +268,6 @@
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem dữLiệuToolStripMenuItem;
     }
 }

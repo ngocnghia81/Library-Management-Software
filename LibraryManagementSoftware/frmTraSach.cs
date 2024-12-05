@@ -22,10 +22,7 @@ namespace LibraryManagementSoftware
 
         public string TaoMaPT()
         {
-            string ma = db.ExecuteScalar("select max(maphieutra) from  phieutra").ToString();
-            int phanSo = int.Parse(ma.Substring(2));
-            phanSo++;
-            ma = "PT" + phanSo.ToString("D3");
+            string ma = TienIch.TaoMa("PT", "MaPhieuTra", "PhieuTra");
             return ma;
         }
 
@@ -133,10 +130,12 @@ namespace LibraryManagementSoftware
             foreach (DataGridViewRow row in dgv1.Rows)
             {
                 bool tinhTrang = Convert.ToBoolean(row.Cells["TinhTrang"].Value); // Lấy giá trị cột "Tình trạng"
+               
 
-                if (tinhTrang) // Nếu đã check (true)
+                if (!tinhTrang) // Nếu đã check (true)
                 {
                     row.Cells["TinhTrang"].ReadOnly = true;
+
                 }
             }
         }
@@ -198,7 +197,7 @@ namespace LibraryManagementSoftware
                         new SqlParameter("@LePhi", TinhLePhi(ngaymuon)),
                         new SqlParameter("@MaCTPM", maCTPM)
                     };
-                    db.ExecuteInsert(sql, parameters);
+                    db.ExecuteNonQuery(sql, parameters);
 
                 }
                 

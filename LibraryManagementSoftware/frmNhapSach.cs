@@ -337,7 +337,7 @@ namespace LibraryManagementSoftware
             {
                 return;
             }
-            string maNhap = TienIch.TaoMa("NH", "MaNhap", "NhapSach");
+            string maNhap = TienIch.TaoMa("NP", "MaNhap", "NhapSach");
             string queryNS = string.Format("Insert into NHAPSACH values ('{0}','{1}',Getdate(),{2})", maNhap, maNCC, ThanhTien);
             db.ExecuteScalar(queryNS);
             

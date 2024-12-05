@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -460,6 +460,38 @@
         QkYhd4yFkCXSRwo27MNVw1Dvs2TQOu3gc0L2Ff0/SHV39zNkKw8hnw3qfeeCSC1Zz4Z4dKKLTqyU7SE3
         ylt6hvTprVdLPmKnaVUN/KhBIf2zqF+2cs7PGA9T9apeM3Ite5K/eCUx3U24QeggAQ/TvzD9TYx91Sij
         jDLKKKOeQM2b939GlsAgW1Rg0QAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="dữLiệuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        /gE/gRPCZ2uUmwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="thoátToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

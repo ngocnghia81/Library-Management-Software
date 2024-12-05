@@ -29,7 +29,7 @@ public class DBConnection
     }
 
     // Mở kết nối
-    private SqlConnection GetConnection()
+    public SqlConnection GetConnection()
     {
         return new SqlConnection(connectionString);
     }
