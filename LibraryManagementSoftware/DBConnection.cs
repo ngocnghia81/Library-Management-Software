@@ -69,7 +69,7 @@ public class DBConnection
                     }
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0; // Trả về true nếu có bản ghi được thêm
+                    return rowsAffected > 0; 
                 }
             }
             catch (Exception ex)

@@ -47,17 +47,47 @@ namespace LibraryManagementSoftware
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBoxLoaiSach.SelectedItem != null && isFormLoaded && comboBoxLoaiSach.SelectedIndex != -1)
+            {
+                if (comboBoxLoaiSach.SelectedValue.ToString() == "ADD")
+                {
+                    frmThemLoaiSach addAuthorForm = new frmThemLoaiSach();
+                    addAuthorForm.ShowDialog();
 
+                    LoadLoaiSach();
+                    return;
+                }
+            }
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBoxNXB.SelectedItem != null && isFormLoaded)
+            {
+                if (comboBoxNXB.SelectedValue.ToString() == "ADD")
+                {
+                    frmThemNhaXuatBan addAuthorForm = new frmThemNhaXuatBan();
+                    addAuthorForm.ShowDialog();
 
+                    LoadKe();
+                    return;
+                }
+            }
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBoxKe.SelectedItem != null && isFormLoaded)
+            {
+                if (comboBoxKe.SelectedValue.ToString() == "ADD")
+                {
+                    frmThemKe addAuthorForm = new frmThemKe();
+                    addAuthorForm.ShowDialog();
 
+                    LoadKe();
+                    return;
+                }
+            }
         }
 
 
@@ -92,9 +122,10 @@ namespace LibraryManagementSoftware
             dt.Rows.InsertAt(newRow, 0); 
 
             comboBoxLoaiSach.DataSource = dt;
+            comboBoxLoaiSach.SelectedIndex = -1;
+
             comboBoxLoaiSach.DisplayMember = "TenLoai";
             comboBoxLoaiSach.ValueMember = "MaLoai";
-            comboBoxLoaiSach.SelectedIndex = -1;
 
             
         }
