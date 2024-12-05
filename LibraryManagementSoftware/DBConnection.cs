@@ -9,7 +9,7 @@ public class DBConnection
     // Constructor, truyền vào chuỗi kết nối
     public DBConnection()
     {
-        connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien2; Integrated Security=True;");
+        //connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien2; Integrated Security=True;");
         //connectionString = ("Server=DESKTOP-7TLHHMR; Database=QL_ThuVien; User ID=nghia81; Password=5612;");
         /*connectionString = */
 
@@ -17,7 +17,7 @@ public class DBConnection
 
         //connectionString = ("Server=34.118.185.254; Database=QL_ThuVien; User ID=sqlserver; Password=sqlserver;");
 
-        //connectionString = ("Server=LAPTOP-SVSNGLVO\\SQLEXPRESS; Database=QL_ThuVien2;Integrated Security=True;");
+        connectionString = ("Server=LAPTOP-SVSNGLVO\\SQLEXPRESS; Database=QL_ThuVien2;Integrated Security=True;");
         //connectionString = ("Server=34.118.185.254; Database=QL_ThuVien; User ID=sqlserver; Password=sqlserver;");
 
         DataTable dt = new DataTable();

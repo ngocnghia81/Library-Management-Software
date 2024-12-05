@@ -233,6 +233,12 @@
     <Compile Include="frmThemSach.Designer.cs">
       <DependentUpon>frmThemSach.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmThongtinUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThongtinUser.Designer.cs">
+      <DependentUpon>frmThongtinUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTraSach.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +270,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sach.cs" />
     <Compile Include="TienIch.cs" />
+    <Compile Include="UserIdentify.cs" />
     <Compile Include="ValidationHelper.cs" />
     <EmbeddedResource Include="frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
@@ -292,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemSach.resx">
       <DependentUpon>frmThemSach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThongtinUser.resx">
+      <DependentUpon>frmThongtinUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTraSach.resx">
       <DependentUpon>frmTraSach.cs</DependentUpon>

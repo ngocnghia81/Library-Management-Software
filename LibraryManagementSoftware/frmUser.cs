@@ -26,5 +26,23 @@ namespace LibraryManagementSoftware
             frmXemSach.Show();
             
         }
+
+        private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmThongtinUser frm = new frmThongtinUser();
+            frm.WindowState = FormWindowState.Maximized;
+            frm.ControlBox = false;
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void trangChủToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmXemSach frmXemSach = new frmXemSach();
+            frmXemSach.WindowState = FormWindowState.Maximized;
+            frmXemSach.ControlBox = false;
+            frmXemSach.MdiParent = this;
+            frmXemSach.Show();
+        }
     }
 }
