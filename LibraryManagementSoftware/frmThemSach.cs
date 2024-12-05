@@ -156,11 +156,23 @@ namespace LibraryManagementSoftware
                 DataRowView selectedRow = (DataRowView)comboBoxTacGia.SelectedItem;
                 string selectedAuthorId = selectedRow["MaTacGia"].ToString();
                 string selectedAuthorName = selectedRow["TenTacGia"].ToString();
+
+                // Kiểm tra nếu giá trị là "Add"
+                if (selectedAuthorId == "ADD")
+                {
+                    frmThemTacGia addAuthorForm = new frmThemTacGia();
+                    addAuthorForm.ShowDialog();
+
+                    LoadTacGia();
+                    return; 
+                }
+
+                // Thêm tác giả vào danh sách
                 string authorDisplayString = string.Format("{0} - {1}", selectedAuthorId, selectedAuthorName);
                 bool authorExists = false;
                 foreach (string item in listBoxSelectedAuthors.Items)
                 {
-                    if (item.StartsWith(selectedAuthorId)) 
+                    if (item.StartsWith(selectedAuthorId))
                     {
                         authorExists = true;
                         break;
@@ -173,6 +185,7 @@ namespace LibraryManagementSoftware
                 }
             }
         }
+
 
 
         private void btnUpload_Click(object sender, EventArgs e)

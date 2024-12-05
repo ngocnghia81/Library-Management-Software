@@ -80,7 +80,6 @@ public class DBConnection
         }
     }
 
-    // Thực hiện Read (SELECT)
     public DataTable ExecuteSelect(string query, SqlParameter[] parameters = null)
     {
         using (SqlConnection conn = GetConnection())
