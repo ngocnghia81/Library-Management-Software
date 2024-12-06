@@ -140,5 +140,10 @@ namespace LibraryManagementSoftware
             OpenChildForm(new frmDuLieu());
 
         }
+
+        private void thểLoạiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmDanhMucSach());
+        }
     }
 }

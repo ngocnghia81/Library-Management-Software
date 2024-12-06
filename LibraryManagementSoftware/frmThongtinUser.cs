@@ -19,6 +19,12 @@ namespace LibraryManagementSoftware
             string sql = string.Format("select DOCGIA.* from DOCGIA join TAIKHOAN on TAIKHOAN.MaDocGia = DOCGIA.MaDocGia where TAIKHOAN.Email = '{0}'",UserIdentify.Instance.email);
             DataRow user = db.ExecuteSelect(sql).Rows[0];
 
+            string gt = user["GioiTinh"].ToString();
+            if (gt == "Nam")
+            {
+                radioButton1.Checked = true;
+            }
+            else radioButton2.Checked = true;
             txtMa.Text = user["MaDocGia"].ToString();
             txtTen.Text = user["TenDocGia"].ToString();
             txtSDT.Text = user["SDT"].ToString();
@@ -40,8 +46,13 @@ namespace LibraryManagementSoftware
         {
             string sql = string.Format("select DOCGIA.* from DOCGIA join TAIKHOAN on TAIKHOAN.MaDocGia = DOCGIA.MaDocGia where TAIKHOAN.Email = '{0}'", UserIdentify.Instance.email);
             DataRow user = db.ExecuteSelect(sql).Rows[0];
-
-
+            string gt = "";
+            if (radioButton1.Checked)
+            {
+                gt = "Nam";
+            }
+            else gt = "Nữ";
+            user["GioiTinh"] = gt;
             user["TenDocGia"] = txtTen.Text;
             user["SDT"] = txtSDT.Text;
             user["DiaChi"] = txtDiaChi.Text;
@@ -56,6 +67,7 @@ namespace LibraryManagementSoftware
             string sql = string.Format("select DOCGIA.* from DOCGIA join TAIKHOAN on TAIKHOAN.MaDocGia = DOCGIA.MaDocGia where TAIKHOAN.Email = '{0}'", UserIdentify.Instance.email);
             DataRow user = db.ExecuteSelect(sql).Rows[0];
             lbMa.Text = user["MaDocGia"].ToString();
+            lbGt.Text = user["GioiTinh"].ToString();
             lbTen.Text = user["TenDocGia"].ToString();
             lbNgaySinh.Text = DateTime.Parse(user["NgaySinh"].ToString()).ToString("dd/MM/yyyy");
             lbNgayDangKi.Text = DateTime.Parse(user["NgayDangKy"].ToString()).ToString("dd/MM/yyyy");

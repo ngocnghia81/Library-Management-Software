@@ -649,5 +649,26 @@ namespace LibraryManagementSoftware
                 MessageBox.Show("Tác giả này đã có trong danh sách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void guna2Button5_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmDanhMucSach());
+        }
+        private void OpenChildForm(Form childForm)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm.GetType() == childForm.GetType())
+                {
+                    frm.Activate();
+                    return;
+                }
+            }
+
+            childForm.MdiParent = this;
+            childForm.Dock = DockStyle.Fill;
+            childForm.Show();
+        }
+
     }
 }

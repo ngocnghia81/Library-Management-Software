@@ -47,6 +47,7 @@
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblName = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.thểLoạiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,11 +61,12 @@
             this.sáchToolStripMenuItem,
             this.nhàCungCấpToolStripMenuItem,
             this.dữLiệuToolStripMenuItem,
+            this.thểLoạiToolStripMenuItem,
             this.thoátToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1072, 58);
+            this.menuStrip1.Size = new System.Drawing.Size(1099, 58);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -202,7 +204,7 @@
             // 
             // thoátToolStripMenuItem
             // 
-            this.thoátToolStripMenuItem.BackColor = System.Drawing.Color.Wheat;
+            this.thoátToolStripMenuItem.BackColor = System.Drawing.Color.OldLace;
             this.thoátToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thoátToolStripMenuItem.Image")));
             this.thoátToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
@@ -212,10 +214,10 @@
             // 
             // lblName
             // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(774, 9);
+            this.lblName.Location = new System.Drawing.Point(801, 9);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(96, 25);
             this.lblName.TabIndex = 2;
@@ -226,13 +228,22 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // thểLoạiToolStripMenuItem
+            // 
+            this.thểLoạiToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thểLoạiToolStripMenuItem.Image")));
+            this.thểLoạiToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.thểLoạiToolStripMenuItem.Name = "thểLoạiToolStripMenuItem";
+            this.thểLoạiToolStripMenuItem.Size = new System.Drawing.Size(111, 54);
+            this.thểLoạiToolStripMenuItem.Text = "Thể loại";
+            this.thểLoạiToolStripMenuItem.Click += new System.EventHandler(this.thểLoạiToolStripMenuItem_Click);
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1072, 505);
+            this.ClientSize = new System.Drawing.Size(1099, 505);
             this.ControlBox = false;
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.menuStrip1);
@@ -269,5 +280,6 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem dữLiệuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thểLoạiToolStripMenuItem;
     }
 }

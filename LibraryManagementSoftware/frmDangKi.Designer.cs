@@ -41,6 +41,9 @@
             this.txtSDT = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtCCCD = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +53,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(63, 31);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(276, 69);
+            this.label3.Size = new System.Drawing.Size(221, 55);
             this.label3.TabIndex = 16;
             this.label3.Text = "ĐĂNG KÍ";
             // 
@@ -59,9 +62,9 @@
             this.btnDangNhap.AutoSize = true;
             this.btnDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnDangNhap.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnDangNhap.Location = new System.Drawing.Point(124, 530);
+            this.btnDangNhap.Location = new System.Drawing.Point(124, 558);
             this.btnDangNhap.Name = "btnDangNhap";
-            this.btnDangNhap.Size = new System.Drawing.Size(157, 20);
+            this.btnDangNhap.Size = new System.Drawing.Size(126, 16);
             this.btnDangNhap.TabIndex = 15;
             this.btnDangNhap.Text = "Bạn đã có tài khoản";
             this.btnDangNhap.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -74,7 +77,7 @@
             this.btnDangKi.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.btnDangKi.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnDangKi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDangKi.Location = new System.Drawing.Point(35, 489);
+            this.btnDangKi.Location = new System.Drawing.Point(35, 517);
             this.btnDangKi.Name = "btnDangKi";
             this.btnDangKi.Size = new System.Drawing.Size(302, 38);
             this.btnDangKi.TabIndex = 3;
@@ -87,7 +90,7 @@
             this.txtPassword.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.txtPassword.Location = new System.Drawing.Point(35, 183);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(302, 36);
+            this.txtPassword.Size = new System.Drawing.Size(302, 30);
             this.txtPassword.TabIndex = 12;
             this.txtPassword.Tag = "Password";
             this.txtPassword.Text = "Password";
@@ -99,7 +102,7 @@
             this.txtEmail.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.txtEmail.Location = new System.Drawing.Point(35, 120);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(302, 36);
+            this.txtEmail.Size = new System.Drawing.Size(302, 30);
             this.txtEmail.TabIndex = 11;
             this.txtEmail.Tag = "Email";
             this.txtEmail.Text = "Email";
@@ -113,7 +116,7 @@
             this.label1.Location = new System.Drawing.Point(163, 64);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 29);
+            this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 10;
             // 
             // txtNhapLai
@@ -121,7 +124,7 @@
             this.txtNhapLai.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.txtNhapLai.Location = new System.Drawing.Point(35, 251);
             this.txtNhapLai.Name = "txtNhapLai";
-            this.txtNhapLai.Size = new System.Drawing.Size(302, 36);
+            this.txtNhapLai.Size = new System.Drawing.Size(302, 30);
             this.txtNhapLai.TabIndex = 18;
             this.txtNhapLai.Tag = "Nhập lại password";
             this.txtNhapLai.Text = "Nhập lại password";
@@ -135,7 +138,7 @@
             this.Exit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Exit.Location = new System.Drawing.Point(322, 0);
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(30, 29);
+            this.Exit.Size = new System.Drawing.Size(26, 25);
             this.Exit.TabIndex = 17;
             this.Exit.Text = "X";
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
@@ -145,7 +148,7 @@
             this.txtHoTen.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.txtHoTen.Location = new System.Drawing.Point(35, 315);
             this.txtHoTen.Name = "txtHoTen";
-            this.txtHoTen.Size = new System.Drawing.Size(302, 36);
+            this.txtHoTen.Size = new System.Drawing.Size(302, 30);
             this.txtHoTen.TabIndex = 19;
             this.txtHoTen.Tag = "Họ Tên";
             this.txtHoTen.Text = "Họ Tên";
@@ -155,9 +158,9 @@
             // txtSDT
             // 
             this.txtSDT.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtSDT.Location = new System.Drawing.Point(35, 376);
+            this.txtSDT.Location = new System.Drawing.Point(35, 404);
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(302, 36);
+            this.txtSDT.Size = new System.Drawing.Size(302, 30);
             this.txtSDT.TabIndex = 20;
             this.txtSDT.Tag = "Số điện thoại";
             this.txtSDT.Text = "Số điện thoại";
@@ -179,20 +182,55 @@
             // txtCCCD
             // 
             this.txtCCCD.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtCCCD.Location = new System.Drawing.Point(37, 434);
+            this.txtCCCD.Location = new System.Drawing.Point(37, 462);
             this.txtCCCD.Name = "txtCCCD";
-            this.txtCCCD.Size = new System.Drawing.Size(302, 36);
+            this.txtCCCD.Size = new System.Drawing.Size(302, 30);
             this.txtCCCD.TabIndex = 21;
             this.txtCCCD.Tag = "CCCD";
             this.txtCCCD.Text = "CCCD";
             this.txtCCCD.Enter += new System.EventHandler(this.txtEmail_Enter);
             this.txtCCCD.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(30, 362);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 25);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Giới tính";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(118, 360);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(71, 29);
+            this.radioButton1.TabIndex = 23;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Nam";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(213, 360);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(55, 29);
+            this.radioButton2.TabIndex = 23;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Nữ";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // frmDangKi
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 563);
+            this.ClientSize = new System.Drawing.Size(725, 601);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtCCCD);
             this.Controls.Add(this.txtSDT);
             this.Controls.Add(this.panel2);
@@ -232,5 +270,8 @@
         private System.Windows.Forms.TextBox txtSDT;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtCCCD;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

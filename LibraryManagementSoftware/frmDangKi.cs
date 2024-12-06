@@ -53,8 +53,13 @@ namespace LibraryManagementSoftware
                 return false;
             }
 
-            string query = "INSERT INTO DocGia (MaDocGia, TenDocGia, NgaySinh, SDT, DiaChi, NgayDangKy, CCCD) VALUES (@MaDocGia,@TenDocGia,Getdate(),@SDT,'',Getdate(),@CCCD)";
-
+            string query = "INSERT INTO DocGia (MaDocGia, TenDocGia, NgaySinh, SDT, DiaChi, NgayDangKy, CCCD, GioiTinh) VALUES (@MaDocGia,@TenDocGia,Getdate(),@SDT,'',Getdate(),@CCCD,@gt)";
+            string gt = "";
+            if (radioButton1.Checked)
+            {
+                gt = "Nam";
+            }
+            else gt = "Nữ";
             // Define parameters
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -62,6 +67,7 @@ namespace LibraryManagementSoftware
                 new SqlParameter("@TenDocGia", txtHoTen.Text),
                 new SqlParameter("@CCCD", txtCCCD.Text),
                 new SqlParameter("@SDT", txtSDT.Text),
+                new SqlParameter("@gt", gt)
             };
             bool isInserted = db.ExecuteInsert(query, parameters);
             //txtHoTen.Text = query;
